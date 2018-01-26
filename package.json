@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "Redis style hash structure as a redux reducer",
   "main": "dist/bundle.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/redradix/hash-reducer"
+  },
   "scripts": {
     "test": "jest",
     "build": "babel index.js --out-file dist/bundle.js",
