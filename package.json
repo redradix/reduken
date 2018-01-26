@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest",
     "build": "babel index.js --out-file dist/bundle.js",
-    "prepublish": "npm run test && npm run build"
+    "prepublishOnly": "npm run test && npm run build"
   },
   "keywords": [
     "reducer",
@@ -17,11 +17,11 @@
   "author": "redradix",
   "license": "ISC",
   "dependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
     "dot-prop-immutable": "^1.4.0"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
     "jest": "^22.1.4"
   }
 }
