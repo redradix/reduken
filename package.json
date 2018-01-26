@@ -1,0 +1,27 @@
+{
+  "name": "hash-reducer",
+  "version": "1.0.0",
+  "description": "Redis style hash structure as a redux reducer",
+  "main": "dist/bundle.js",
+  "scripts": {
+    "test": "jest",
+    "build": "babel index.js --out-file dist/bundle.js",
+    "prepublish": "npm run test && npm run build"
+  },
+  "keywords": [
+    "reducer",
+    "redux",
+    "redis",
+    "hash"
+  ],
+  "author": "redradix",
+  "license": "ISC",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "dot-prop-immutable": "^1.4.0"
+  },
+  "devDependencies": {
+    "jest": "^22.1.4"
+  }
+}
