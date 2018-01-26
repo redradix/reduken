@@ -1,5 +1,5 @@
 {
-  "name": "hash-reducer",
+  "name": "hash-reducer-redradix",
   "version": "1.0.0",
   "description": "Redis style hash structure as a redux reducer",
   "main": "dist/bundle.js",
