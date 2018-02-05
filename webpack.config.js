@@ -2,10 +2,18 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
-    entry: './index.js',
+    entry: {
+        set: './set/index.js',
+        list: './list/index.js',
+        entities: './entities/index.js',
+        hash: './hash/index.js',
+        lib: './lib/index.js'
+    },
     output: {
         path: path.resolve(__dirname, ''),
-        filename: 'bundle.js'
+        filename: 'reduken.[name].js',
+        library: ["reduken", "[name]"],
+		libraryTarget: "umd"
     },
     module: {
         loaders: [
