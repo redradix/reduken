@@ -2,7 +2,7 @@
   "name": "reduken",
   "version": "1.0.4",
   "description": "Redis style structures as redux reducers, actions and selectors",
-  "main": "webpack.config.js",
+  "main": "bundle.js.map",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/redradix/rdx.git"
