@@ -10,7 +10,8 @@
   "scripts": {
     "test": "jest",
     "build": "babel ./src/index.js --out-file bundle.js",
-    "prepublishOnly": "npm run test && npm run build"
+    "prepublishOnly": "npm run test && npm run build",
+    "webpack": "webpack"
   },
   "keywords": [
     "reducer",
@@ -21,15 +22,18 @@
   "author": "redradix",
   "license": "ISC",
   "dependencies": {
+    "@babel/core": "^7.0.0-beta.39",
+    "@babel/preset-env": "^7.0.0-beta.39",
+    "babel-loader": "8.0.0-beta.0",
     "dot-prop-immutable": "^1.4.0",
     "invariant": "^2.2.2",
     "lodash.curry": "^4.1.1",
     "lodash.map": "^4.6.0",
-    "lodash.omit": "^4.5.0"
+    "lodash.omit": "^4.5.0",
+    "webpack": "^3.10.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
     "jest": "^22.1.4"
   },
   "bugs": {
