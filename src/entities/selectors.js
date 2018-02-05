@@ -1,5 +1,5 @@
-import map from 'lodash/map'
-import curry from 'lodash/curry'
+import map from 'lodash.map'
+import curry from 'lodash.curry'
 
 const EMPTY_OBJECT = {}
 

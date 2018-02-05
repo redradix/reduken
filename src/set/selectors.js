@@ -1,4 +1,4 @@
-import curry from 'lodash/curry'
+import curry from 'lodash.curry'
 
 const root = state => state.set
 
