@@ -11,8 +11,8 @@
     "test": "jest",
     "test:dev": "jest --watch",
     "test:coverage": "jest --coverage",
-    "build": "jest && webpack -p",
-    "prepublishOnly": "jest && webpack -p"
+    "build": "jest && webpack",
+    "prepublishOnly": "jest && webpack"
   },
   "keywords": [
     "reducer",
