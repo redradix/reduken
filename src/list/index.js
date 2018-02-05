@@ -1,4 +1,4 @@
-import { buildReducer } from '../lib/buildReducer'
+import buildReducer from '../lib/buildReducer'
 import { set } from 'dot-prop-immutable'
 import * as ActionTypes from './actionTypes'
 export * from './actions'

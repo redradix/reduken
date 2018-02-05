@@ -1,4 +1,4 @@
-import { buildReducer } from '../lib/buildReducer'
+import buildReducer from '../lib/buildReducer'
 import * as ActionTypes from './actionTypes'
 export * from './selectors'
 export * from './actions'
