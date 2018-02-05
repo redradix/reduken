@@ -1,6 +1,6 @@
-export * from './set'
-export * from './list'
-export * from './hash'
-export * from './entities'
+export { default as set } from './set'
+export { default as list } from './list'
+export { default as hash } from './hash'
+export { default as entities } from './entities'
 export * from './lib'
 
