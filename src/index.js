@@ -1,4 +1,13 @@
-export * from './set'
-export * from './list'
-export * from './hash'
-export * from './entities'
+import set from './set'
+import list from './list'
+import hash from './hash'
+import entities from './entities'
+import batchReducer from './lib/batchReducer'
+
+export {
+  set,
+  list,
+  hash,
+  entities,
+  batchReducer
+}
