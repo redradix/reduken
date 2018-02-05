@@ -1,15 +1,15 @@
 {
-  "name": "hash-reducer-redradix",
+  "name": "rdx",
   "version": "1.0.1",
-  "description": "Redis style hash structure as a redux reducer",
+  "description": "Redis style structures as redux reducers, actions and selectors",
   "main": "bundle.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/redradix/hash-reducer"
+    "url": "git+https://github.com/redradix/rdx.git"
   },
   "scripts": {
     "test": "jest",
-    "build": "babel index.js --out-file bundle.js",
+    "build": "babel ./src/index.js --out-file bundle.js",
     "prepublishOnly": "npm run test && npm run build"
   },
   "keywords": [
@@ -31,5 +31,9 @@
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "jest": "^22.1.4"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/redradix/hash-reducer/issues"
+  },
+  "homepage": "https://github.com/redradix/hash-reducer#readme"
 }
