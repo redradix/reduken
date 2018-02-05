@@ -1,5 +1,5 @@
 {
-  "name": "rdx",
+  "name": "reduken",
   "version": "1.0.1",
   "description": "Redis style structures as redux reducers, actions and selectors",
   "main": "bundle.js",
