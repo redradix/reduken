@@ -1,4 +1,4 @@
-import { batchReducer, batch, BATCH } from '../batchReducer'
+import batchReducer, { batch, BATCH } from '../batchReducer'
 
 describe('Batch Reducer', () => {
   const reducer = function(state=0, action){

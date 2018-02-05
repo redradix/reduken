@@ -3,11 +3,11 @@ var webpack = require('webpack');
 
 module.exports = {
     entry: {
-        set: './set/index.js',
-        list: './list/index.js',
-        entities: './entities/index.js',
-        hash: './hash/index.js',
-        main: './index.js'
+        set: './src/set/index.js',
+        list: './src/list/index.js',
+        entities: './src/entities/index.js',
+        hash: './src/hash/index.js',
+        main: './src/index.js'
     },
     output: {
         path: path.resolve(__dirname, ''),
