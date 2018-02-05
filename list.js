@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 105);
+/******/ 	return __webpack_require__(__webpack_require__.s = 108);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -79,7 +79,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-var freeGlobal = __webpack_require__(29);
+var freeGlobal = __webpack_require__(30);
 /** Detect free variable `self`. */
 
 
@@ -484,7 +484,7 @@ module.exports = baseSetData;
 /* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var WeakMap = __webpack_require__(27);
+var WeakMap = __webpack_require__(28);
 /** Used to store function metadata. */
 
 
@@ -899,7 +899,7 @@ module.exports = shortOut;
 
 var getWrapDetails = __webpack_require__(50),
     insertWrapDetails = __webpack_require__(51),
-    setToString = __webpack_require__(31),
+    setToString = __webpack_require__(32),
     updateWrapDetails = __webpack_require__(55);
 /**
  * Sets the `toString` method of `wrapper` to mimic the source of `reference`
@@ -985,6 +985,28 @@ module.exports = isSymbol;
 
 /***/ }),
 /* 26 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.buildReducer = buildReducer;
+
+function buildReducer(initialState, handlers) {
+  return function () {
+    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+    var action = arguments.length > 1 ? arguments[1] : undefined;
+    var handler = handlers[action.type];
+    if (!handler) return state;
+    return handler(state, action);
+  };
+}
+
+/***/ }),
+/* 27 */
 /***/ (function(module, exports) {
 
 /** Used as references for various `Number` constants. */
@@ -1009,7 +1031,7 @@ function isIndex(value, length) {
 module.exports = isIndex;
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var getNative = __webpack_require__(3),
@@ -1021,7 +1043,7 @@ var WeakMap = getNative(root, 'WeakMap');
 module.exports = WeakMap;
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var isObject = __webpack_require__(1);
@@ -1068,7 +1090,7 @@ function isFunction(value) {
 module.exports = isFunction;
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -1079,7 +1101,7 @@ module.exports = freeGlobal;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(39)))
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports) {
 
 /** Used for built-in method references. */
@@ -1112,7 +1134,7 @@ function toSource(func) {
 module.exports = toSource;
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var baseSetToString = __webpack_require__(52),
@@ -1131,7 +1153,7 @@ var setToString = shortOut(baseSetToString);
 module.exports = setToString;
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var baseIndexOf = __webpack_require__(57);
@@ -1152,28 +1174,6 @@ function arrayIncludes(array, value) {
 }
 
 module.exports = arrayIncludes;
-
-/***/ }),
-/* 33 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.buildReducer = buildReducer;
-
-function buildReducer(initialState, handlers) {
-  return function () {
-    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
-    var action = arguments.length > 1 ? arguments[1] : undefined;
-    var handler = handlers[action.type];
-    if (!handler) return state;
-    return handler(state, action);
-  };
-}
 
 /***/ }),
 /* 34 */
@@ -1355,10 +1355,10 @@ module.exports = createWrap;
 /* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isFunction = __webpack_require__(28),
+var isFunction = __webpack_require__(29),
     isMasked = __webpack_require__(37),
     isObject = __webpack_require__(1),
-    toSource = __webpack_require__(30);
+    toSource = __webpack_require__(31);
 /**
  * Used to match `RegExp`
  * [syntax characters](http://ecma-international.org/ecma-262/7.0/#sec-patterns).
@@ -2010,7 +2010,7 @@ module.exports = nativeDefineProperty;
 /***/ (function(module, exports, __webpack_require__) {
 
 var arrayEach = __webpack_require__(56),
-    arrayIncludes = __webpack_require__(32);
+    arrayIncludes = __webpack_require__(33);
 /** Used to compose bitmasks for function metadata. */
 
 
@@ -2181,7 +2181,7 @@ module.exports = strictIndexOf;
 /***/ (function(module, exports, __webpack_require__) {
 
 var copyArray = __webpack_require__(20),
-    isIndex = __webpack_require__(26);
+    isIndex = __webpack_require__(27);
 /* Built-in method references for those with the same name as other `lodash` methods. */
 
 
@@ -2728,338 +2728,7 @@ module.exports = {
 /* 73 */,
 /* 74 */,
 /* 75 */,
-/* 76 */,
-/* 77 */,
-/* 78 */,
-/* 79 */,
-/* 80 */,
-/* 81 */,
-/* 82 */,
-/* 83 */,
-/* 84 */,
-/* 85 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.LTRIM = exports.LREPLACE = exports.LREM = exports.LSET = exports.RPOP = exports.LPOP = exports.RPUSH = exports.LPUSH = void 0;
-var MOD = 'CORE/LIST';
-var LPUSH = "".concat(MOD, "/LPUSH");
-exports.LPUSH = LPUSH;
-var RPUSH = "".concat(MOD, "/RPUSH");
-exports.RPUSH = RPUSH;
-var LPOP = "".concat(MOD, "/LPOP");
-exports.LPOP = LPOP;
-var RPOP = "".concat(MOD, "/RPOP");
-exports.RPOP = RPOP;
-var LSET = "".concat(MOD, "/LSET");
-exports.LSET = LSET;
-var LREM = "".concat(MOD, "/LREM");
-exports.LREM = LREM;
-var LREPLACE = "".concat(MOD, "/LREPLACE");
-exports.LREPLACE = LREPLACE;
-var LTRIM = "".concat(MOD, "/LTRIM");
-exports.LTRIM = LTRIM;
-
-/***/ }),
-/* 86 */,
-/* 87 */,
-/* 88 */,
-/* 89 */,
-/* 90 */,
-/* 91 */,
-/* 92 */,
-/* 93 */,
-/* 94 */,
-/* 95 */,
-/* 96 */,
-/* 97 */,
-/* 98 */,
-/* 99 */,
-/* 100 */,
-/* 101 */,
-/* 102 */,
-/* 103 */,
-/* 104 */,
-/* 105 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var _exportNames = {};
-exports.default = void 0;
-
-var _buildReducer2 = __webpack_require__(33);
-
-var _dotPropImmutable = __webpack_require__(67);
-
-var ActionTypes = _interopRequireWildcard(__webpack_require__(85));
-
-var _actions = __webpack_require__(106);
-
-Object.keys(_actions).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _actions[key];
-    }
-  });
-});
-
-var _selectors = __webpack_require__(109);
-
-Object.keys(_selectors).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _selectors[key];
-    }
-  });
-});
-
-var _buildReducer;
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
-function lrem() {
-  var list = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-  var count = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-  var value = arguments.length > 2 ? arguments[2] : undefined;
-
-  if (count === 0) {
-    return list.filter(function (x) {
-      return x !== value;
-    });
-  }
-
-  if (count > 0) {
-    var removed = 0;
-    return list.filter(function (item, index) {
-      if (item === value && removed < count) {
-        removed += 1;
-        return false;
-      }
-
-      return true;
-    });
-  }
-
-  if (count < 0) {
-    var _removed = count;
-    return list.reverse().filter(function (item, index) {
-      if (item === value && _removed < 0) {
-        _removed += 1;
-        return false;
-      }
-
-      return true;
-    }).reverse();
-  }
-}
-
-function ltrim() {
-  var list = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-  var start = arguments.length > 1 ? arguments[1] : undefined;
-  var stop = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : start;
-  return list.slice(start, stop + 1);
-}
-
-var initialState = {};
-
-var _default = (0, _buildReducer2.buildReducer)(initialState, (_buildReducer = {}, _defineProperty(_buildReducer, ActionTypes.LPUSH, function (state, action) {
-  var _action$payload = action.payload,
-      target = _action$payload.target,
-      value = _action$payload.value;
-  var prevItems = state[target] || [];
-  return (0, _dotPropImmutable.set)(state, target, [value].concat(_toConsumableArray(prevItems)));
-}), _defineProperty(_buildReducer, ActionTypes.RPUSH, function (state, action) {
-  var _action$payload2 = action.payload,
-      target = _action$payload2.target,
-      value = _action$payload2.value;
-  var prevItems = state[target] || [];
-  return (0, _dotPropImmutable.set)(state, target, _toConsumableArray(prevItems).concat([value]));
-}), _defineProperty(_buildReducer, ActionTypes.LPOP, function (state, action) {
-  var target = action.payload.target;
-  var newList = (state[target] || []).slice(1);
-  return (0, _dotPropImmutable.set)(state, target, newList);
-}), _defineProperty(_buildReducer, ActionTypes.RPOP, function (state, action) {
-  var target = action.payload.target;
-  var list = state[target] || [];
-  return (0, _dotPropImmutable.set)(state, target, list.slice(0, list.length - 1));
-}), _defineProperty(_buildReducer, ActionTypes.LSET, function (state, action) {
-  var _action$payload3 = action.payload,
-      target = _action$payload3.target,
-      value = _action$payload3.value,
-      index = _action$payload3.index;
-  var prevItems = state[target] || [];
-
-  if (index > prevItems.length) {
-    console.warn("LSET specified out of bounds index (".concat(index, ") for list ").concat(target));
-    return state;
-  }
-
-  var newList = [].concat(prevItems);
-  newList[index] = value;
-  return (0, _dotPropImmutable.set)(state, target, newList);
-}), _defineProperty(_buildReducer, ActionTypes.LREPLACE, function (state, action) {
-  var _action$payload4 = action.payload,
-      target = _action$payload4.target,
-      elements = _action$payload4.elements;
-  return (0, _dotPropImmutable.set)(state, target, [].concat(elements));
-}), _defineProperty(_buildReducer, ActionTypes.LREM, function (state, action) {
-  var _action$payload5 = action.payload,
-      target = _action$payload5.target,
-      count = _action$payload5.count,
-      value = _action$payload5.value;
-
-  if (!state[target]) {
-    return state;
-  }
-
-  return (0, _dotPropImmutable.set)(state, target, lrem(state[target], count, value));
-}), _defineProperty(_buildReducer, ActionTypes.LTRIM, function (state, action) {
-  var _action$payload6 = action.payload,
-      target = _action$payload6.target,
-      start = _action$payload6.start,
-      stop = _action$payload6.stop;
-
-  if (!state[target]) {
-    return state;
-  }
-
-  return (0, _dotPropImmutable.set)(state, target, ltrim(state[target], start, stop));
-}), _buildReducer));
-
-exports.default = _default;
-
-/***/ }),
-/* 106 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.lpush = lpush;
-exports.rpush = rpush;
-exports.lpop = lpop;
-exports.rpop = rpop;
-exports.lset = lset;
-exports.lreplace = lreplace;
-exports.lrem = lrem;
-exports.ltrim = ltrim;
-
-var _invariant = _interopRequireDefault(__webpack_require__(107));
-
-var ActionTypes = _interopRequireWildcard(__webpack_require__(85));
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function lpush(target, value) {
-  return {
-    type: ActionTypes.LPUSH,
-    payload: {
-      target: target,
-      value: value
-    }
-  };
-}
-
-function rpush(target, value) {
-  return {
-    type: ActionTypes.RPUSH,
-    payload: {
-      target: target,
-      value: value
-    }
-  };
-}
-
-function lpop(target) {
-  return {
-    type: ActionTypes.LPOP,
-    payload: {
-      target: target
-    }
-  };
-}
-
-function rpop(target) {
-  return {
-    type: ActionTypes.RPOP,
-    payload: {
-      target: target
-    }
-  };
-}
-
-function lset(target, index, value) {
-  return {
-    type: ActionTypes.LSET,
-    payload: {
-      target: target,
-      index: index,
-      value: value
-    }
-  };
-}
-
-function lreplace(target, elements) {
-  (0, _invariant.default)(Array.isArray(elements), 'List.lreplace(target, elements) expects an Array of elements to replace the list with');
-  return {
-    type: ActionTypes.LREPLACE,
-    payload: {
-      target: target,
-      elements: elements
-    }
-  };
-}
-
-function lrem(target, count, value) {
-  return {
-    type: ActionTypes.LREM,
-    payload: {
-      target: target,
-      count: count,
-      value: value
-    }
-  };
-}
-
-function ltrim(target, start) {
-  var stop = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : -1;
-  return {
-    type: ActionTypes.LTRIM,
-    payload: {
-      target: target,
-      start: start,
-      stop: stop
-    }
-  };
-}
-
-/***/ }),
-/* 107 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3111,10 +2780,10 @@ var invariant = function invariant(condition, format, a, b, c, d, e, f) {
 };
 
 module.exports = invariant;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(108)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(77)))
 
 /***/ }),
-/* 108 */
+/* 77 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -3327,7 +2996,339 @@ process.umask = function () {
 };
 
 /***/ }),
+/* 78 */,
+/* 79 */,
+/* 80 */,
+/* 81 */,
+/* 82 */,
+/* 83 */,
+/* 84 */,
+/* 85 */,
+/* 86 */,
+/* 87 */,
+/* 88 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.LTRIM = exports.LREPLACE = exports.LREM = exports.LSET = exports.RPOP = exports.LPOP = exports.RPUSH = exports.LPUSH = void 0;
+var MOD = 'CORE/LIST';
+var LPUSH = "".concat(MOD, "/LPUSH");
+exports.LPUSH = LPUSH;
+var RPUSH = "".concat(MOD, "/RPUSH");
+exports.RPUSH = RPUSH;
+var LPOP = "".concat(MOD, "/LPOP");
+exports.LPOP = LPOP;
+var RPOP = "".concat(MOD, "/RPOP");
+exports.RPOP = RPOP;
+var LSET = "".concat(MOD, "/LSET");
+exports.LSET = LSET;
+var LREM = "".concat(MOD, "/LREM");
+exports.LREM = LREM;
+var LREPLACE = "".concat(MOD, "/LREPLACE");
+exports.LREPLACE = LREPLACE;
+var LTRIM = "".concat(MOD, "/LTRIM");
+exports.LTRIM = LTRIM;
+
+/***/ }),
+/* 89 */,
+/* 90 */,
+/* 91 */,
+/* 92 */,
+/* 93 */,
+/* 94 */,
+/* 95 */,
+/* 96 */,
+/* 97 */,
+/* 98 */,
+/* 99 */,
+/* 100 */,
+/* 101 */,
+/* 102 */,
+/* 103 */,
+/* 104 */,
+/* 105 */,
+/* 106 */,
+/* 107 */,
+/* 108 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var _exportNames = {};
+exports.default = void 0;
+
+var _buildReducer2 = __webpack_require__(26);
+
+var _dotPropImmutable = __webpack_require__(67);
+
+var ActionTypes = _interopRequireWildcard(__webpack_require__(88));
+
+var _actions = __webpack_require__(109);
+
+Object.keys(_actions).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _actions[key];
+    }
+  });
+});
+
+var _selectors = __webpack_require__(110);
+
+Object.keys(_selectors).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _selectors[key];
+    }
+  });
+});
+
+var _buildReducer;
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+function lrem() {
+  var list = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var count = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+  var value = arguments.length > 2 ? arguments[2] : undefined;
+
+  if (count === 0) {
+    return list.filter(function (x) {
+      return x !== value;
+    });
+  }
+
+  if (count > 0) {
+    var removed = 0;
+    return list.filter(function (item, index) {
+      if (item === value && removed < count) {
+        removed += 1;
+        return false;
+      }
+
+      return true;
+    });
+  }
+
+  if (count < 0) {
+    var _removed = count;
+    return list.reverse().filter(function (item, index) {
+      if (item === value && _removed < 0) {
+        _removed += 1;
+        return false;
+      }
+
+      return true;
+    }).reverse();
+  }
+}
+
+function ltrim() {
+  var list = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var start = arguments.length > 1 ? arguments[1] : undefined;
+  var stop = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : start;
+  return list.slice(start, stop + 1);
+}
+
+var initialState = {};
+
+var _default = (0, _buildReducer2.buildReducer)(initialState, (_buildReducer = {}, _defineProperty(_buildReducer, ActionTypes.LPUSH, function (state, action) {
+  var _action$payload = action.payload,
+      target = _action$payload.target,
+      value = _action$payload.value;
+  var prevItems = state[target] || [];
+  return (0, _dotPropImmutable.set)(state, target, [value].concat(_toConsumableArray(prevItems)));
+}), _defineProperty(_buildReducer, ActionTypes.RPUSH, function (state, action) {
+  var _action$payload2 = action.payload,
+      target = _action$payload2.target,
+      value = _action$payload2.value;
+  var prevItems = state[target] || [];
+  return (0, _dotPropImmutable.set)(state, target, _toConsumableArray(prevItems).concat([value]));
+}), _defineProperty(_buildReducer, ActionTypes.LPOP, function (state, action) {
+  var target = action.payload.target;
+  var newList = (state[target] || []).slice(1);
+  return (0, _dotPropImmutable.set)(state, target, newList);
+}), _defineProperty(_buildReducer, ActionTypes.RPOP, function (state, action) {
+  var target = action.payload.target;
+  var list = state[target] || [];
+  return (0, _dotPropImmutable.set)(state, target, list.slice(0, list.length - 1));
+}), _defineProperty(_buildReducer, ActionTypes.LSET, function (state, action) {
+  var _action$payload3 = action.payload,
+      target = _action$payload3.target,
+      value = _action$payload3.value,
+      index = _action$payload3.index;
+  var prevItems = state[target] || [];
+
+  if (index > prevItems.length) {
+    console.warn("LSET specified out of bounds index (".concat(index, ") for list ").concat(target));
+    return state;
+  }
+
+  var newList = [].concat(prevItems);
+  newList[index] = value;
+  return (0, _dotPropImmutable.set)(state, target, newList);
+}), _defineProperty(_buildReducer, ActionTypes.LREPLACE, function (state, action) {
+  var _action$payload4 = action.payload,
+      target = _action$payload4.target,
+      elements = _action$payload4.elements;
+  return (0, _dotPropImmutable.set)(state, target, [].concat(elements));
+}), _defineProperty(_buildReducer, ActionTypes.LREM, function (state, action) {
+  var _action$payload5 = action.payload,
+      target = _action$payload5.target,
+      count = _action$payload5.count,
+      value = _action$payload5.value;
+
+  if (!state[target]) {
+    return state;
+  }
+
+  return (0, _dotPropImmutable.set)(state, target, lrem(state[target], count, value));
+}), _defineProperty(_buildReducer, ActionTypes.LTRIM, function (state, action) {
+  var _action$payload6 = action.payload,
+      target = _action$payload6.target,
+      start = _action$payload6.start,
+      stop = _action$payload6.stop;
+
+  if (!state[target]) {
+    return state;
+  }
+
+  return (0, _dotPropImmutable.set)(state, target, ltrim(state[target], start, stop));
+}), _buildReducer));
+
+exports.default = _default;
+
+/***/ }),
 /* 109 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.lpush = lpush;
+exports.rpush = rpush;
+exports.lpop = lpop;
+exports.rpop = rpop;
+exports.lset = lset;
+exports.lreplace = lreplace;
+exports.lrem = lrem;
+exports.ltrim = ltrim;
+
+var _invariant = _interopRequireDefault(__webpack_require__(76));
+
+var ActionTypes = _interopRequireWildcard(__webpack_require__(88));
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function lpush(target, value) {
+  return {
+    type: ActionTypes.LPUSH,
+    payload: {
+      target: target,
+      value: value
+    }
+  };
+}
+
+function rpush(target, value) {
+  return {
+    type: ActionTypes.RPUSH,
+    payload: {
+      target: target,
+      value: value
+    }
+  };
+}
+
+function lpop(target) {
+  return {
+    type: ActionTypes.LPOP,
+    payload: {
+      target: target
+    }
+  };
+}
+
+function rpop(target) {
+  return {
+    type: ActionTypes.RPOP,
+    payload: {
+      target: target
+    }
+  };
+}
+
+function lset(target, index, value) {
+  return {
+    type: ActionTypes.LSET,
+    payload: {
+      target: target,
+      index: index,
+      value: value
+    }
+  };
+}
+
+function lreplace(target, elements) {
+  (0, _invariant.default)(Array.isArray(elements), 'List.lreplace(target, elements) expects an Array of elements to replace the list with');
+  return {
+    type: ActionTypes.LREPLACE,
+    payload: {
+      target: target,
+      elements: elements
+    }
+  };
+}
+
+function lrem(target, count, value) {
+  return {
+    type: ActionTypes.LREM,
+    payload: {
+      target: target,
+      count: count,
+      value: value
+    }
+  };
+}
+
+function ltrim(target, start) {
+  var stop = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : -1;
+  return {
+    type: ActionTypes.LTRIM,
+    payload: {
+      target: target,
+      start: start,
+      stop: stop
+    }
+  };
+}
+
+/***/ }),
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3374,4 +3375,4 @@ exports.lrange = lrange;
 /***/ })
 /******/ ]);
 });
-//# sourceMappingURL=reduken.list.js.map
+//# sourceMappingURL=list.js.map

@@ -7,11 +7,11 @@ module.exports = {
         list: './list/index.js',
         entities: './entities/index.js',
         hash: './hash/index.js',
-        lib: './lib/index.js'
+        main: './index.js'
     },
     output: {
         path: path.resolve(__dirname, ''),
-        filename: 'reduken.[name].js',
+        filename: '[name].js',
         library: ["reduken", "[name]"],
 		libraryTarget: "umd"
     },

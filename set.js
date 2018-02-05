@@ -4,9 +4,9 @@
 	else if(typeof define === 'function' && define.amd)
 		define([], factory);
 	else if(typeof exports === 'object')
-		exports["hash"] = factory();
+		exports["set"] = factory();
 	else
-		root["reduken"] = root["reduken"] || {}, root["reduken"]["hash"] = factory();
+		root["reduken"] = root["reduken"] || {}, root["reduken"]["set"] = factory();
 })(typeof self !== 'undefined' ? self : this, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 200);
+/******/ 	return __webpack_require__(__webpack_require__.s = 105);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -79,7 +79,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-var freeGlobal = __webpack_require__(29);
+var freeGlobal = __webpack_require__(30);
 /** Detect free variable `self`. */
 
 
@@ -484,7 +484,7 @@ module.exports = baseSetData;
 /* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var WeakMap = __webpack_require__(27);
+var WeakMap = __webpack_require__(28);
 /** Used to store function metadata. */
 
 
@@ -899,7 +899,7 @@ module.exports = shortOut;
 
 var getWrapDetails = __webpack_require__(50),
     insertWrapDetails = __webpack_require__(51),
-    setToString = __webpack_require__(31),
+    setToString = __webpack_require__(32),
     updateWrapDetails = __webpack_require__(55);
 /**
  * Sets the `toString` method of `wrapper` to mimic the source of `reference`
@@ -985,6 +985,28 @@ module.exports = isSymbol;
 
 /***/ }),
 /* 26 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.buildReducer = buildReducer;
+
+function buildReducer(initialState, handlers) {
+  return function () {
+    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+    var action = arguments.length > 1 ? arguments[1] : undefined;
+    var handler = handlers[action.type];
+    if (!handler) return state;
+    return handler(state, action);
+  };
+}
+
+/***/ }),
+/* 27 */
 /***/ (function(module, exports) {
 
 /** Used as references for various `Number` constants. */
@@ -1009,7 +1031,7 @@ function isIndex(value, length) {
 module.exports = isIndex;
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var getNative = __webpack_require__(3),
@@ -1021,7 +1043,7 @@ var WeakMap = getNative(root, 'WeakMap');
 module.exports = WeakMap;
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var isObject = __webpack_require__(1);
@@ -1068,7 +1090,7 @@ function isFunction(value) {
 module.exports = isFunction;
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -1079,7 +1101,7 @@ module.exports = freeGlobal;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(39)))
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports) {
 
 /** Used for built-in method references. */
@@ -1112,7 +1134,7 @@ function toSource(func) {
 module.exports = toSource;
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var baseSetToString = __webpack_require__(52),
@@ -1131,7 +1153,7 @@ var setToString = shortOut(baseSetToString);
 module.exports = setToString;
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var baseIndexOf = __webpack_require__(57);
@@ -1152,28 +1174,6 @@ function arrayIncludes(array, value) {
 }
 
 module.exports = arrayIncludes;
-
-/***/ }),
-/* 33 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.buildReducer = buildReducer;
-
-function buildReducer(initialState, handlers) {
-  return function () {
-    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
-    var action = arguments.length > 1 ? arguments[1] : undefined;
-    var handler = handlers[action.type];
-    if (!handler) return state;
-    return handler(state, action);
-  };
-}
 
 /***/ }),
 /* 34 */
@@ -1355,10 +1355,10 @@ module.exports = createWrap;
 /* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isFunction = __webpack_require__(28),
+var isFunction = __webpack_require__(29),
     isMasked = __webpack_require__(37),
     isObject = __webpack_require__(1),
-    toSource = __webpack_require__(30);
+    toSource = __webpack_require__(31);
 /**
  * Used to match `RegExp`
  * [syntax characters](http://ecma-international.org/ecma-262/7.0/#sec-patterns).
@@ -2010,7 +2010,7 @@ module.exports = nativeDefineProperty;
 /***/ (function(module, exports, __webpack_require__) {
 
 var arrayEach = __webpack_require__(56),
-    arrayIncludes = __webpack_require__(32);
+    arrayIncludes = __webpack_require__(33);
 /** Used to compose bitmasks for function metadata. */
 
 
@@ -2181,7 +2181,7 @@ module.exports = strictIndexOf;
 /***/ (function(module, exports, __webpack_require__) {
 
 var copyArray = __webpack_require__(20),
-    isIndex = __webpack_require__(26);
+    isIndex = __webpack_require__(27);
 /* Built-in method references for those with the same name as other `lodash` methods. */
 
 
@@ -2531,195 +2531,7 @@ function toNumber(value) {
 module.exports = toNumber;
 
 /***/ }),
-/* 67 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/**
- * Set a value by a dot path.
- * @param obj The object to evaluate.
- * @param prop The path to be set.
- * @param val The value to set.
- */
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function set(obj, prop, value) {
-  prop = typeof prop === 'number' ? propToArray(prop.toString()) : typeof prop === 'string' ? propToArray(prop) : prop;
-
-  var setPropImmutableRec = function setPropImmutableRec(obj, prop, value, i) {
-    var clone,
-        head = prop[i];
-
-    if (prop.length > i) {
-      if (Array.isArray(obj)) {
-        head = getArrayIndex(head, obj);
-        clone = obj.slice();
-      } else {
-        clone = Object.assign({}, obj);
-      }
-
-      clone[head] = setPropImmutableRec(obj[head] !== undefined ? obj[head] : {}, prop, value, i + 1);
-      return clone;
-    }
-
-    return typeof value === 'function' ? value(obj) : value;
-  };
-
-  return setPropImmutableRec(obj, prop, value, 0);
-}
-/**
- * Get a value by a dot path.
- * @param obj The object to evaluate.
- * @param prop The path to value that should be returned.
- */
-
-
-function get(obj, prop, value) {
-  prop = typeof prop === 'number' ? propToArray(prop.toString()) : typeof prop === 'string' ? propToArray(prop) : prop;
-
-  for (var i = 0; i < prop.length; i++) {
-    if (_typeof(obj) !== 'object') {
-      return value;
-    }
-
-    var head = prop[i];
-
-    if (Array.isArray(obj) && head === '$end') {
-      head = obj.length - 1;
-    }
-
-    obj = obj[head];
-  }
-
-  return obj;
-}
-/**
- * Delete a property by a dot path.
- * If target container is an object, the property is deleted.
- * If target container is an array, the index is deleted.
- * If target container is undefined, nothing is deleted.
- * @param obj The object to evaluate.
- * @param prop The path to the property or index that should be deleted.
- */
-
-
-function _delete(obj, prop) {
-  prop = typeof prop === 'number' ? propToArray(prop.toString()) : typeof prop === 'string' ? propToArray(prop) : prop;
-
-  var deletePropImmutableRec = function deletePropImmutableRec(obj, prop, i) {
-    var clone,
-        head = prop[i];
-
-    if (_typeof(obj) !== 'object' || !Array.isArray(obj) && obj[head] === undefined) {
-      return obj;
-    }
-
-    if (prop.length - 1 > i) {
-      if (Array.isArray(obj)) {
-        head = getArrayIndex(head, obj);
-        clone = obj.slice();
-      } else {
-        clone = Object.assign({}, obj);
-      }
-
-      clone[head] = deletePropImmutableRec(obj[head], prop, i + 1);
-      return clone;
-    }
-
-    if (Array.isArray(obj)) {
-      head = getArrayIndex(head, obj);
-      clone = [].concat(obj.slice(0, head), obj.slice(head + 1));
-    } else {
-      clone = Object.assign({}, obj);
-      delete clone[head];
-    }
-
-    return clone;
-  };
-
-  return deletePropImmutableRec(obj, prop, 0);
-}
-/**
- * Toggles a value.  The target value is evaluated using Boolean(currentValue).  The result will always be a JSON boolean.
- * Be careful with strings as target value, as "true" and "false" will toggle to false, but "0" will toggle to true.
- * Here is what Javascript considers false:  0, -0, null, false, NaN, undefined, and the empty string ("")
- * @param obj The object to evaluate.
- * @param prop The path to the value.
- */
-
-
-function toggle(obj, prop) {
-  var curVal = get(obj, prop);
-  return set(obj, prop, !Boolean(curVal));
-}
-/**
- * Merges a value.  The target value must be an object, array, null, or undefined.
- * If target is an object, Object.assign({}, target, param) is used.
- * If target an array, target.concat(param) is used.
- * If target is null or undefined, the value is simply set.
- * @param obj The object to evaluate.
- * @param prop The path to the value.
- * @param val The value to merge into the target value.
- */
-
-
-function merge(obj, prop, val) {
-  var curVal = get(obj, prop);
-
-  if (_typeof(curVal) === 'object') {
-    if (Array.isArray(curVal)) {
-      return set(obj, prop, curVal.concat(val));
-    } else if (curVal === null) {
-      return set(obj, prop, val);
-    } else {
-      var merged = Object.assign({}, curVal, val);
-      return set(obj, prop, merged);
-    }
-  } else if (typeof curVal === 'undefined') {
-    return set(obj, prop, val);
-  } else {
-    return obj;
-  }
-}
-
-function getArrayIndex(head, obj) {
-  if (head === '$end') {
-    head = Math.max(obj.length - 1, 0);
-  }
-
-  if (!/^\+?\d+$/.test(head)) {
-    throw new Error('Array index \'' + head + '\' has to be an integer');
-  }
-
-  return parseInt(head);
-}
-
-function propToArray(prop) {
-  return prop.split('.').reduce(function (ret, el, index, list) {
-    var last = index > 0 && list[index - 1];
-
-    if (last && /(?:^|[^\\])\\$/.test(last)) {
-      ret.pop();
-      ret.push(last.slice(0, -1) + '.' + el);
-    } else {
-      ret.push(el);
-    }
-
-    return ret;
-  }, []);
-}
-
-module.exports = {
-  set: set,
-  get: get,
-  delete: _delete,
-  toggle: toggle,
-  merge: merge
-};
-
-/***/ }),
+/* 67 */,
 /* 68 */,
 /* 69 */,
 /* 70 */,
@@ -2739,7 +2551,31 @@ module.exports = {
 /* 84 */,
 /* 85 */,
 /* 86 */,
-/* 87 */,
+/* 87 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.SMOVE = exports.SINTER = exports.SDIFF = exports.SUNION = exports.SREM = exports.SADD = void 0;
+var MOD = 'CORE/SET/';
+var SADD = "".concat(MOD, "SADD");
+exports.SADD = SADD;
+var SREM = "".concat(MOD, "SREM");
+exports.SREM = SREM;
+var SUNION = "".concat(MOD, "SUNION");
+exports.SUNION = SUNION;
+var SDIFF = "".concat(MOD, "SDIFF");
+exports.SDIFF = SDIFF;
+var SINTER = "".concat(MOD, "SINTER");
+exports.SINTER = SINTER;
+var SMOVE = "".concat(MOD, "SMOVE");
+exports.SMOVE = SMOVE;
+
+/***/ }),
 /* 88 */,
 /* 89 */,
 /* 90 */,
@@ -2753,128 +2589,11 @@ module.exports = {
 /* 98 */,
 /* 99 */,
 /* 100 */,
-/* 101 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.HTOGGLE = exports.HINCRBY = exports.HMSET = exports.HDEL = exports.HSET = void 0;
-var MOD = 'CORE/HASH';
-var HSET = "".concat(MOD, "/HSET");
-exports.HSET = HSET;
-var HDEL = "".concat(MOD, "/HDEL");
-exports.HDEL = HDEL;
-var HMSET = "".concat(MOD, "/HMSET");
-exports.HMSET = HMSET;
-var HINCRBY = "".concat(MOD, "/HINCRBY");
-exports.HINCRBY = HINCRBY;
-var HTOGGLE = "".concat(MOD, "/HTOGGLE");
-exports.HTOGGLE = HTOGGLE;
-
-/***/ }),
+/* 101 */,
 /* 102 */,
 /* 103 */,
 /* 104 */,
-/* 105 */,
-/* 106 */,
-/* 107 */,
-/* 108 */,
-/* 109 */,
-/* 110 */,
-/* 111 */,
-/* 112 */,
-/* 113 */,
-/* 114 */,
-/* 115 */,
-/* 116 */,
-/* 117 */,
-/* 118 */,
-/* 119 */,
-/* 120 */,
-/* 121 */,
-/* 122 */,
-/* 123 */,
-/* 124 */,
-/* 125 */,
-/* 126 */,
-/* 127 */,
-/* 128 */,
-/* 129 */,
-/* 130 */,
-/* 131 */,
-/* 132 */,
-/* 133 */,
-/* 134 */,
-/* 135 */,
-/* 136 */,
-/* 137 */,
-/* 138 */,
-/* 139 */,
-/* 140 */,
-/* 141 */,
-/* 142 */,
-/* 143 */,
-/* 144 */,
-/* 145 */,
-/* 146 */,
-/* 147 */,
-/* 148 */,
-/* 149 */,
-/* 150 */,
-/* 151 */,
-/* 152 */,
-/* 153 */,
-/* 154 */,
-/* 155 */,
-/* 156 */,
-/* 157 */,
-/* 158 */,
-/* 159 */,
-/* 160 */,
-/* 161 */,
-/* 162 */,
-/* 163 */,
-/* 164 */,
-/* 165 */,
-/* 166 */,
-/* 167 */,
-/* 168 */,
-/* 169 */,
-/* 170 */,
-/* 171 */,
-/* 172 */,
-/* 173 */,
-/* 174 */,
-/* 175 */,
-/* 176 */,
-/* 177 */,
-/* 178 */,
-/* 179 */,
-/* 180 */,
-/* 181 */,
-/* 182 */,
-/* 183 */,
-/* 184 */,
-/* 185 */,
-/* 186 */,
-/* 187 */,
-/* 188 */,
-/* 189 */,
-/* 190 */,
-/* 191 */,
-/* 192 */,
-/* 193 */,
-/* 194 */,
-/* 195 */,
-/* 196 */,
-/* 197 */,
-/* 198 */,
-/* 199 */,
-/* 200 */
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2886,26 +2605,11 @@ Object.defineProperty(exports, "__esModule", {
 var _exportNames = {};
 exports.default = void 0;
 
-var _dotPropImmutable = _interopRequireDefault(__webpack_require__(67));
+var _buildReducer2 = __webpack_require__(26);
 
-var _buildReducer2 = __webpack_require__(33);
+var ActionTypes = _interopRequireWildcard(__webpack_require__(87));
 
-var ActionTypes = _interopRequireWildcard(__webpack_require__(101));
-
-var _actions = __webpack_require__(201);
-
-Object.keys(_actions).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _actions[key];
-    }
-  });
-});
-
-var _selectors = __webpack_require__(202);
+var _selectors = __webpack_require__(106);
 
 Object.keys(_selectors).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
@@ -2918,49 +2622,136 @@ Object.keys(_selectors).forEach(function (key) {
   });
 });
 
+var _actions = __webpack_require__(107);
+
+Object.keys(_actions).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _actions[key];
+    }
+  });
+});
+
 var _buildReducer;
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var reducer = (0, _buildReducer2.buildReducer)({}, (_buildReducer = {}, _defineProperty(_buildReducer, ActionTypes.HSET, function (state, action) {
-  var _action$payload = action.payload,
-      value = _action$payload.value,
-      path = _action$payload.path;
-  return _dotPropImmutable.default.set(state, path, value);
-}), _defineProperty(_buildReducer, ActionTypes.HDEL, function (state, action) {
-  var path = action.payload.path;
-  return _dotPropImmutable.default.delete(state, path);
-}), _defineProperty(_buildReducer, ActionTypes.HMSET, function (state, action) {
-  var _action$payload2 = action.payload,
-      value = _action$payload2.value,
-      path = _action$payload2.path;
-  return _dotPropImmutable.default.merge(state, path, value);
-}), _defineProperty(_buildReducer, ActionTypes.HINCRBY, function (state, action) {
-  var _action$payload3 = action.payload,
-      value = _action$payload3.value,
-      path = _action$payload3.path;
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-  if (_dotPropImmutable.default.get(state, path)) {
-    return _dotPropImmutable.default.set(state, path, function (v) {
-      return (Number(v) || 0) + value;
-    });
-  } else {
-    return _dotPropImmutable.default.set(state, path, value);
+function _toArray(arr) { return Array.isArray(arr) ? arr : Array.from(arr); }
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+function sadd() {
+  var set = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var item = arguments.length > 1 ? arguments[1] : undefined;
+
+  if (set.indexOf(item) === -1) {
+    return [item].concat(_toConsumableArray(set));
   }
-}), _defineProperty(_buildReducer, ActionTypes.HTOGGLE, function (state, action) {
-  var path = action.payload.path;
-  var currentValue = Boolean(_dotPropImmutable.default.get(state, path));
-  return _dotPropImmutable.default.set(state, path, !currentValue);
+
+  return set;
+}
+
+function srem() {
+  var set = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var item = arguments.length > 1 ? arguments[1] : undefined;
+  return set.filter(function (x) {
+    return x !== item;
+  });
+}
+
+function sunion(sets) {
+  return sets.reduce(function (acc, set) {
+    return set.reduce(sadd, acc);
+  }, []);
+}
+
+function sdiff(sets) {
+  var _sets = _toArray(sets),
+      first = _sets[0],
+      rest = _sets.slice(1);
+
+  return first.filter(function (item) {
+    return rest.every(function (set) {
+      return set.indexOf(item) === -1;
+    });
+  }).reduce(sadd, []);
+}
+
+function sinter(sets) {
+  var _sets2 = _toArray(sets),
+      first = _sets2[0],
+      rest = _sets2.slice(1);
+
+  if (!sets.every(function (set) {
+    return set.length;
+  })) {
+    return [];
+  }
+
+  return first.filter(function (item) {
+    return rest.every(function (set) {
+      return set.indexOf(item) > -1;
+    });
+  }).reduce(sadd, []);
+}
+
+var _default = (0, _buildReducer2.buildReducer)({}, (_buildReducer = {}, _defineProperty(_buildReducer, ActionTypes.SADD, function (state, action) {
+  var _action$payload = action.payload,
+      name = _action$payload.name,
+      items = _action$payload.items;
+  return _extends({}, state, _defineProperty({}, name, items.reduce(sadd, state[name])));
+}), _defineProperty(_buildReducer, ActionTypes.SREM, function (state, action) {
+  var _action$payload2 = action.payload,
+      name = _action$payload2.name,
+      items = _action$payload2.items;
+  return _extends({}, state, _defineProperty({}, name, items.reduce(srem, state[name])));
+}), _defineProperty(_buildReducer, ActionTypes.SUNION, function (state, action) {
+  var _action$payload3 = action.payload,
+      sources = _action$payload3.sources,
+      target = _action$payload3.target;
+  return _extends({}, state, _defineProperty({}, target, sunion(sources.map(function (setName) {
+    return state[setName] || [];
+  }))));
+}), _defineProperty(_buildReducer, ActionTypes.SDIFF, function (state, action) {
+  var _action$payload4 = action.payload,
+      sources = _action$payload4.sources,
+      target = _action$payload4.target;
+  return _extends({}, state, _defineProperty({}, target, sdiff(sources.map(function (setName) {
+    return state[setName] || [];
+  }))));
+}), _defineProperty(_buildReducer, ActionTypes.SINTER, function (state, action) {
+  var _action$payload5 = action.payload,
+      sources = _action$payload5.sources,
+      target = _action$payload5.target;
+  return _extends({}, state, _defineProperty({}, target, sinter(sources.map(function (setName) {
+    return state[setName] || [];
+  }))));
+}), _defineProperty(_buildReducer, ActionTypes.SMOVE, function (state, action) {
+  var _extends7;
+
+  var _action$payload6 = action.payload,
+      source = _action$payload6.source,
+      target = _action$payload6.target,
+      value = _action$payload6.value;
+
+  if (!state[source]) {
+    throw new Error("SMOVE - source set ".concat(source, " does not exist"));
+  }
+
+  return _extends({}, state, (_extends7 = {}, _defineProperty(_extends7, source, srem(state[source], value)), _defineProperty(_extends7, target, sadd(state[target], value)), _extends7));
 }), _buildReducer));
-var _default = reducer;
+
 exports.default = _default;
 
 /***/ }),
-/* 201 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2969,137 +2760,153 @@ exports.default = _default;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.hset = hset;
-exports.hdel = hdel;
-exports.hmset = hmset;
-exports.hincrby = hincrby;
-exports.htoggle = htoggle;
+exports.srand = exports.smembers = exports.sisMember = exports.scard = void 0;
 
-var _actionTypes = __webpack_require__(101);
+var _curry = _interopRequireDefault(__webpack_require__(34));
 
-/**
- * Sets a single value in a hash, specified by
- * domain and key
- * @param {String} domain
- * @param {String} keyPath
- * @param {any} value
- * @return {Object}
- */
-function hset(domain, keyPath, value) {
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var root = function root(state) {
+  return state.set;
+};
+
+var emptySet = [];
+var getSet = (0, _curry.default)(function (name, state) {
+  return root(state)[name] || emptySet;
+});
+var scard = (0, _curry.default)(function scard(name, state) {
+  return getSet(name, state).length;
+});
+exports.scard = scard;
+var sisMember = (0, _curry.default)(function sisMember(name, value, state) {
+  var set = getSet(name, state);
+  return set.indexOf(value) > -1;
+});
+exports.sisMember = sisMember;
+var smembers = (0, _curry.default)(function smembers(name, state) {
+  return getSet(name, state);
+});
+exports.smembers = smembers;
+var srand = (0, _curry.default)(function srand(name, state) {
+  var set = getSet(name, state);
+  var idx = Math.floor(Math.random() * set.length);
+  return set[idx];
+});
+exports.srand = srand;
+
+/***/ }),
+/* 107 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.sadd = sadd;
+exports.srem = srem;
+exports.sunion = sunion;
+exports.sdiff = sdiff;
+exports.sinter = sinter;
+exports.smove = smove;
+
+var ActionTypes = _interopRequireWildcard(__webpack_require__(87));
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function sadd(name, value) {
+  var items = [].concat(value);
+
+  if (items.some(function (x) {
+    return _typeof(x) === 'object';
+  })) {
+    console.warn('sadd() received a Javascript object as element, you should store primitive values that can be compared with ===');
+  }
+
   return {
-    type: _actionTypes.HSET,
+    type: ActionTypes.SADD,
     payload: {
-      path: [domain, keyPath].join('.'),
+      name: name,
+      items: items
+    }
+  };
+}
+
+function srem(name, value) {
+  var items = [].concat(value);
+
+  if (items.some(function (x) {
+    return _typeof(x) === 'object';
+  })) {
+    console.warn('srem() received a Javascript object as element, you should store primitive values that can be compared with ===');
+  }
+
+  return {
+    type: ActionTypes.SREM,
+    payload: {
+      name: name,
+      items: items
+    }
+  };
+}
+
+function sunion(target) {
+  for (var _len = arguments.length, sets = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+    sets[_key - 1] = arguments[_key];
+  }
+
+  return {
+    type: ActionTypes.SUNION,
+    payload: {
+      target: target,
+      sources: sets
+    }
+  };
+}
+
+function sdiff(target) {
+  for (var _len2 = arguments.length, sets = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
+    sets[_key2 - 1] = arguments[_key2];
+  }
+
+  return {
+    type: ActionTypes.SDIFF,
+    payload: {
+      sources: sets,
+      target: target
+    }
+  };
+}
+
+function sinter(target) {
+  for (var _len3 = arguments.length, sets = new Array(_len3 > 1 ? _len3 - 1 : 0), _key3 = 1; _key3 < _len3; _key3++) {
+    sets[_key3 - 1] = arguments[_key3];
+  }
+
+  return {
+    type: ActionTypes.SINTER,
+    payload: {
+      sources: sets,
+      target: target
+    }
+  };
+}
+
+function smove(target, source, value) {
+  return {
+    type: ActionTypes.SMOVE,
+    payload: {
+      target: target,
+      source: source,
       value: value
     }
   };
 }
 
-function hdel(domain, keyPath) {
-  return {
-    type: _actionTypes.HDEL,
-    payload: {
-      path: [domain, keyPath].join('.')
-    }
-  };
-}
-/**
- * Merges a Javascript object in an existing hash
- * @param {String} domain
- * @param {Object} map
- * @return {Object}
- */
-
-
-function hmset(domain, map) {
-  return {
-    type: _actionTypes.HMSET,
-    payload: {
-      path: domain,
-      value: map
-    }
-  };
-}
-
-function hincrby(domain, key, delta) {
-  return {
-    type: _actionTypes.HINCRBY,
-    payload: {
-      path: [domain, key].join('.'),
-      value: delta
-    }
-  };
-}
-/*
-Toggles a Boolean key in a hash. If key is not present, it will assumed to
-be false, so htoggle() will cause it to be true.
-*/
-
-
-function htoggle(domain, key) {
-  return {
-    type: _actionTypes.HTOGGLE,
-    payload: {
-      path: [domain, key].join('.')
-    }
-  };
-}
-
-/***/ }),
-/* 202 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.hexists = exports.hlen = exports.hkeys = exports.hgetAll = exports.hget = void 0;
-
-var _curry = _interopRequireDefault(__webpack_require__(34));
-
-var _dotPropImmutable = __webpack_require__(67);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var EMPTY_OBJECT = {};
-
-var root = function root(state) {
-  return state.hash;
-};
-/**
- * Returns a single property from a hash
- * @param {Object} state Redux state
- * @param {String} hash  Hash key
- * @param {String} key   Key string or key path (xx.yy.zzz)
- */
-
-
-var hget = (0, _curry.default)(function hget(hash, key, state) {
-  var data = root(state);
-  return (0, _dotPropImmutable.get)(data, [hash, key].join('.'));
-});
-exports.hget = hget;
-var hgetAll = (0, _curry.default)(function (hash, state) {
-  var data = root(state);
-  return (0, _dotPropImmutable.get)(data, hash);
-});
-exports.hgetAll = hgetAll;
-var hkeys = (0, _curry.default)(function hkeys(hash, state) {
-  return Object.keys((0, _dotPropImmutable.get)(root(state), hash) || EMPTY_OBJECT);
-});
-exports.hkeys = hkeys;
-var hlen = (0, _curry.default)(function hlen(hash, state) {
-  return hkeys(hash, state).length;
-});
-exports.hlen = hlen;
-var hexists = (0, _curry.default)(function hexists(hash, key, state) {
-  return Boolean((0, _dotPropImmutable.get)(root(state), [hash, key].join('.')));
-});
-exports.hexists = hexists;
-
 /***/ })
 /******/ ]);
 });
-//# sourceMappingURL=reduken.hash.js.map
+//# sourceMappingURL=set.js.map
