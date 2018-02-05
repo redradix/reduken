@@ -1,5 +1,5 @@
 import dotProp from 'dot-prop-immutable'
-import { buildReducer } from './buildReducer'
+import { buildReducer } from '../lib/buildReducer'
 import * as ActionTypes from './actionTypes'
 export * from './actions'
 export * from './selectors'

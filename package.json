@@ -21,7 +21,9 @@
   "author": "redradix",
   "license": "ISC",
   "dependencies": {
-    "dot-prop-immutable": "^1.4.0"
+    "dot-prop-immutable": "^1.4.0",
+    "invariant": "^2.2.2",
+    "lodash.curry": "^4.1.1"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

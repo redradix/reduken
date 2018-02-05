@@ -1,0 +1,9 @@
+const MOD = 'CORE/LIST'
+export const LPUSH = `${MOD}/LPUSH`
+export const RPUSH = `${MOD}/RPUSH`
+export const LPOP = `${MOD}/LPOP`
+export const RPOP = `${MOD}/RPOP`
+export const LSET = `${MOD}/LSET`
+export const LREM = `${MOD}/LREM`
+export const LREPLACE = `${MOD}/LREPLACE`
+export const LTRIM = `${MOD}/LTRIM`
