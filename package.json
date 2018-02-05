@@ -1,11 +1,12 @@
 {
   "name": "reduken",
   "version": "1.0.12",
-  "description": "Redis style structures as redux reducers, actions and selectors",
+  "description":
+    "Redis style structures as redux reducers, actions and selectors",
   "main": "main.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/redradix/rdx.git"
+    "url": "git+https://github.com/redradix/reduken.git"
   },
   "scripts": {
     "test": "jest",
@@ -14,12 +15,7 @@
     "build": "jest && webpack",
     "prepublishOnly": "jest && webpack"
   },
-  "keywords": [
-    "reducer",
-    "redux",
-    "redis",
-    "hash"
-  ],
+  "keywords": ["reducer", "redux", "redis", "hash"],
   "author": "redradix",
   "license": "ISC",
   "dependencies": {
