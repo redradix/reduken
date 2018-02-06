@@ -1,5 +1,4 @@
-import map from 'lodash/map'
-import curry from 'lodash/curry'
+import curry from 'lodash.curry'
 
 const EMPTY_OBJECT = {}
 
@@ -14,6 +13,7 @@ export const getById = curry(function(domain, id, state) {
   return getDomain(domain, state)[id]
 })
 // get all entities as an array
-export const getAll = curry((domain, state) =>
-  map(getDomain(domain, state), value => value)
-)
+export const getAll = curry((domain, state) => {
+  const entities = getDomain(domain, state)
+  return Object.keys(entities).map(key => entities[key])
+})

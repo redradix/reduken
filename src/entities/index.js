@@ -1,5 +1,5 @@
 import buildReducer from '../lib/buildReducer'
-import omit from 'lodash/omit'
+import omit from 'lodash.omit'
 import { get, set } from 'dot-prop-immutable'
 import * as ActionTypes from './actionTypes'
 export * from './actions'
