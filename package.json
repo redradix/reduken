@@ -13,6 +13,7 @@
     "test:dev": "jest --watch",
     "test:coverage": "jest --coverage",
     "build": "jest && webpack",
+    "analyze": "webpack --json | webpack-bundle-size-analyzer",
     "prepublishOnly": "jest && webpack"
   },
   "keywords": ["reducer", "redux", "redis", "hash"],
