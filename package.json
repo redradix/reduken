@@ -1,8 +1,7 @@
 {
   "name": "reduken",
   "version": "1.0.12",
-  "description":
-    "Redis style structures as redux reducers, actions and selectors",
+  "description": "Redis style structures as redux reducers, actions and selectors",
   "main": "main.js",
   "repository": {
     "type": "git",
@@ -16,25 +15,30 @@
     "analyze": "webpack --json | webpack-bundle-size-analyzer",
     "prepublishOnly": "jest && webpack"
   },
-  "keywords": ["reducer", "redux", "redis", "hash"],
+  "keywords": [
+    "reducer",
+    "redux",
+    "redis",
+    "hash"
+  ],
   "author": "redradix",
   "license": "ISC",
   "dependencies": {
     "dot-prop-immutable": "^1.4.0",
     "invariant": "^2.2.2",
     "lodash.curry": "^4.1.1",
-    "lodash.map": "^4.6.0",
     "lodash.omit": "^4.5.0"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.39",
     "@babel/preset-env": "^7.0.0-beta.39",
-    "babel-loader": "8.0.0-beta.0",
-    "babel-preset-env": "^1.6.1",
-    "webpack": "^3.10.0",
     "babel-cli": "^6.26.0",
     "babel-jest": "^22.1.0",
-    "jest": "^22.1.4"
+    "babel-loader": "8.0.0-beta.0",
+    "babel-preset-env": "^1.6.1",
+    "jest": "^22.1.4",
+    "webpack": "^3.10.0",
+    "webpack-bundle-size-analyzer": "^2.7.0"
   },
   "bugs": {
     "url": "https://github.com/redradix/reduken/issues"
