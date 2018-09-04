@@ -1,6 +1,6 @@
 {
   "name": "reduken",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "Redis style structures as redux reducers, actions and selectors",
   "main": "main.js",
   "repository": {
