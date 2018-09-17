@@ -19,7 +19,7 @@ export const getAll = curry((domain, state) => {
   return Object.keys(entities).map(key => entities[key])
 })
 
-export const getSomeEntities = curry((domain, ids, state) => {
+export const getSome = curry((domain, ids, state) => {
   const entities = getDomain(domain, state)
   return Object.keys(entities)
     .filter(key => includes(key, ids))
