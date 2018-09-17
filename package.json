@@ -21,6 +21,9 @@
     "redis",
     "hash"
   ],
+  "jest": {
+    "testURL": "https://www.redradix.com"
+  },
   "author": "redradix",
   "license": "ISC",
   "dependencies": {
@@ -37,7 +40,7 @@
     "babel-jest": "^22.1.0",
     "babel-loader": "8.0.0-beta.0",
     "babel-preset-env": "^1.6.1",
-    "jest": "^22.1.4",
+    "jest": "^22.4.4",
     "webpack": "^3.10.0",
     "webpack-bundle-size-analyzer": "^2.7.0"
   },
