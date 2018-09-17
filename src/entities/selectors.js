@@ -1,4 +1,5 @@
 import curry from 'lodash.curry'
+import includes from 'lodash.includes'
 
 const EMPTY_OBJECT = {}
 
@@ -16,4 +17,11 @@ export const getById = curry(function(domain, id, state) {
 export const getAll = curry((domain, state) => {
   const entities = getDomain(domain, state)
   return Object.keys(entities).map(key => entities[key])
+})
+
+export const getSomeEntities = curry((domain, ids, state) => {
+  const entities = getDomain(domain, state)
+  return Object.keys(entities)
+    .filter(key => includes(key, ids))
+    .map(key => entities[key])
 })

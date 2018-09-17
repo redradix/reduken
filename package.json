@@ -1,6 +1,6 @@
 {
   "name": "reduken",
-  "version": "1.0.16",
+  "version": "1.0.17",
   "description": "Redis style structures as redux reducers, actions and selectors",
   "main": "main.js",
   "repository": {
@@ -27,6 +27,7 @@
     "dot-prop-immutable": "^1.4.0",
     "invariant": "^2.2.2",
     "lodash.curry": "^4.1.1",
+    "lodash.includes": "^4.3.0",
     "lodash.omit": "^4.5.0"
   },
   "devDependencies": {
