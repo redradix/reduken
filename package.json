@@ -1,6 +1,6 @@
 {
   "name": "reduken",
-  "version": "1.0.18",
+  "version": "1.0.19",
   "description": "Redis style structures as redux reducers, actions and selectors",
   "main": "main.js",
   "repository": {
@@ -31,7 +31,8 @@
     "invariant": "^2.2.2",
     "lodash.curry": "^4.1.1",
     "lodash.includes": "^4.3.0",
-    "lodash.omit": "^4.5.0"
+    "lodash.omit": "^4.5.0",
+    "ramda": "^0.25.0"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.39",

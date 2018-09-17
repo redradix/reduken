@@ -4,11 +4,16 @@ describe('Entities - Selectors', () => {
   const mockState = {
     entities: {
       test: {
-        foo: { id: 'foo', name: 'foo' },
-        bar: { id: 'bar', name: 'bar' }
+        1: { id: 'foo', name: 'foo' },
+        2: { id: 'bar', name: 'bar' }
       }
     }
   }
+
+  it('getSome(state) returns some entities', () => {
+    const entities = Selectors.getSome('test', [1], mockState)
+    expect(entities).toEqual([mockState.entities.test[1]])
+  })
 
   it('getEntities(state) returns all entities', () => {
     const entities = Selectors.getEntities(mockState)
@@ -26,14 +31,14 @@ describe('Entities - Selectors', () => {
   })
 
   it('getById(domain, id) returns a specific entity from a domain', () => {
-    const foo = Selectors.getById('test', 'foo', mockState)
-    expect(foo).toEqual(mockState.entities.test.foo)
+    const foo = Selectors.getById('test', 1, mockState)
+    expect(foo).toEqual(mockState.entities.test[1])
   })
 
   it('getAll(domain) returns all entities from a domain as an Array', () => {
     const allTest = Selectors.getAll('test')(mockState)
     expect(Array.isArray(allTest)).toBe(true)
-    expect(allTest[0]).toEqual(mockState.entities.test.foo)
-    expect(allTest[1]).toEqual(mockState.entities.test.bar)
+    expect(allTest[0]).toEqual(mockState.entities.test[1])
+    expect(allTest[1]).toEqual(mockState.entities.test[2])
   })
 })
