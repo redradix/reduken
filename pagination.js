@@ -70,380 +70,12 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 27);
+/******/ 	return __webpack_require__(__webpack_require__.s = 346);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 0:
-/***/ (function(module, exports) {
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-var g; // This works in non-strict mode
-
-g = function () {
-  return this;
-}();
-
-try {
-  // This works if eval is allowed (see CSP)
-  g = g || Function("return this")() || (1, eval)("this");
-} catch (e) {
-  // This works if the window reference is available
-  if ((typeof window === "undefined" ? "undefined" : _typeof(window)) === "object") g = window;
-} // g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-
-module.exports = g;
-
-/***/ }),
-
-/***/ 10:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.APPEND_PAGE = exports.GO_TO_PAGE = exports.GO_PREV_PAGE = exports.GO_NEXT_PAGE = exports.RESET_PAGINATION = exports.UPDATE_PAGINATION = void 0;
-var mod = 'CORE/PAGINATION';
-var UPDATE_PAGINATION = "".concat(mod, ":UPDATE_PAGINATION");
-exports.UPDATE_PAGINATION = UPDATE_PAGINATION;
-var RESET_PAGINATION = "".concat(mod, ":RESET_PAGINATION");
-exports.RESET_PAGINATION = RESET_PAGINATION;
-var GO_NEXT_PAGE = "".concat(mod, ":GO_NEXT_PAGE");
-exports.GO_NEXT_PAGE = GO_NEXT_PAGE;
-var GO_PREV_PAGE = "".concat(mod, ":GO_PREV_PAGE");
-exports.GO_PREV_PAGE = GO_PREV_PAGE;
-var GO_TO_PAGE = "".concat(mod, ":GO_TO_PAGE");
-exports.GO_TO_PAGE = GO_TO_PAGE;
-var APPEND_PAGE = "".concat(mod, ":APPEND_PAGE");
-exports.APPEND_PAGE = APPEND_PAGE;
-
-/***/ }),
-
-/***/ 27:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var _exportNames = {};
-exports.default = paginationReducer;
-
-var _lodash = __webpack_require__(8);
-
-var actionTypes = _interopRequireWildcard(__webpack_require__(10));
-
-Object.keys(actionTypes).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return actionTypes[key];
-    }
-  });
-});
-
-var _actions = __webpack_require__(29);
-
-Object.keys(_actions).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _actions[key];
-    }
-  });
-});
-
-var _selectors = __webpack_require__(30);
-
-Object.keys(_selectors).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _selectors[key];
-    }
-  });
-});
-
-var _ACTION_HANDLERS;
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
-var cleanState = function cleanState() {
-  return {
-    record: [],
-    page: 1,
-    total: 0,
-    perPage: 20
-  };
-};
-
-var ACTION_HANDLERS = (_ACTION_HANDLERS = {}, _defineProperty(_ACTION_HANDLERS, actionTypes.UPDATE_PAGINATION, function (state, _ref) {
-  var domain = _ref.domain,
-      payload = _ref.payload;
-  // merge pagination results (useful for infinite scrolling)
-  var _payload$records = payload.records,
-      newRecords = _payload$records === void 0 ? [] : _payload$records;
-
-  var _get = (0, _lodash.get)(state, domain, {}),
-      _get$records = _get.records,
-      oldRecords = _get$records === void 0 ? [] : _get$records;
-
-  var records = _toConsumableArray(oldRecords).concat(_toConsumableArray(newRecords));
-
-  return (0, _lodash.update)(_extends({}, state), domain, function () {
-    var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-    return _extends({}, data, payload, {
-      records: records
-    });
-  });
-}), _defineProperty(_ACTION_HANDLERS, actionTypes.RESET_PAGINATION, function (state, _ref2) {
-  var domain = _ref2.domain;
-  return (0, _lodash.set)(state, domain, cleanState());
-}), _defineProperty(_ACTION_HANDLERS, actionTypes.GO_TO_PAGE, function (state, _ref3) {
-  var domain = _ref3.domain,
-      payload = _ref3.payload;
-  var page = payload;
-  return _extends({}, state, _defineProperty({}, domain, _extends({}, state[domain], {
-    page: page,
-    records: []
-  })));
-}), _defineProperty(_ACTION_HANDLERS, actionTypes.APPEND_PAGE, function (state, _ref4) {
-  var domain = _ref4.domain,
-      payload = _ref4.payload;
-  var page = payload;
-  return _extends({}, state, _defineProperty({}, domain, _extends({}, state[domain], {
-    page: page
-  })));
-}), _defineProperty(_ACTION_HANDLERS, actionTypes.GO_NEXT_PAGE, function (state, _ref5) {
-  var domain = _ref5.domain;
-  var page = state[domain].page;
-  return _extends({}, state, _defineProperty({}, domain, _extends({}, state[domain], {
-    page: page + 1,
-    records: []
-  })));
-}), _defineProperty(_ACTION_HANDLERS, actionTypes.GO_PREV_PAGE, function (state, _ref6) {
-  var domain = _ref6.domain;
-  var page = state[domain].page;
-  return _extends({}, state, _defineProperty({}, domain, _extends({}, state[domain], {
-    page: page - 1,
-    records: []
-  })));
-}), _ACTION_HANDLERS);
-var initialState = {};
-
-function paginationReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
-  var action = arguments.length > 1 ? arguments[1] : undefined;
-  var handler = ACTION_HANDLERS[action.type];
-  return handler ? handler(state, action) : state;
-}
-
-/***/ }),
-
-/***/ 28:
-/***/ (function(module, exports) {
-
-module.exports = function (module) {
-  if (!module.webpackPolyfill) {
-    module.deprecate = function () {};
-
-    module.paths = []; // module.parent = undefined by default
-
-    if (!module.children) module.children = [];
-    Object.defineProperty(module, "loaded", {
-      enumerable: true,
-      get: function get() {
-        return module.l;
-      }
-    });
-    Object.defineProperty(module, "id", {
-      enumerable: true,
-      get: function get() {
-        return module.i;
-      }
-    });
-    module.webpackPolyfill = 1;
-  }
-
-  return module;
-};
-
-/***/ }),
-
-/***/ 29:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.appendPage = exports.goToPage = exports.goPrevPage = exports.goNextPage = exports.resetPagionation = exports.updatePagination = void 0;
-
-var ActionTypes = _interopRequireWildcard(__webpack_require__(10));
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
-
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
-var updatePagination = function updatePagination(domain, payload) {
-  var records = payload.records,
-      page = payload.page,
-      total = payload.total,
-      perPage = payload.perPage;
-  return {
-    type: ActionTypes.UPDATE_PAGINATION,
-    domain: domain,
-    payload: _extends({
-      records: records,
-      page: page,
-      total: total
-    }, perPage ? {
-      perPage: perPage
-    } : {})
-  };
-};
-
-exports.updatePagination = updatePagination;
-
-var resetPagionation = function resetPagionation(domain) {
-  return {
-    type: ActionTypes.RESET_PAGINATION,
-    domain: domain
-  };
-};
-
-exports.resetPagionation = resetPagionation;
-
-var goNextPage = function goNextPage(domain) {
-  return {
-    type: ActionTypes.GO_NEXT_PAGE,
-    domain: domain
-  };
-};
-
-exports.goNextPage = goNextPage;
-
-var goPrevPage = function goPrevPage(domain) {
-  return {
-    type: ActionTypes.GO_PREV_PAGE,
-    domain: domain
-  };
-};
-
-exports.goPrevPage = goPrevPage;
-
-var goToPage = function goToPage(domain, page) {
-  return {
-    type: ActionTypes.GO_TO_PAGE,
-    payload: page,
-    domain: domain
-  };
-};
-
-exports.goToPage = goToPage;
-
-var appendPage = function appendPage(domain, page) {
-  return {
-    type: ActionTypes.APPEND_PAGE,
-    payload: page,
-    domain: domain
-  };
-};
-
-exports.appendPage = appendPage;
-
-/***/ }),
-
-/***/ 30:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.getResults = exports.hasPrevPage = exports.hasNextPage = exports.hasPage = exports.getTotalPages = exports.getPerPage = exports.getTotal = exports.getCurrentPage = void 0;
-
-var _lodash = __webpack_require__(8);
-
-var getCurrentPage = function getCurrentPage(state, domain) {
-  return (0, _lodash.get)(state, ['pagination', domain, 'page'], 1);
-};
-
-exports.getCurrentPage = getCurrentPage;
-
-var getTotal = function getTotal(state, domain) {
-  return (0, _lodash.get)(state, ['pagination', domain, 'total'], 0);
-};
-
-exports.getTotal = getTotal;
-
-var getPerPage = function getPerPage(state, domain) {
-  return (0, _lodash.get)(state, ['pagination', domain, 'perPage'], 1);
-};
-
-exports.getPerPage = getPerPage;
-
-var getTotalPages = function getTotalPages(state, domain) {
-  var total = getTotal(state, domain);
-  var perPage = getPerPage(state, domain);
-  return Math.ceil(total / perPage);
-};
-
-exports.getTotalPages = getTotalPages;
-
-var hasPage = function hasPage(state, domain, pageN) {
-  return pageN > 0 && pageN <= getTotalPages(state, domain);
-};
-
-exports.hasPage = hasPage;
-
-var hasNextPage = function hasNextPage(state, domain) {
-  return hasPage(state, domain, getCurrentPage(state, domain) + 1);
-};
-
-exports.hasNextPage = hasNextPage;
-
-var hasPrevPage = function hasPrevPage(state, domain) {
-  return hasPage(state, domain, getCurrentPage(state, domain) - 1);
-};
-
-exports.hasPrevPage = hasPrevPage;
-
-var getResults = function getResults(state, domain) {
-  return (0, _lodash.get)(state, ['pagination', domain, 'records'], []);
-};
-
-exports.getResults = getResults;
-
-/***/ }),
-
-/***/ 8:
+/***/ 127:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;function _typeof(obj){if(typeof Symbol==="function"&&typeof Symbol.iterator==="symbol"){_typeof=function _typeof(obj){return typeof obj;};}else{_typeof=function _typeof(obj){return obj&&typeof Symbol==="function"&&obj.constructor===Symbol&&obj!==Symbol.prototype?"symbol":typeof obj;};}return _typeof(obj);}/**
@@ -9856,7 +9488,7 @@ LazyWrapper.prototype.clone=lazyClone;LazyWrapper.prototype.reverse=lazyReverse;
 lodash.prototype.at=wrapperAt;lodash.prototype.chain=wrapperChain;lodash.prototype.commit=wrapperCommit;lodash.prototype.next=wrapperNext;lodash.prototype.plant=wrapperPlant;lodash.prototype.reverse=wrapperReverse;lodash.prototype.toJSON=lodash.prototype.valueOf=lodash.prototype.value=wrapperValue;// Add lazy aliases.
 lodash.prototype.first=lodash.prototype.head;if(symIterator){lodash.prototype[symIterator]=wrapperToIterator;}return lodash;};/*--------------------------------------------------------------------------*/ // Export lodash.
 var _=runInContext();// Some AMD build optimizers, like r.js, check for condition patterns like:
-if("function"=='function'&&_typeof(__webpack_require__(9))=='object'&&__webpack_require__(9)){// Expose Lodash on the global object to prevent errors when Lodash is
+if("function"=='function'&&_typeof(__webpack_require__(128))=='object'&&__webpack_require__(128)){// Expose Lodash on the global object to prevent errors when Lodash is
 // loaded by a script tag in the presence of an AMD loader.
 // See http://requirejs.org/docs/errors.html#mismatch for more details.
 // Use `_.noConflict` to remove Lodash from the global object.
@@ -9868,17 +9500,385 @@ else if(freeModule){// Export for Node.js.
 (freeModule.exports=_)._=_;// Export for CommonJS support.
 freeExports._=_;}else{// Export to the global object.
 root._=_;}}).call(this);
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(28)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(17), __webpack_require__(347)(module)))
 
 /***/ }),
 
-/***/ 9:
+/***/ 128:
 /***/ (function(module, exports) {
 
 /* WEBPACK VAR INJECTION */(function(__webpack_amd_options__) {/* globals __webpack_amd_options__ */
 module.exports = __webpack_amd_options__;
 
 /* WEBPACK VAR INJECTION */}.call(exports, {}))
+
+/***/ }),
+
+/***/ 129:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.APPEND_PAGE = exports.GO_TO_PAGE = exports.GO_PREV_PAGE = exports.GO_NEXT_PAGE = exports.RESET_PAGINATION = exports.UPDATE_PAGINATION = void 0;
+var mod = 'CORE/PAGINATION';
+var UPDATE_PAGINATION = "".concat(mod, ":UPDATE_PAGINATION");
+exports.UPDATE_PAGINATION = UPDATE_PAGINATION;
+var RESET_PAGINATION = "".concat(mod, ":RESET_PAGINATION");
+exports.RESET_PAGINATION = RESET_PAGINATION;
+var GO_NEXT_PAGE = "".concat(mod, ":GO_NEXT_PAGE");
+exports.GO_NEXT_PAGE = GO_NEXT_PAGE;
+var GO_PREV_PAGE = "".concat(mod, ":GO_PREV_PAGE");
+exports.GO_PREV_PAGE = GO_PREV_PAGE;
+var GO_TO_PAGE = "".concat(mod, ":GO_TO_PAGE");
+exports.GO_TO_PAGE = GO_TO_PAGE;
+var APPEND_PAGE = "".concat(mod, ":APPEND_PAGE");
+exports.APPEND_PAGE = APPEND_PAGE;
+
+/***/ }),
+
+/***/ 17:
+/***/ (function(module, exports) {
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+var g; // This works in non-strict mode
+
+g = function () {
+  return this;
+}();
+
+try {
+  // This works if eval is allowed (see CSP)
+  g = g || Function("return this")() || (1, eval)("this");
+} catch (e) {
+  // This works if the window reference is available
+  if ((typeof window === "undefined" ? "undefined" : _typeof(window)) === "object") g = window;
+} // g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+
+module.exports = g;
+
+/***/ }),
+
+/***/ 346:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var _exportNames = {};
+exports.default = paginationReducer;
+
+var _lodash = __webpack_require__(127);
+
+var actionTypes = _interopRequireWildcard(__webpack_require__(129));
+
+Object.keys(actionTypes).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return actionTypes[key];
+    }
+  });
+});
+
+var _actions = __webpack_require__(348);
+
+Object.keys(_actions).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _actions[key];
+    }
+  });
+});
+
+var _selectors = __webpack_require__(349);
+
+Object.keys(_selectors).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _selectors[key];
+    }
+  });
+});
+
+var _ACTION_HANDLERS;
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+var cleanState = function cleanState() {
+  return {
+    record: [],
+    page: 1,
+    total: 0,
+    perPage: 20
+  };
+};
+
+var ACTION_HANDLERS = (_ACTION_HANDLERS = {}, _defineProperty(_ACTION_HANDLERS, actionTypes.UPDATE_PAGINATION, function (state, _ref) {
+  var domain = _ref.domain,
+      payload = _ref.payload;
+  // merge pagination results (useful for infinite scrolling)
+  var _payload$records = payload.records,
+      newRecords = _payload$records === void 0 ? [] : _payload$records;
+
+  var _get = (0, _lodash.get)(state, domain, {}),
+      _get$records = _get.records,
+      oldRecords = _get$records === void 0 ? [] : _get$records;
+
+  var records = _toConsumableArray(oldRecords).concat(_toConsumableArray(newRecords));
+
+  return (0, _lodash.update)(_extends({}, state), domain, function () {
+    var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    return _extends({}, data, payload, {
+      records: records
+    });
+  });
+}), _defineProperty(_ACTION_HANDLERS, actionTypes.RESET_PAGINATION, function (state, _ref2) {
+  var domain = _ref2.domain;
+  return (0, _lodash.set)(state, domain, cleanState());
+}), _defineProperty(_ACTION_HANDLERS, actionTypes.GO_TO_PAGE, function (state, _ref3) {
+  var domain = _ref3.domain,
+      payload = _ref3.payload;
+  var page = payload;
+  return _extends({}, state, _defineProperty({}, domain, _extends({}, state[domain], {
+    page: page,
+    records: []
+  })));
+}), _defineProperty(_ACTION_HANDLERS, actionTypes.APPEND_PAGE, function (state, _ref4) {
+  var domain = _ref4.domain,
+      payload = _ref4.payload;
+  var page = payload;
+  return _extends({}, state, _defineProperty({}, domain, _extends({}, state[domain], {
+    page: page
+  })));
+}), _defineProperty(_ACTION_HANDLERS, actionTypes.GO_NEXT_PAGE, function (state, _ref5) {
+  var domain = _ref5.domain;
+  var page = state[domain].page;
+  return _extends({}, state, _defineProperty({}, domain, _extends({}, state[domain], {
+    page: page + 1,
+    records: []
+  })));
+}), _defineProperty(_ACTION_HANDLERS, actionTypes.GO_PREV_PAGE, function (state, _ref6) {
+  var domain = _ref6.domain;
+  var page = state[domain].page;
+  return _extends({}, state, _defineProperty({}, domain, _extends({}, state[domain], {
+    page: page - 1,
+    records: []
+  })));
+}), _ACTION_HANDLERS);
+var initialState = {};
+
+function paginationReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  var handler = ACTION_HANDLERS[action.type];
+  return handler ? handler(state, action) : state;
+}
+
+/***/ }),
+
+/***/ 347:
+/***/ (function(module, exports) {
+
+module.exports = function (module) {
+  if (!module.webpackPolyfill) {
+    module.deprecate = function () {};
+
+    module.paths = []; // module.parent = undefined by default
+
+    if (!module.children) module.children = [];
+    Object.defineProperty(module, "loaded", {
+      enumerable: true,
+      get: function get() {
+        return module.l;
+      }
+    });
+    Object.defineProperty(module, "id", {
+      enumerable: true,
+      get: function get() {
+        return module.i;
+      }
+    });
+    module.webpackPolyfill = 1;
+  }
+
+  return module;
+};
+
+/***/ }),
+
+/***/ 348:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.appendPage = exports.goToPage = exports.goPrevPage = exports.goNextPage = exports.resetPagionation = exports.updatePagination = void 0;
+
+var ActionTypes = _interopRequireWildcard(__webpack_require__(129));
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+var updatePagination = function updatePagination(domain, payload) {
+  var records = payload.records,
+      page = payload.page,
+      total = payload.total,
+      perPage = payload.perPage;
+  return {
+    type: ActionTypes.UPDATE_PAGINATION,
+    domain: domain,
+    payload: _extends({
+      records: records,
+      page: page,
+      total: total
+    }, perPage ? {
+      perPage: perPage
+    } : {})
+  };
+};
+
+exports.updatePagination = updatePagination;
+
+var resetPagionation = function resetPagionation(domain) {
+  return {
+    type: ActionTypes.RESET_PAGINATION,
+    domain: domain
+  };
+};
+
+exports.resetPagionation = resetPagionation;
+
+var goNextPage = function goNextPage(domain) {
+  return {
+    type: ActionTypes.GO_NEXT_PAGE,
+    domain: domain
+  };
+};
+
+exports.goNextPage = goNextPage;
+
+var goPrevPage = function goPrevPage(domain) {
+  return {
+    type: ActionTypes.GO_PREV_PAGE,
+    domain: domain
+  };
+};
+
+exports.goPrevPage = goPrevPage;
+
+var goToPage = function goToPage(domain, page) {
+  return {
+    type: ActionTypes.GO_TO_PAGE,
+    payload: page,
+    domain: domain
+  };
+};
+
+exports.goToPage = goToPage;
+
+var appendPage = function appendPage(domain, page) {
+  return {
+    type: ActionTypes.APPEND_PAGE,
+    payload: page,
+    domain: domain
+  };
+};
+
+exports.appendPage = appendPage;
+
+/***/ }),
+
+/***/ 349:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getResults = exports.hasPrevPage = exports.hasNextPage = exports.hasPage = exports.getTotalPages = exports.getPerPage = exports.getTotal = exports.getCurrentPage = void 0;
+
+var _lodash = __webpack_require__(127);
+
+var getCurrentPage = function getCurrentPage(state, domain) {
+  return (0, _lodash.get)(state, ['pagination', domain, 'page'], 1);
+};
+
+exports.getCurrentPage = getCurrentPage;
+
+var getTotal = function getTotal(state, domain) {
+  return (0, _lodash.get)(state, ['pagination', domain, 'total'], 0);
+};
+
+exports.getTotal = getTotal;
+
+var getPerPage = function getPerPage(state, domain) {
+  return (0, _lodash.get)(state, ['pagination', domain, 'perPage'], 1);
+};
+
+exports.getPerPage = getPerPage;
+
+var getTotalPages = function getTotalPages(state, domain) {
+  var total = getTotal(state, domain);
+  var perPage = getPerPage(state, domain);
+  return Math.ceil(total / perPage);
+};
+
+exports.getTotalPages = getTotalPages;
+
+var hasPage = function hasPage(state, domain, pageN) {
+  return pageN > 0 && pageN <= getTotalPages(state, domain);
+};
+
+exports.hasPage = hasPage;
+
+var hasNextPage = function hasNextPage(state, domain) {
+  return hasPage(state, domain, getCurrentPage(state, domain) + 1);
+};
+
+exports.hasNextPage = hasNextPage;
+
+var hasPrevPage = function hasPrevPage(state, domain) {
+  return hasPage(state, domain, getCurrentPage(state, domain) - 1);
+};
+
+exports.hasPrevPage = hasPrevPage;
+
+var getResults = function getResults(state, domain) {
+  return (0, _lodash.get)(state, ['pagination', domain, 'records'], []);
+};
+
+exports.getResults = getResults;
 
 /***/ })
 

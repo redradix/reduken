@@ -9,7 +9,7 @@ export const updatePagination = (domain, payload) => {
   }
 }
 
-export const resetPagionation = domain => ({
+export const resetPagination = domain => ({
   type: ActionTypes.RESET_PAGINATION,
   domain: domain
 })
