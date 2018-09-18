@@ -5,11 +5,11 @@ export * from './actions'
 export * from './selectors'
 export * from './actionTypes'
 
-const cleanState = () => ({
+const cleanState = ({ perPage }) => ({
   record: [],
   page: 1,
   total: 0,
-  perPage: 20
+  perPage: perPage || 20
 })
 
 const ACTION_HANDLERS = {
@@ -24,8 +24,8 @@ const ACTION_HANDLERS = {
       records
     }))
   },
-  [actionTypes.RESET_PAGINATION]: (state, { domain }) => {
-    return set(state, domain, cleanState())
+  [actionTypes.RESET_PAGINATION]: (state, { domain, payload = {} }) => {
+    return set(state, domain, cleanState(payload.perPage))
   },
   [actionTypes.GO_TO_PAGE]: (state, { domain, payload }) => {
     const page = payload

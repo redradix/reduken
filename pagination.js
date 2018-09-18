@@ -9740,7 +9740,7 @@ module.exports = function (module) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.appendPage = exports.goToPage = exports.goPrevPage = exports.goNextPage = exports.resetPagionation = exports.updatePagination = void 0;
+exports.appendPage = exports.goToPage = exports.goPrevPage = exports.goNextPage = exports.resetPagination = exports.updatePagination = void 0;
 
 var ActionTypes = _interopRequireWildcard(__webpack_require__(129));
 
@@ -9768,14 +9768,14 @@ var updatePagination = function updatePagination(domain, payload) {
 
 exports.updatePagination = updatePagination;
 
-var resetPagionation = function resetPagionation(domain) {
+var resetPagination = function resetPagination(domain) {
   return {
     type: ActionTypes.RESET_PAGINATION,
     domain: domain
   };
 };
 
-exports.resetPagionation = resetPagionation;
+exports.resetPagination = resetPagination;
 
 var goNextPage = function goNextPage(domain) {
   return {
