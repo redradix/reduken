@@ -16,8 +16,7 @@ export const getTotalPages = (state, domain) => {
 }
 
 export const hasPage = (state, domain, pageN) =>
-  (pageN > 0) &&
-  (pageN <= getTotalPages(state, domain))
+  pageN > 0 && pageN <= getTotalPages(state, domain)
 
 export const hasNextPage = (state, domain) =>
   hasPage(state, domain, getCurrentPage(state, domain) + 1)
@@ -26,4 +25,4 @@ export const hasPrevPage = (state, domain) =>
   hasPage(state, domain, getCurrentPage(state, domain) - 1)
 
 export const getResults = (state, domain) =>
-  get(state, ['pagination', domain, 'records'], [])
+  get(state, ['pagination', domain, 'records'], undefined)

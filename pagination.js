@@ -9629,18 +9629,19 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
-var cleanState = function cleanState() {
+var cleanState = function cleanState(_ref) {
+  var perPage = _ref.perPage;
   return {
     record: [],
     page: 1,
     total: 0,
-    perPage: 20
+    perPage: perPage || 20
   };
 };
 
-var ACTION_HANDLERS = (_ACTION_HANDLERS = {}, _defineProperty(_ACTION_HANDLERS, actionTypes.UPDATE_PAGINATION, function (state, _ref) {
-  var domain = _ref.domain,
-      payload = _ref.payload;
+var ACTION_HANDLERS = (_ACTION_HANDLERS = {}, _defineProperty(_ACTION_HANDLERS, actionTypes.UPDATE_PAGINATION, function (state, _ref2) {
+  var domain = _ref2.domain,
+      payload = _ref2.payload;
   // merge pagination results (useful for infinite scrolling)
   var _payload$records = payload.records,
       newRecords = _payload$records === void 0 ? [] : _payload$records;
@@ -9657,33 +9658,35 @@ var ACTION_HANDLERS = (_ACTION_HANDLERS = {}, _defineProperty(_ACTION_HANDLERS, 
       records: records
     });
   });
-}), _defineProperty(_ACTION_HANDLERS, actionTypes.RESET_PAGINATION, function (state, _ref2) {
-  var domain = _ref2.domain;
-  return (0, _lodash.set)(state, domain, cleanState());
-}), _defineProperty(_ACTION_HANDLERS, actionTypes.GO_TO_PAGE, function (state, _ref3) {
+}), _defineProperty(_ACTION_HANDLERS, actionTypes.RESET_PAGINATION, function (state, _ref3) {
   var domain = _ref3.domain,
-      payload = _ref3.payload;
+      _ref3$payload = _ref3.payload,
+      payload = _ref3$payload === void 0 ? {} : _ref3$payload;
+  return (0, _lodash.set)(state, domain, cleanState(payload.perPage));
+}), _defineProperty(_ACTION_HANDLERS, actionTypes.GO_TO_PAGE, function (state, _ref4) {
+  var domain = _ref4.domain,
+      payload = _ref4.payload;
   var page = payload;
   return _extends({}, state, _defineProperty({}, domain, _extends({}, state[domain], {
     page: page,
     records: []
   })));
-}), _defineProperty(_ACTION_HANDLERS, actionTypes.APPEND_PAGE, function (state, _ref4) {
-  var domain = _ref4.domain,
-      payload = _ref4.payload;
+}), _defineProperty(_ACTION_HANDLERS, actionTypes.APPEND_PAGE, function (state, _ref5) {
+  var domain = _ref5.domain,
+      payload = _ref5.payload;
   var page = payload;
   return _extends({}, state, _defineProperty({}, domain, _extends({}, state[domain], {
     page: page
   })));
-}), _defineProperty(_ACTION_HANDLERS, actionTypes.GO_NEXT_PAGE, function (state, _ref5) {
-  var domain = _ref5.domain;
+}), _defineProperty(_ACTION_HANDLERS, actionTypes.GO_NEXT_PAGE, function (state, _ref6) {
+  var domain = _ref6.domain;
   var page = state[domain].page;
   return _extends({}, state, _defineProperty({}, domain, _extends({}, state[domain], {
     page: page + 1,
     records: []
   })));
-}), _defineProperty(_ACTION_HANDLERS, actionTypes.GO_PREV_PAGE, function (state, _ref6) {
-  var domain = _ref6.domain;
+}), _defineProperty(_ACTION_HANDLERS, actionTypes.GO_PREV_PAGE, function (state, _ref7) {
+  var domain = _ref7.domain;
   var page = state[domain].page;
   return _extends({}, state, _defineProperty({}, domain, _extends({}, state[domain], {
     page: page - 1,
