@@ -9661,7 +9661,9 @@ var ACTION_HANDLERS = (_ACTION_HANDLERS = {}, _defineProperty(_ACTION_HANDLERS, 
 }), _defineProperty(_ACTION_HANDLERS, actionTypes.RESET_PAGINATION, function (state, _ref3) {
   var domain = _ref3.domain,
       _ref3$payload = _ref3.payload,
-      payload = _ref3$payload === void 0 ? {} : _ref3$payload;
+      payload = _ref3$payload === void 0 ? {
+    perPage: 20
+  } : _ref3$payload;
   return (0, _lodash.set)(state, domain, cleanState(payload.perPage));
 }), _defineProperty(_ACTION_HANDLERS, actionTypes.GO_TO_PAGE, function (state, _ref4) {
   var domain = _ref4.domain,
@@ -9878,7 +9880,7 @@ var hasPrevPage = function hasPrevPage(state, domain) {
 exports.hasPrevPage = hasPrevPage;
 
 var getResults = function getResults(state, domain) {
-  return (0, _lodash.get)(state, ['pagination', domain, 'records'], []);
+  return (0, _lodash.get)(state, ['pagination', domain, 'records'], undefined);
 };
 
 exports.getResults = getResults;

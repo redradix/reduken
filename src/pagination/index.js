@@ -17,14 +17,17 @@ const ACTION_HANDLERS = {
     // merge pagination results (useful for infinite scrolling)
     const { records: newRecords = [] } = payload
     const { records: oldRecords = [] } = get(state, domain, {})
-    const records = [...oldRecords, ...newRecords]
+    const records = [...new Set([...oldRecords, ...newRecords])]
     return update({ ...state }, domain, (data = {}) => ({
       ...data,
       ...payload,
       records
     }))
   },
-  [actionTypes.RESET_PAGINATION]: (state, { domain, payload = {} }) => {
+  [actionTypes.RESET_PAGINATION]: (
+    state,
+    { domain, payload = { perPage: 20 } }
+  ) => {
     return set(state, domain, cleanState(payload.perPage))
   },
   [actionTypes.GO_TO_PAGE]: (state, { domain, payload }) => {
