@@ -9650,7 +9650,7 @@ var ACTION_HANDLERS = (_ACTION_HANDLERS = {}, _defineProperty(_ACTION_HANDLERS, 
       _get$records = _get.records,
       oldRecords = _get$records === void 0 ? [] : _get$records;
 
-  var records = _toConsumableArray(oldRecords).concat(_toConsumableArray(newRecords));
+  var records = _toConsumableArray(new Set(_toConsumableArray(oldRecords).concat(_toConsumableArray(newRecords))));
 
   return (0, _lodash.update)(_extends({}, state), domain, function () {
     var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
