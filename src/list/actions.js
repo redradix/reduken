@@ -1,4 +1,3 @@
-import invariant from 'invariant'
 import * as ActionTypes from './actionTypes'
 
 export function lpush(target, value) {
@@ -51,10 +50,6 @@ export function lset(target, index, value) {
 }
 
 export function lreplace(target, elements) {
-  invariant(
-    Array.isArray(elements),
-    'List.lreplace(target, elements) expects an Array of elements to replace the list with'
-  )
   return {
     type: ActionTypes.LREPLACE,
     payload: {
