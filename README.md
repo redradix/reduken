@@ -6,9 +6,8 @@ Redis style structure as redux reducers
 - [Set](src/set/README.md)
 - [Entities](src/entities/README.md)
 
-Also two utilities available
+Also one utility available
 
-- batchReducer
 - buildReducer
 
 ## How-to
@@ -22,13 +21,13 @@ hget('test', 'prop', state) // 25
 
 You can also import as
 ```js
-import {batchReducer, hash, list, set, entities} from 'reduken'
+import {hash, list, set, entities} from 'reduken'
 
 
-export default batchReducer(combineReducers({
+export default combineReducers({
   hash,
   list,
   set,
   entities
-}))
+})
 ```
