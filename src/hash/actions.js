@@ -8,21 +8,21 @@ import { HSET, HDEL, HMSET, HINCRBY, HTOGGLE } from './actionTypes'
  * @param {any} value
  * @return {Object}
  */
-export function hset(domain, keyPath, value) {
+export function hset(domain, keys, value) {
   return {
     type: HSET,
     payload: {
-      path: [domain, keyPath].join('.'),
+      path: [domain, ...keys],
       value
     }
   }
 }
 
-export function hdel(domain, keyPath) {
+export function hdel(domain, keys) {
   return {
     type: HDEL,
     payload: {
-      path: [domain, keyPath].join('.')
+      path: [domain, ...keys]
     }
   }
 }
@@ -43,11 +43,11 @@ export function hmset(domain, map) {
   }
 }
 
-export function hincrby(domain, key, delta) {
+export function hincrby(domain, keys, delta) {
   return {
     type: HINCRBY,
     payload: {
-      path: [domain, key].join('.'),
+      path: [domain, ...keys],
       value: delta
     }
   }
@@ -58,11 +58,11 @@ Toggles a Boolean key in a hash. If key is not present, it will assumed to
 be false, so htoggle() will cause it to be true.
 */
 
-export function htoggle(domain, key) {
+export function htoggle(domain, keys) {
   return {
     type: HTOGGLE,
     payload: {
-      path: [domain, key].join('.')
+      path: [domain, ...keys]
     }
   }
 }
