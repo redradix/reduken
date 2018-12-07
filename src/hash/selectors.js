@@ -1,8 +1,7 @@
-import curry from 'lodash.curry'
-import { get } from 'dot-prop-immutable'
+import { path, curry, pathOr, keys, length, hasPath } from 'ramda'
+import { module } from './constants'
 
 const EMPTY_OBJECT = {}
-const root = state => state.hash
 
 /**
  * Returns a single property from a hash
@@ -10,24 +9,22 @@ const root = state => state.hash
  * @param {String} hash  Hash key
  * @param {String} key   Key string or key path (xx.yy.zzz)
  */
-export const hget = curry(function hget(hash, key, state) {
-  const data = root(state)
-  return get(data, [hash, key].join('.'))
+export const hget = curry(function hget(domain, keys, state) {
+  return path([module, domain, ...keys], state)
 })
 
-export const hgetAll = curry(function(hash, state) {
-  const data = root(state)
-  return get(data, hash)
+export const hgetAll = curry(function(domain, state) {
+  return path([module, domain], state)
 })
 
-export const hkeys = curry(function hkeys(hash, state) {
-  return Object.keys(get(root(state), hash) || EMPTY_OBJECT)
+export const hkeys = curry(function hkeys(domain, state) {
+  return keys(pathOr(EMPTY_OBJECT, [module, domain], state))
 })
 
-export const hlen = curry(function hlen(hash, state) {
-  return hkeys(hash, state).length
+export const hlen = curry(function hlen(domain, state) {
+  return length(hkeys(domain, state))
 })
 
-export const hexists = curry(function hexists(hash, key, state) {
-  return Boolean(get(root(state), [hash, key].join('.')))
+export const hexists = curry(function hexists(domain, keys, state) {
+  return hasPath([module, domain, ...keys], state)
 })
