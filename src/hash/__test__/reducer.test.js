@@ -11,7 +11,7 @@ describe('Hash Reducer', () => {
     const action = {
       type: ActionTypes.HSET,
       payload: {
-        path: 'test.foo',
+        path: ['test', 'foo'],
         value: 1
       }
     }
@@ -23,7 +23,7 @@ describe('Hash Reducer', () => {
     const action = {
       type: ActionTypes.HSET,
       payload: {
-        path: 'test.foo.bar.baz',
+        path: ['test', 'foo', 'bar', 'baz'],
         value: 25
       }
     }
@@ -35,7 +35,7 @@ describe('Hash Reducer', () => {
     const action = {
       type: ActionTypes.HDEL,
       payload: {
-        path: 'test.foo'
+        path: ['test', 'foo']
       }
     }
     const state = {
@@ -51,7 +51,7 @@ describe('Hash Reducer', () => {
     const action = {
       type: ActionTypes.HMSET,
       payload: {
-        path: 'test.foo',
+        path: ['test', 'foo'],
         value: {
           name: 'Test',
           number: 100
@@ -75,7 +75,7 @@ describe('Hash Reducer', () => {
     const action = {
       type: ActionTypes.HINCRBY,
       payload: {
-        path: 'test.foo',
+        path: ['test', 'foo'],
         value: 1
       }
     }
@@ -96,7 +96,7 @@ describe('Hash Reducer', () => {
     const action = {
       type: ActionTypes.HINCRBY,
       payload: {
-        path: 'test.foo',
+        path: ['test', 'foo'],
         value: 1
       }
     }
@@ -108,7 +108,7 @@ describe('Hash Reducer', () => {
     const action = {
       type: ActionTypes.HTOGGLE,
       payload: {
-        path: 'test.bool',
+        path: ['test', 'bool'],
         defaultValue: false
       }
     }
