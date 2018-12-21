@@ -1,4 +1,4 @@
-import curry from 'lodash.curry'
+import { curry } from 'ramda'
 
 const root = state => state.list
 
