@@ -1,6 +1,4 @@
-import curry from 'lodash.curry'
-import includes from 'lodash.includes'
-import { toString } from 'ramda'
+import { curry, includes, toString, values } from 'ramda'
 
 const EMPTY_OBJECT = {}
 
@@ -17,7 +15,7 @@ export const getById = curry(function(domain, id, state) {
 // get all entities as an array
 export const getAll = curry((domain, state) => {
   const entities = getDomain(domain, state)
-  return Object.keys(entities).map(key => entities[key])
+  return values(entities)
 })
 
 export const getSome = curry((domain, ids, state) => {
@@ -25,7 +23,7 @@ export const getSome = curry((domain, ids, state) => {
   const entities = getDomain(domain, state)
   return Object.keys(entities)
     .filter(key => {
-      return includes(stringIds, key)
+      return includes(key, stringIds)
     })
     .map(key => entities[key])
 })
