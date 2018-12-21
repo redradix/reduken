@@ -1,4 +1,5 @@
 import * as ActionTypes from './actionTypes'
+import { formatWithOptions } from 'util'
 
 export const updatePagination = (domain, payload) => {
   const { records, page, total, perPage } = payload
@@ -9,9 +10,10 @@ export const updatePagination = (domain, payload) => {
   }
 }
 
-export const resetPagination = domain => ({
+export const resetPagination = (domain, options) => ({
   type: ActionTypes.RESET_PAGINATION,
-  domain: domain
+  domain: domain,
+  payload: options
 })
 
 export const goNextPage = domain => ({

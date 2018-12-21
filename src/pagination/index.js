@@ -1,4 +1,4 @@
-import { set, get, update } from 'lodash'
+import { propOr, lensProp, set, assoc, lensPath, over } from 'ramda'
 import * as actionTypes from './actionTypes'
 
 export * from './actions'
@@ -6,7 +6,7 @@ export * from './selectors'
 export * from './actionTypes'
 
 const cleanState = ({ perPage }) => ({
-  record: [],
+  records: [],
   page: 1,
   total: 0,
   perPage: perPage || 20
@@ -16,48 +16,53 @@ const ACTION_HANDLERS = {
   [actionTypes.UPDATE_PAGINATION]: (state, { domain, payload }) => {
     // merge pagination results (useful for infinite scrolling)
     const { records: newRecords = [] } = payload
-    const { records: oldRecords = [] } = get(state, domain, {})
+    const { records: oldRecords = [], ...data } = propOr({}, domain, state)
     const records = [...new Set([...oldRecords, ...newRecords])]
-    return update({ ...state }, domain, (data = {}) => ({
-      ...data,
-      ...payload,
-      records
-    }))
+    return set(
+      lensProp(domain),
+      {
+        ...data,
+        ...payload,
+        records
+      },
+      state
+    )
   },
   [actionTypes.RESET_PAGINATION]: (
     state,
     { domain, payload = { perPage: 20 } }
   ) => {
-    return set(state, domain, cleanState(payload.perPage))
-  },
-  [actionTypes.GO_TO_PAGE]: (state, { domain, payload }) => {
-    const page = payload
-    return {
-      ...state,
-      [domain]: { ...state[domain], page, records: [] }
-    }
+    return assoc(domain, cleanState(payload), state)
   },
   [actionTypes.APPEND_PAGE]: (state, { domain, payload }) => {
     const page = payload
-    return { ...state, [domain]: { ...state[domain], page } }
+    return set(lensPath([domain, 'page']), page, state)
+  },
+  [actionTypes.GO_TO_PAGE]: (state, { domain, payload }) => {
+    const page = payload
+    return { ...state, [domain]: { ...state[domain], page, records: [] } }
   },
   [actionTypes.GO_NEXT_PAGE]: (state, { domain }) => {
-    const {
-      [domain]: { page }
-    } = state
-    return {
-      ...state,
-      [domain]: { ...state[domain], page: page + 1, records: [] }
-    }
+    return over(
+      lensProp(domain),
+      pagination => ({
+        ...pagination,
+        page: pagination.page + 1,
+        records: []
+      }),
+      state
+    )
   },
   [actionTypes.GO_PREV_PAGE]: (state, { domain }) => {
-    const {
-      [domain]: { page }
-    } = state
-    return {
-      ...state,
-      [domain]: { ...state[domain], page: page - 1, records: [] }
-    }
+    return over(
+      lensProp(domain),
+      pagination => ({
+        ...pagination,
+        page: pagination.page == 1 ? 1 : pagination.page - 1,
+        records: []
+      }),
+      state
+    )
   }
 }
 

@@ -1,28 +1,28 @@
-import { get } from 'lodash'
+import { propOr } from 'ramda'
 
-export const getCurrentPage = (state, domain) =>
-  get(state, ['pagination', domain, 'page'], 1)
+export const getCurrentPage = (domain, state) =>
+  propOr(1, ['pagination', domain, 'page'], state)
 
-export const getTotal = (state, domain) =>
-  get(state, ['pagination', domain, 'total'], 0)
+export const getTotal = (domain, state) =>
+  propOr(0, ['pagination', domain, 'total'], state)
 
-export const getPerPage = (state, domain) =>
-  get(state, ['pagination', domain, 'perPage'], 1)
+export const getPerPage = (domain, state) =>
+  propOr(1, ['pagination', domain, 'perPage'], state)
 
-export const getTotalPages = (state, domain) => {
-  const total = getTotal(state, domain)
-  const perPage = getPerPage(state, domain)
+export const getTotalPages = (domain, state) => {
+  const total = getTotal(domain, state)
+  const perPage = getPerPage(domain, state)
   return Math.ceil(total / perPage)
 }
 
-export const hasPage = (state, domain, pageN) =>
-  pageN > 0 && pageN <= getTotalPages(state, domain)
+export const hasPage = (domain, pageN, state) =>
+  pageN > 0 && pageN <= getTotalPages(domain, state)
 
-export const hasNextPage = (state, domain) =>
-  hasPage(state, domain, getCurrentPage(state, domain) + 1)
+export const hasNextPage = (domain, state) =>
+  hasPage(domain, getCurrentPage(domain, state) + 1, state)
 
-export const hasPrevPage = (state, domain) =>
-  hasPage(state, domain, getCurrentPage(state, domain) - 1)
+export const hasPrevPage = (domain, state) =>
+  hasPage(domain, getCurrentPage(domain, state) - 1, state)
 
-export const getResults = (state, domain) =>
-  get(state, ['pagination', domain, 'records'], undefined)
+export const getResults = (domain, state) =>
+  propOr(undefined, ['pagination', domain, 'records'], state)
