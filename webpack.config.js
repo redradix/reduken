@@ -1,7 +1,8 @@
-var path = require('path')
-var webpack = require('webpack')
+const path = require('path')
 
 module.exports = {
+  mode: 'production',
+
   entry: {
     set: './src/set/index.js',
     list: './src/list/index.js',
@@ -10,26 +11,26 @@ module.exports = {
     pagination: './src/pagination/index.js',
     main: './src/index.js'
   },
+
   output: {
-    path: path.resolve(__dirname, ''),
+    path: path.resolve(__dirname, 'dist'),
     filename: '[name].js',
-    library: ['reduken', '[name]'],
+    library: 'reduken',
     libraryTarget: 'umd'
   },
+
   module: {
-    loaders: [
+    rules: [
       {
-        test: /\.js$/,
-        loader: 'babel-loader',
-        query: {
-          presets: ['@babel/preset-env'],
-          plugins: [require('@babel/plugin-proposal-object-rest-spread')]
+        test: /\.m?js$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env']
+          }
         }
       }
     ]
-  },
-  stats: {
-    colors: true
-  },
-  devtool: 'source-map'
+  }
 }
