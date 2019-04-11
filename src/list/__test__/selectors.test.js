@@ -3,7 +3,7 @@ import * as Selectors from '../selectors'
 describe('List - Selectors', () => {
   const mockState = {
     list: {
-      test: [1,2,3,4]
+      test: [1, 2, 3, 4]
     }
   }
   it('len(state, list) returns the length of a list', () => {
@@ -16,13 +16,11 @@ describe('List - Selectors', () => {
   })
 
   it('lget() throws for out of bound index', () => {
-    expect(() => {
-      Selectors.lget('test', 25)(mockState)
-    }).toThrow(/out of bounds/)
+    expect(Selectors.lget('test', 25)(mockState)).toEqual(undefined)
   })
 
   it('lrange(state, list, start, stop) returns a range from a list', () => {
     const range = Selectors.lrange('test', 0, 2)(mockState)
-    expect(range).toEqual([1,2])
+    expect(range).toEqual([1, 2])
   })
 })

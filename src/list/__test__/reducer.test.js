@@ -7,9 +7,9 @@ describe('List - Reducer', () => {
     expect(res).toEqual({})
   })
 
-  it('LPUSH inserts a value at the head (left) of a list', () => {
+  it('PREPEND inserts a value at the head (left) of a list', () => {
     const action = {
-      type: ActionTypes.LPUSH,
+      type: ActionTypes.PREPEND,
       payload: {
         target: 'test',
         value: 25
@@ -20,9 +20,9 @@ describe('List - Reducer', () => {
     expect(res.test).toEqual([25])
   })
 
-  it('RPUSH inserts a value at the tail (right) of a list', () => {
+  it('LAPPEND inserts a value at the tail (right) of a list', () => {
     const action = {
-      type: ActionTypes.RPUSH,
+      type: ActionTypes.LAPPEND,
       payload: {
         target: 'test',
         value: 'foo'
@@ -34,6 +34,21 @@ describe('List - Reducer', () => {
     const res = reducer(mockState, action)
     expect(res.test.length).toBe(2)
     expect(res.test).toEqual(['bar', 'foo'])
+  })
+
+  it('LSHIFT removes the leftmost element in a list', () => {
+    const action = {
+      type: ActionTypes.LSHIFT,
+      payload: {
+        target: 'test'
+      }
+    }
+    const mockState = {
+      test: ['foo', 'bar']
+    }
+    const newState = reducer(mockState, action)
+    expect(newState.test).toHaveLength(1)
+    expect(newState.test).toEqual(['bar'])
   })
 
   it('LPOP removes the leftmost element in a list', () => {
@@ -48,25 +63,10 @@ describe('List - Reducer', () => {
     }
     const newState = reducer(mockState, action)
     expect(newState.test).toHaveLength(1)
-    expect(newState.test).toEqual(['bar'])
-  })
-
-  it('RPOP removes the leftmost element in a list', () => {
-    const action = {
-      type: ActionTypes.RPOP,
-      payload: {
-        target: 'test'
-      }
-    }
-    const mockState = {
-      test: ['foo', 'bar']
-    }
-    const newState = reducer(mockState, action)
-    expect(newState.test).toHaveLength(1)
     expect(newState.test).toEqual(['foo'])
   })
 
-  it('RPOP removes the rightmost element in a list', () => {})
+  it('LPOP removes the rightmost element in a list', () => {})
 
   it('LSET inserts a value at the specified index', () => {
     const action = {
@@ -85,7 +85,7 @@ describe('List - Reducer', () => {
     expect(res.test[3]).toBe(4)
   })
 
-  it('LSET is a noop when index is out of bounds (and displays warning)', () => {
+  it('LSET is a noop when index is out of bounds', () => {
     const action = {
       type: ActionTypes.LSET,
       payload: {
@@ -94,12 +94,8 @@ describe('List - Reducer', () => {
         index: 2
       }
     }
-    const oldWarn = console.warn
-    console.warn = jest.fn()
     const res = reducer(undefined, action)
-    expect(console.warn).toHaveBeenCalled()
-    console.warn = oldWarn
-    expect(typeof res.test).toBe('undefined')
+    expect(res.test).toEqual([])
   })
 
   it('LREPLACE replaces a list with new elements (or creates an empty one)', () => {
@@ -116,14 +112,14 @@ describe('List - Reducer', () => {
       type: ActionTypes.LREPLACE,
       payload: {
         target: 'test',
-        elements: []
+        elements: ['bar']
       }
     }
     state = reducer(state, empty)
-    expect(state.test).toEqual([])
+    expect(state.test).toEqual(['bar'])
   })
 
-  it('LREM(target, count=0, value) removes all occurences of a value in a list', () => {
+  it('LREM(target, count=0, value) removes all occurrences of a value in a list', () => {
     const action = {
       type: ActionTypes.LREM,
       payload: {
@@ -139,7 +135,7 @@ describe('List - Reducer', () => {
     expect(res.test.indexOf(action.payload.value)).toBe(-1)
   })
 
-  it('LREM(target, count=N, value) removes first N occurences of a value in a list', () => {
+  it('LREM(target, count=N, value) removes first N occurrences of a value in a list', () => {
     const action = {
       type: ActionTypes.LREM,
       payload: {
@@ -156,7 +152,7 @@ describe('List - Reducer', () => {
     expect(res.test.indexOf(action.payload.value)).toBe(3)
   })
 
-  it('LREM(target, count=-N, value) removes last N occurences of a value in a list', () => {
+  it('LREM(target, count=-N, value) removes last N occurrences of a value in a list', () => {
     const action = {
       type: ActionTypes.LREM,
       payload: {

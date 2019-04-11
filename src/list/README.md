@@ -4,10 +4,10 @@
 
 # Action creators
 
-* lpush(target, value)
-* rpush(target, value)
+* lprepend(target, value)
+* lappend(target, value)
+* lshift(target)
 * lpop(target)
-* rpop(target)
 * lset(target, index, value)
 * lreplace(target, elements)
 * lrem(target, count, value)

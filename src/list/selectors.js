@@ -1,25 +1,52 @@
-import { curry } from 'ramda'
+import { curry, propOr, nth } from 'ramda'
 
 const root = state => state.list
 
-export const getList = curry(function getList(list, state) {
-  return root(state)[list] || []
-})
+const EMPTY_ARRAY = []
 
-export const len = curry(function len(target, state) {
+/**
+ * Get all the elements in a list
+ *
+ * @param {String} target
+ * @param {Object} state
+ * @returns {Object}
+ */
+export const getList = curry((target, state) =>
+  propOr(EMPTY_ARRAY, target, root(state))
+)
+
+/**
+ * Get length of a list
+ *
+ * @param {String} target
+ * @param {Object} state
+ * @returns {Number}
+ */
+export const len = curry((target, state) => getList(target, state).length || 0)
+
+/**
+ * Get the element in a specified position inside the list
+ *
+ * @param {String} target
+ * @param {Number} index
+ * @param {Object} state
+ * @returns {any}
+ */
+export const lget = curry((target, index, state) => {
   const data = getList(target, state)
-  return data.length
+  return nth(index, data)
 })
 
-export const lget = curry(function lget(target, index, state) {
-  const data = getList(target, state)
-  if (index > data.length - 1) {
-    throw new Error(`index ${index} is out of bounds for list '${target}'`)
-  }
-  return data[index]
-})
-
-export const lrange = curry(function lrange(target, start, stop, state) {
+/**
+ * Get the elements inside a specified range
+ *
+ * @param {String} target
+ * @param {Number} start
+ * @param {Number} end
+ * @param {Object} state
+ * @returns {Array}
+ */
+export const lrange = curry((target, start, stop, state) => {
   const data = getList(target, state)
   return data.slice(start, stop)
 })

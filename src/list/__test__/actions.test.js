@@ -2,16 +2,16 @@ import * as ActionTypes from '../actionTypes'
 import * as Actions from '../actions'
 
 describe('List - Actions', () => {
-  it('lpush(target, value) creates LPUSH action', () => {
-    const action = Actions.lpush('test', 'foo')
-    expect(action.type).toBe(ActionTypes.LPUSH)
+  it('lprepend(target, value) creates PREPEND action', () => {
+    const action = Actions.lprepend('test', 'foo')
+    expect(action.type).toBe(ActionTypes.PREPEND)
     expect(action.payload.target).toBe('test')
     expect(action.payload.value).toBe('foo')
   })
 
-  it('rpush(target, value) creates RPUSH action', () => {
-    const action = Actions.rpush('test', 'foo')
-    expect(action.type).toBe(ActionTypes.RPUSH)
+  it('lappend(target, value) creates LAPPEND action', () => {
+    const action = Actions.lappend('test', 'foo')
+    expect(action.type).toBe(ActionTypes.LAPPEND)
     expect(action.payload.target).toBe('test')
     expect(action.payload.value).toBe('foo')
   })
@@ -48,15 +48,15 @@ describe('List - Actions', () => {
     expect(action.payload.stop).toBe(-1)
   })
 
-  it('lpop(target) creates LPOP action', () => {
+  it('lshift(target) creates LSHIFT action', () => {
+    const lshift = Actions.lshift('test')
+    expect(lshift.type).toBe(ActionTypes.LSHIFT)
+    expect(lshift.payload).toHaveProperty('target', 'test')
+  })
+
+  it('lpop(target) creates LSHIFT action', () => {
     const lpop = Actions.lpop('test')
     expect(lpop.type).toBe(ActionTypes.LPOP)
     expect(lpop.payload).toHaveProperty('target', 'test')
-  })
-
-  it('rpop(target) creates LPOP action', () => {
-    const rpop = Actions.rpop('test')
-    expect(rpop.type).toBe(ActionTypes.RPOP)
-    expect(rpop.payload).toHaveProperty('target', 'test')
   })
 })
