@@ -1,5 +1,3 @@
-import buildReducer from '../lib/buildReducer'
-import * as ActionTypes from './actionTypes'
 import {
   not,
   mergeDeepRight,
@@ -14,6 +12,8 @@ import {
   identity,
   compose
 } from 'ramda'
+import buildReducer from '../lib/buildReducer'
+import * as ActionTypes from './actionTypes'
 
 const initialState = {}
 

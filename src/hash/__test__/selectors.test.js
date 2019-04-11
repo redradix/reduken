@@ -13,6 +13,7 @@ describe('Hash Module - Selectors', () => {
       }
     }
   }
+
   it('hget() returns a single value from a hash', () => {
     const res = Selectors.hget('test', ['keyA'], mockState)
     expect(res).toBe(1)
@@ -28,13 +29,13 @@ describe('Hash Module - Selectors', () => {
     expect(getKeyA(mockState)).toBe(1)
   })
 
-  it('hgetAll() returns a full object under a path', () => {
-    const res = Selectors.hgetAll('test', mockState)
+  it('hgetall() returns a full object under a path', () => {
+    const res = Selectors.hgetall('test', mockState)
     expect(res).toEqual(mockState.hash.test)
   })
 
-  it('hgetAll() works curryfied', () => {
-    const getTest = Selectors.hgetAll('test')
+  it('hgetall() works curryfied', () => {
+    const getTest = Selectors.hgetall('test')
     expect(getTest(mockState)).toEqual(mockState.hash.test)
   })
 

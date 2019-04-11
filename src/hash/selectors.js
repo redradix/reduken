@@ -4,27 +4,57 @@ import { module } from './constants'
 const EMPTY_OBJECT = {}
 
 /**
- * Returns a single property from a hash
- * @param {Object} state Redux state
- * @param {String} hash  Hash key
- * @param {String} key   Key string or key path (xx.yy.zzz)
+ * Get a single property from a hash
+ * @param {String} domain
+ * @param {Array} keys
+ * @param {Object} state
+ * @returns {any}
  */
-export const hget = curry(function hget(domain, keys, state) {
+export const hget = curry((domain, keys, state) => {
   return path([module, domain, ...keys], state)
 })
 
-export const hgetall = curry(function(domain, state) {
+/**
+ * Get all the domain content
+ *
+ * @param {String} domain
+ * @param {Object} state
+ * @returns {any}
+ */
+export const hgetall = curry((domain, state) => {
   return path([module, domain], state)
 })
 
-export const hkeys = curry(function hkeys(domain, state) {
+/**
+ * Get the keys of the domain
+ *
+ * @param {String} domain
+ * @param {Object} state
+ * @returns {Array}
+ */
+export const hkeys = curry((domain, state) => {
   return keys(pathOr(EMPTY_OBJECT, [module, domain], state))
 })
 
-export const hlen = curry(function hlen(domain, state) {
+/**
+ * Get the domain length
+ *
+ * @param {String} domain
+ * @param {Object} state
+ * @returns {Number}
+ */
+export const hlen = curry((domain, state) => {
   return length(hkeys(domain, state))
 })
 
-export const hexists = curry(function hexists(domain, keys, state) {
+/**
+ * Returns if there's a value inside a domain
+ * and keys
+ *
+ * @param {String} domain
+ * @param {Object} state
+ * @returns {Array}
+ */
+export const hexists = curry((domain, keys, state) => {
   return hasPath([module, domain, ...keys], state)
 })
