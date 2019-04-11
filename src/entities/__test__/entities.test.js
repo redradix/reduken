@@ -1,4 +1,4 @@
-import reducer, {
+import {
   mergeEntities,
   update,
   removeOne,
@@ -6,6 +6,7 @@ import reducer, {
   removeAll,
   reset
 } from '../'
+import reducer from '../reducer'
 
 describe('Entities module', () => {
   const initialState = {

@@ -1,4 +1,4 @@
-import reducer from '../index'
+import reducer from '../reducer'
 import * as ActionTypes from '../actionTypes'
 
 describe('Set - Reducer', () => {

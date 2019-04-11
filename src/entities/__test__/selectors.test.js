@@ -1,4 +1,4 @@
-import reducer, * as Selectors from '../index'
+import * as Selectors from '../index'
 
 describe('Entities - Selectors', () => {
   const mockState = {
