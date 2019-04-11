@@ -13,7 +13,7 @@ export const hget = curry(function hget(domain, keys, state) {
   return path([module, domain, ...keys], state)
 })
 
-export const hgetAll = curry(function(domain, state) {
+export const hgetall = curry(function(domain, state) {
   return path([module, domain], state)
 })
 
