@@ -5,17 +5,17 @@ const EMPTY_OBJECT = {}
 /**
  * Get all the entities as Object
  *
- * @param {object} state
- * @returns {object}
+ * @param {Object} state
+ * @returns {Object}
  */
 export const getEntities = curry(state => state.entities)
 
 /**
  * Get all entities for domain as an object
  *
- * @param {string} domain
- * @param {object} state
- * @returns {object}
+ * @param {String} domain
+ * @param {Object} state
+ * @returns {Object}
  */
 export const getDomain = curry(
   (domain, state) => getEntities(state)[domain] || EMPTY_OBJECT
@@ -24,10 +24,10 @@ export const getDomain = curry(
 /**
  * Get single entity from domain, by it's id
  *
- * @param {string} domain
- * @param {string} id
- * @param {object} state
- * @returns {object}
+ * @param {String} domain
+ * @param {String} id
+ * @param {Sbject} state
+ * @returns {Sbject}
  */
 export const getById = curry(
   (domain, id, state) => getDomain(domain, state)[id]
@@ -36,9 +36,9 @@ export const getById = curry(
 /**
  * Get all entities for domain as an Array
  *
- * @param {string} domain
- * @param {object} state The global state
- * @returns {array}
+ * @param {String} domain
+ * @param {Object} state The global state
+ * @returns {Array}
  */
 export const getAll = curry((domain, state) => {
   const entities = getDomain(domain, state)
@@ -48,10 +48,10 @@ export const getAll = curry((domain, state) => {
 /**
  * Get the entities with specific ids in a domain
  *
- * @param {string} domain
- * @param {array} ids
- * @param {object} state The global state
- * @returns {array}
+ * @param {String} domain
+ * @param {Array} ids
+ * @param {Object} state The global state
+ * @returns {Array}
  */
 export const getSome = curry((domain, ids, state) => {
   const stringIds = ids.map(toString)
