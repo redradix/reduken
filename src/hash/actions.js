@@ -62,7 +62,7 @@ export function hmset(domain, map) {
  * @param {Number} delta
  * @return {Object}
  */
-export function hincrby(domain, keys, delta) {
+export function hincrby(domain, keys, delta = 1) {
   return {
     type: HINCRBY,
     payload: {

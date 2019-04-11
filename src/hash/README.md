@@ -1,22 +1,33 @@
 # Hash
 
-## API
+## Action creators
 
-# Action creators
+```ts
+hset(domain: string, keys: string[], value: any): object
 
-* hset(domain, keyPath, value)
-* hdel(domain, keyPath)
-* hmset(domain, map)
-* hincrby(domain, key, delta)
-* htoggle(domain, key)
+hdel(domain: string, keys: string[]): object
+
+hmset(domain: string, map: object): object
+
+hincrby(domain: string, keys: string[], delta: number | 1): object
+
+htoggle(domain: string, keys: string[]): object
+```
 
 
-# Selectors
+## Selectors
 
 > **Note** that all selectors are currified
 
-* hget(hash, key, state)
-* hgetAll(hash, state)
-* hkeys(hash, state)
-* hlen(hash, state)
-* hexists(hash, key, state)
+```ts
+hget(hash: string, keys: string[], state: object): any
+
+hgetall(hash: string, state: object): object
+
+hkeys(hash: string, state: object): string[]
+
+hlen(hash: string, state: object): number
+
+hexists(hash: string, keys: string[], state: object): boolean
+```
+
