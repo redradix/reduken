@@ -1,5 +1,5 @@
 import reducer from '../reducer'
-import * as ActionTypes from '../actionTypes'
+import * as actions from '../actions'
 
 describe('Set - Reducer', () => {
   it('Returns initial state', () => {
@@ -8,31 +8,22 @@ describe('Set - Reducer', () => {
   })
 
   it('SADD adds multiple elements to the set avoiding duplications', () => {
-    const action = {
-      type: ActionTypes.SADD,
-      payload: {
-        name: 'test',
-        items: [1, 2, 3]
-      }
-    }
+    const action = actions.sadd('test', [1, 2, 3])
+
     const res = reducer(undefined, action)
     expect(res.test.length).toBe(3)
     expect(res.test.indexOf(1)).toBeGreaterThan(-1)
     expect(res.test.indexOf(2)).toBeGreaterThan(-1)
     expect(res.test.indexOf(3)).toBeGreaterThan(-1)
-    const res2 = reducer(res, action)
+
+    reducer(res, action)
     // no duplicates
     expect(res.test.length).toBe(3)
   })
 
   it('SREM removes multiple elements from a set', () => {
-    const action = {
-      type: ActionTypes.SREM,
-      payload: {
-        name: 'test',
-        items: [1, 2, 3]
-      }
-    }
+    const action = actions.srem('test', [1, 2, 3])
+
     const mockState = {
       test: [1, 2, 3, 4, 5]
     }
@@ -41,18 +32,14 @@ describe('Set - Reducer', () => {
   })
 
   it('SDIFF calculates the set difference and stores it in a new set', () => {
-    const action = {
-      type: ActionTypes.SDIFF,
-      payload: {
-        sources: ['test1', 'test2', 'test3'],
-        target: 'test4'
-      }
-    }
+    const action = actions.sdiff('test4', ['test1', 'test2', 'test3'])
+
     const mockState = {
       test1: ['a', 'b', 'c', 'd'],
       test2: ['c'],
       test3: ['a', 'c', 'e']
     }
+
     const res = reducer(mockState, action)
     expect(res.test4.length).toBe(2)
     expect(res.test4.indexOf('d')).toBeGreaterThan(-1)
@@ -61,13 +48,8 @@ describe('Set - Reducer', () => {
   })
 
   it('SUNION calculates the union of multiple sets and stores it in a new set', () => {
-    const action = {
-      type: ActionTypes.SUNION,
-      payload: {
-        sources: ['test1', 'test2'],
-        target: 'test3'
-      }
-    }
+    const action = actions.sunion('test3', ['test1', 'test2'])
+
     const mockState = {
       test1: ['John', 'Cobra'],
       test2: ['Will', 'Cobra', 'Smith']
@@ -77,13 +59,8 @@ describe('Set - Reducer', () => {
   })
 
   it('SINTER calculates the intersection of multiple sets and stores it in a new set', () => {
-    const action = {
-      type: ActionTypes.SINTER,
-      payload: {
-        sources: ['test1', 'test2', 'test3'],
-        target: 'test4'
-      }
-    }
+    const action = actions.sinter('test4', ['test1', 'test2', 'test3'])
+
     const mockState = {
       test1: 'abcd'.split(''),
       test2: ['c'],
@@ -95,13 +72,8 @@ describe('Set - Reducer', () => {
   })
 
   it('SINTER exits early if any of the sources is an empty set', () => {
-    const action = {
-      type: ActionTypes.SINTER,
-      payload: {
-        sources: ['test1', 'test2'],
-        target: 'test3'
-      }
-    }
+    const action = actions.sinter('test3', ['test1', 'test2'])
+
     const mockState = {
       test1: 'abcde'.split(),
       test2: []
@@ -110,15 +82,9 @@ describe('Set - Reducer', () => {
     expect(res.test3.length).toBe(0)
   })
 
-  it('SMOVE moves an element from a source set to a target set', () => {
-    const action = {
-      type: ActionTypes.SMOVE,
-      payload: {
-        source: 'test1',
-        target: 'test2',
-        value: 100
-      }
-    }
+  it('SMOVE moves an element from a source set to a domain set', () => {
+    const action = actions.smove('test2', 'test1', 100)
+
     const mockState = {
       test1: [100, 101],
       test2: []
@@ -129,14 +95,8 @@ describe('Set - Reducer', () => {
   })
 
   it('SMOVE throws if source set does not exist', () => {
-    const action = {
-      type: ActionTypes.SMOVE,
-      payload: {
-        source: 'test1',
-        target: 'test2',
-        value: 'FOO'
-      }
-    }
+    const action = actions.smove('test2', 'test1', 'FOO')
+
     expect(() => {
       reducer(undefined, action)
     }).toThrowError(/source set/)

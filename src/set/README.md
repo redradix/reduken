@@ -1,21 +1,33 @@
 # Set
 
-## API
+> Primitive Types are Strings, Numbers and Booleans
 
-# Action creators
+## Action creators
 
-* sadd(name, value)
-* srem(name, value)
-* sunion(target, ...sets)
-* sdiff(target, ...sets)
-* sinter(target, ...sets)
-* smove(target, source, value)
+```ts
+sadd(domain: string, value: primitives | primitives[])
 
-# Selectors
+srem(domain: string, value: primitives | primitives[])
+
+sunion(domain: string, sources: string[])
+
+sdiff(domain: string, sources: string[])
+
+sinter(domain: string, sources: string[])
+
+smove(domain: string, source, value: primitives | primitives[])
+```
+
+## Selectors
 
 > **Note** that all selectors are currified
 
-* scard(name, state)
-* sisMember(name, value, state)
-* smembers(name, state)
-* srand(name, state)
+```ts
+scard(domain: string, state: object)
+
+sisMember(domain: string, value: primitives, state: object)
+
+smembers(domain: string, state: object)
+
+srand(domain: string, state: object)
+```

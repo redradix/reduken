@@ -1,70 +1,107 @@
 import * as ActionTypes from './actionTypes'
 
-export function sadd(name, value){
+/**
+ * Adds one or multiple elements to the set avoiding duplications
+ *
+ * @param {string} domain
+ * @param {primitives | primitives[]} value
+ */
+export function sadd(domain, value) {
   const items = [].concat(value)
-  if(items.some(x => typeof x === 'object')){
-    console.warn('sadd() received a Javascript object as element, you should store primitive values that can be compared with ===')
-  }
+
   return {
     type: ActionTypes.SADD,
     payload: {
-      name,
+      domain,
       items
     }
   }
 }
 
-export function srem(name, value){
+/**
+ * Removes one or multiple elements from a set
+ *
+ * @param {string} domain
+ * @param {primitives | primitives[]} value
+ */
+export function srem(domain, value) {
   const items = [].concat(value)
-  if(items.some(x => typeof x === 'object')){
-    console.warn('srem() received a Javascript object as element, you should store primitive values that can be compared with ===')
-  }
+
   return {
     type: ActionTypes.SREM,
     payload: {
-      name,
+      domain,
       items
     }
   }
 }
 
-export function sunion(target, ...sets){
+/**
+ * Calculates the union of multiple sets and stores it in a new set
+ *
+ * @param {string} domain
+ * @param {string[]} sources
+ */
+export function sunion(domain, sources) {
   return {
     type: ActionTypes.SUNION,
     payload: {
-      target,
-      sources: sets
+      domain,
+      sources
     }
   }
 }
 
-export function sdiff(target, ...sets){
+/**
+ * Calculates the set difference between multiple sets and stores
+ * it in a new set
+ *
+ * @param {string} domain
+ * @param {string[]} sources
+ */
+export function sdiff(domain, sources) {
   return {
     type: ActionTypes.SDIFF,
     payload: {
-      sources: sets,
-      target
+      sources,
+      domain
     }
   }
 }
 
-export function sinter(target, ...sets){
+/**
+ * Calculates the intersection of multiple sets and stores it in a
+ * new set
+ *
+ * @param {string} domain
+ * @param {string[]} sources
+ */
+export function sinter(domain, sources) {
   return {
     type: ActionTypes.SINTER,
     payload: {
-      sources: sets,
-      target
+      sources,
+      domain
     }
   }
 }
 
-export function smove(target, source, value){
+/**
+ * Moves an element from a source set to a domain set
+ *
+ * @param {string} domain
+ * @param {string} source
+ * @param {primitives | primitives[]} value
+ */
+export function smove(domain, source, value) {
+  const items = [].concat(value)
+
   return {
     type: ActionTypes.SMOVE,
     payload: {
-      target,
+      domain,
       source,
-      value
+      items
     }
   }
 }
