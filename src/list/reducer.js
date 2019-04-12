@@ -32,43 +32,43 @@ function lrem(list = [], count = 0, value) {
 
 const actionHandlers = {
   [ActionTypes.PREPEND]: (state, action) => {
-    const { target, value } = action.payload
-    const prevItems = propOr([], target, state)
-    return assoc(target, [value, ...prevItems], state)
+    const { domain, value } = action.payload
+    const prevItems = propOr([], domain, state)
+    return assoc(domain, [value, ...prevItems], state)
   },
   [ActionTypes.LAPPEND]: (state, action) => {
-    const { target, value } = action.payload
-    const prevItems = propOr([], target, state)
-    return assoc(target, [...prevItems, value], state)
+    const { domain, value } = action.payload
+    const prevItems = propOr([], domain, state)
+    return assoc(domain, [...prevItems, value], state)
   },
   [ActionTypes.LSHIFT]: (state, action) => {
-    const { target } = action.payload
-    const newList = propOr([], target, state)
-    return assoc(target, tail(newList), state)
+    const { domain } = action.payload
+    const newList = propOr([], domain, state)
+    return assoc(domain, tail(newList), state)
   },
   [ActionTypes.LPOP]: (state, action) => {
-    const { target } = action.payload
-    const list = propOr([], target, state)
-    return assoc(target, init(list), state)
+    const { domain } = action.payload
+    const list = propOr([], domain, state)
+    return assoc(domain, init(list), state)
   },
   [ActionTypes.LSET]: (state, action) => {
-    const { target, value, index } = action.payload
-    const prevItems = propOr([], target, state)
-    return assoc(target, update(index, value, prevItems), state)
+    const { domain, value, index } = action.payload
+    const prevItems = propOr([], domain, state)
+    return assoc(domain, update(index, value, prevItems), state)
   },
   [ActionTypes.LREPLACE]: (state, action) => {
-    const { target, elements } = action.payload
-    return assoc(target, [...elements], state)
+    const { domain, elements } = action.payload
+    return assoc(domain, [...elements], state)
   },
   [ActionTypes.LREM]: (state, action) => {
-    const { target, count, value } = action.payload
-    const prevItems = propOr([], target, state)
-    return assoc(target, lrem(prevItems, count, value), state)
+    const { domain, count, value } = action.payload
+    const prevItems = propOr([], domain, state)
+    return assoc(domain, lrem(prevItems, count, value), state)
   },
   [ActionTypes.LTRIM]: (state, action) => {
-    const { target, start, stop } = action.payload
-    const prevItems = propOr([], target, state)
-    return assoc(target, slice(start, stop + 1, prevItems), state)
+    const { domain, start, stop } = action.payload
+    const prevItems = propOr([], domain, state)
+    return assoc(domain, slice(start, stop + 1, prevItems), state)
   }
 }
 

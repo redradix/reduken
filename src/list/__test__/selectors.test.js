@@ -6,11 +6,11 @@ describe('List - Selectors', () => {
       test: [1, 2, 3, 4]
     }
   }
-  it('len(state, list) returns the length of a list', () => {
-    expect(Selectors.len('test', mockState)).toBe(4)
+  it('llen(state, domain) returns the length of a list', () => {
+    expect(Selectors.llen('test', mockState)).toBe(4)
   })
 
-  it('lget(state, list, index) returns an element by index', () => {
+  it('lget(state, domain, index) returns an element by index', () => {
     expect(Selectors.lget('test', 0, mockState)).toBe(1)
     expect(Selectors.lget('test', 3, mockState)).toBe(4)
   })
@@ -19,7 +19,7 @@ describe('List - Selectors', () => {
     expect(Selectors.lget('test', 25)(mockState)).toEqual(undefined)
   })
 
-  it('lrange(state, list, start, stop) returns a range from a list', () => {
+  it('lrange(state, domain, start, stop) returns a range from a list', () => {
     const range = Selectors.lrange('test', 0, 2)(mockState)
     expect(range).toEqual([1, 2])
   })

@@ -11,7 +11,7 @@ describe('List - Reducer', () => {
     const action = {
       type: ActionTypes.PREPEND,
       payload: {
-        target: 'test',
+        domain: 'test',
         value: 25
       }
     }
@@ -24,7 +24,7 @@ describe('List - Reducer', () => {
     const action = {
       type: ActionTypes.LAPPEND,
       payload: {
-        target: 'test',
+        domain: 'test',
         value: 'foo'
       }
     }
@@ -40,7 +40,7 @@ describe('List - Reducer', () => {
     const action = {
       type: ActionTypes.LSHIFT,
       payload: {
-        target: 'test'
+        domain: 'test'
       }
     }
     const mockState = {
@@ -55,7 +55,7 @@ describe('List - Reducer', () => {
     const action = {
       type: ActionTypes.LPOP,
       payload: {
-        target: 'test'
+        domain: 'test'
       }
     }
     const mockState = {
@@ -72,7 +72,7 @@ describe('List - Reducer', () => {
     const action = {
       type: ActionTypes.LSET,
       payload: {
-        target: 'test',
+        domain: 'test',
         value: 4,
         index: 3
       }
@@ -89,7 +89,7 @@ describe('List - Reducer', () => {
     const action = {
       type: ActionTypes.LSET,
       payload: {
-        target: 'test',
+        domain: 'test',
         value: 5,
         index: 2
       }
@@ -102,7 +102,7 @@ describe('List - Reducer', () => {
     const replace = {
       type: ActionTypes.LREPLACE,
       payload: {
-        target: 'test',
+        domain: 'test',
         elements: ['foo']
       }
     }
@@ -111,7 +111,7 @@ describe('List - Reducer', () => {
     const empty = {
       type: ActionTypes.LREPLACE,
       payload: {
-        target: 'test',
+        domain: 'test',
         elements: ['bar']
       }
     }
@@ -119,11 +119,11 @@ describe('List - Reducer', () => {
     expect(state.test).toEqual(['bar'])
   })
 
-  it('LREM(target, count=0, value) removes all occurrences of a value in a list', () => {
+  it('LREM(domain, count=0, value) removes all occurrences of a value in a list', () => {
     const action = {
       type: ActionTypes.LREM,
       payload: {
-        target: 'test',
+        domain: 'test',
         count: 0,
         value: 'foo'
       }
@@ -135,11 +135,11 @@ describe('List - Reducer', () => {
     expect(res.test.indexOf(action.payload.value)).toBe(-1)
   })
 
-  it('LREM(target, count=N, value) removes first N occurrences of a value in a list', () => {
+  it('LREM(domain, count=N, value) removes first N occurrences of a value in a list', () => {
     const action = {
       type: ActionTypes.LREM,
       payload: {
-        target: 'test',
+        domain: 'test',
         count: 2,
         value: 'foo'
       }
@@ -152,11 +152,11 @@ describe('List - Reducer', () => {
     expect(res.test.indexOf(action.payload.value)).toBe(3)
   })
 
-  it('LREM(target, count=-N, value) removes last N occurrences of a value in a list', () => {
+  it('LREM(domain, count=-N, value) removes last N occurrences of a value in a list', () => {
     const action = {
       type: ActionTypes.LREM,
       payload: {
-        target: 'test',
+        domain: 'test',
         count: -2,
         value: 'foo'
       }
@@ -169,11 +169,11 @@ describe('List - Reducer', () => {
     expect(res.test.indexOf(action.payload.value)).toBe(0)
   })
 
-  it('LTRIM(target, start, stop) trims an existing list using a range', () => {
+  it('LTRIM(domain, start, stop) trims an existing list using a range', () => {
     const action = {
       type: ActionTypes.LTRIM,
       payload: {
-        target: 'test',
+        domain: 'test',
         start: 0,
         stop: 3
       }
