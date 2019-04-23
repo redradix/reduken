@@ -1,2 +1,5 @@
 .babelrc
 coverage/
+src/
+generate-types.sh
+tsconfig.json
