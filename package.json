@@ -13,9 +13,10 @@
     "test:coverage": "jest --coverage",
     "type-check": "tsc --noEmit",
     "type-check:watch": "npm run type-check -- --watch",
+    "prebuild": "rm -rf lib",
     "build": "npm test && npm run build:js && npm run build:types",
     "build:types": "./generate-types.sh",
-    "build:js": "babel src -d lib --extensions \".ts,.js\" --minified --compact true --ignore src/**/*.test.js",
+    "build:js": "babel src -d lib --extensions \".ts,.js\" --minified --ignore src/**/*.test.js",
     "prepublishOnly": "npm run build"
   },
   "keywords": [
