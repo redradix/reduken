@@ -2,7 +2,7 @@
   "name": "reduken",
   "version": "1.0.25",
   "description": "Redis style structures as redux reducers, actions and selectors",
-  "main": "main.js",
+  "main": "lib/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/redradix/reduken.git"
@@ -11,9 +11,11 @@
     "test": "jest",
     "test:dev": "jest --watch",
     "test:coverage": "jest --coverage",
-    "prebuild": "rm -rf ./build",
-    "build": "jest && webpack",
-    "analyze": "webpack --json | webpack-bundle-size-analyzer",
+    "type-check": "tsc --noEmit",
+    "type-check:watch": "npm run type-check -- --watch",
+    "build": "npm test && npm run build:js && ./generate-declarations.sh",
+    "build:types": "tsc --emitDeclarationOnly",
+    "build:js": "babel src -d lib --extensions \".ts,.js\" --minified --compact true --ignore src/**/*.test.js",
     "prepublishOnly": "npm run build"
   },
   "keywords": [
@@ -31,14 +33,15 @@
     "ramda": "^0.26.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.4.3",
     "@babel/core": "^7.4.3",
+    "@babel/plugin-proposal-class-properties": "^7.4.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.4.3",
     "@babel/preset-env": "^7.4.3",
+    "@babel/preset-typescript": "^7.3.3",
     "babel-jest": "^24.7.1",
-    "babel-loader": "^8.0.5",
     "jest": "^24.7.1",
-    "webpack": "^4.29.6",
-    "webpack-bundle-size-analyzer": "^3.0.0",
-    "webpack-cli": "^3.3.0"
+    "typescript": "^3.4.3"
   },
   "bugs": {
     "url": "https://github.com/redradix/reduken/issues"

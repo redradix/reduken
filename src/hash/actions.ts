@@ -3,13 +3,8 @@ import { HSET, HDEL, HMSET, HINCRBY, HTOGGLE } from './actionTypes'
 /**
  * Sets a single value in a hash, specified by
  * domain and keys
- *
- * @param {String} domain
- * @param {Array} keys
- * @param {any} value
- * @return {Object}
  */
-export function hset(domain, keys, value) {
+export function hset(domain: string, keys: string[], value: any) {
   return {
     type: HSET,
     payload: {
@@ -22,12 +17,8 @@ export function hset(domain, keys, value) {
 /**
  * Deletes the value containing in a specified domain
  * and keys
- *
- * @param {String} domain
- * @param {Array} keys
- * @return {Object}
  */
-export function hdel(domain, keys) {
+export function hdel(domain: string, keys: string[]) {
   return {
     type: HDEL,
     payload: {
@@ -38,12 +29,8 @@ export function hdel(domain, keys) {
 
 /**
  * Merges a Javascript object in an existing hash
- *
- * @param {String} domain
- * @param {Object} map
- * @return {Object}
  */
-export function hmset(domain, map) {
+export function hmset(domain: string, map: object) {
   return {
     type: HMSET,
     payload: {
@@ -56,13 +43,8 @@ export function hmset(domain, map) {
 /**
  * Increments the value inside a domain and keys
  * by delta
- *
- * @param {String} domain
- * @param {Array} keys
- * @param {Number} delta
- * @return {Object}
  */
-export function hincrby(domain, keys, delta = 1) {
+export function hincrby(domain: string, keys: string[], delta: number) {
   return {
     type: HINCRBY,
     payload: {
@@ -75,11 +57,8 @@ export function hincrby(domain, keys, delta = 1) {
 /**
  * Toggles a Boolean key in a hash. If key is not present, it will assumed to
  * be false, so htoggle() will cause it to be true.
- *
- * @param {String} domain
- * @param {Array} keys
  */
-export function htoggle(domain, keys) {
+export function htoggle(domain: string, keys: string[]) {
   return {
     type: HTOGGLE,
     payload: {
