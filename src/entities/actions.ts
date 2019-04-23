@@ -1,6 +1,9 @@
 import * as ActionTypes from './actionTypes'
 
-export function mergeEntities(entityMap) {
+/*
+ * Merges many entities at once
+ */
+export function mergeEntities(entityMap: any[]) {
   return {
     type: ActionTypes.MERGE,
     payload: entityMap
@@ -10,7 +13,7 @@ export function mergeEntities(entityMap) {
 /**
  * Removes multiple entities at once (of a single type/domain)
  */
-export function removeMany(domain, keys) {
+export function removeMany(domain: string, keys: string[]) {
   return {
     type: ActionTypes.REMOVE,
     payload: {
@@ -20,13 +23,17 @@ export function removeMany(domain, keys) {
   }
 }
 
-/* Utility - removes a single one */
-export function removeOne(domain, key) {
+/*
+ * Removes one entity by id
+ */
+export function removeOne(domain: string, key: string) {
   return removeMany(domain, [key])
 }
 
-/* Clears all entities by domain */
-export function removeAll(domain) {
+/*
+ * Removes all entities by domain
+ */
+export function removeAll(domain: string) {
   return {
     type: ActionTypes.REMOVE_ALL,
     payload: {
@@ -35,14 +42,19 @@ export function removeAll(domain) {
   }
 }
 
-/* Empties the whole entity cache */
+/*
+ * Clears the whole entity cache
+ */
 export function reset() {
   return {
     type: ActionTypes.RESET
   }
 }
 
-export function update(domain, id, data) {
+/**
+ * Updates a field inside an entity
+ */
+export function update(domain: string, id: string, data: any) {
   return {
     type: ActionTypes.UPDATE,
     payload: {

@@ -2,11 +2,8 @@ import * as ActionTypes from './actionTypes'
 
 /**
  * Adds one or multiple elements to the set avoiding duplications
- *
- * @param {string} domain
- * @param {primitives | primitives[]} value
  */
-export function sadd(domain, value) {
+export function sadd(domain: string, value: any) {
   const items = [].concat(value)
 
   return {
@@ -20,11 +17,8 @@ export function sadd(domain, value) {
 
 /**
  * Removes one or multiple elements from a set
- *
- * @param {string} domain
- * @param {primitives | primitives[]} value
  */
-export function srem(domain, value) {
+export function srem(domain: string, value: any) {
   const items = [].concat(value)
 
   return {
@@ -38,11 +32,8 @@ export function srem(domain, value) {
 
 /**
  * Calculates the union of multiple sets and stores it in a new set
- *
- * @param {string} domain
- * @param {string[]} sources
  */
-export function sunion(domain, sources) {
+export function sunion(domain: string, sources: string[]) {
   return {
     type: ActionTypes.SUNION,
     payload: {
@@ -55,11 +46,8 @@ export function sunion(domain, sources) {
 /**
  * Calculates the set difference between multiple sets and stores
  * it in a new set
- *
- * @param {string} domain
- * @param {string[]} sources
  */
-export function sdiff(domain, sources) {
+export function sdiff(domain: string, sources: string[]) {
   return {
     type: ActionTypes.SDIFF,
     payload: {
@@ -72,11 +60,8 @@ export function sdiff(domain, sources) {
 /**
  * Calculates the intersection of multiple sets and stores it in a
  * new set
- *
- * @param {string} domain
- * @param {string[]} sources
  */
-export function sinter(domain, sources) {
+export function sinter(domain: string, sources: string[]) {
   return {
     type: ActionTypes.SINTER,
     payload: {
@@ -88,12 +73,8 @@ export function sinter(domain, sources) {
 
 /**
  * Moves an element from a source set to a domain set
- *
- * @param {string} domain
- * @param {string} source
- * @param {primitives | primitives[]} value
  */
-export function smove(domain, source, value) {
+export function smove(domain: string, source: string, value: any) {
   const items = [].concat(value)
 
   return {

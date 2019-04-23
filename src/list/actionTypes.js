@@ -1,4 +1,5 @@
 const MOD = 'CORE/LIST'
+
 export const PREPEND = `${MOD}/PREPEND`
 export const LAPPEND = `${MOD}/LAPPEND`
 export const LSHIFT = `${MOD}/LSHIFT`

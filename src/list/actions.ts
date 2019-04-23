@@ -2,11 +2,8 @@ import * as ActionTypes from './actionTypes'
 
 /**
  * Prepends an item to the list
- *
- * @param {String} domain
- * @param {any} value
  */
-export function lprepend(domain, value) {
+export function lprepend(domain: string, value: any) {
   return {
     type: ActionTypes.PREPEND,
     payload: {
@@ -18,11 +15,8 @@ export function lprepend(domain, value) {
 
 /**
  * Appends an item in the right of the list
- *
- * @param {String} domain
- * @param {any} value
  */
-export function lappend(domain, value) {
+export function lappend(domain: string, value: any) {
   return {
     type: ActionTypes.LAPPEND,
     payload: {
@@ -34,10 +28,8 @@ export function lappend(domain, value) {
 
 /**
  * Removes the first value of list
- *
- * @param {String} domain
  */
-export function lshift(domain) {
+export function lshift(domain: string) {
   return {
     type: ActionTypes.LSHIFT,
     payload: {
@@ -48,10 +40,8 @@ export function lshift(domain) {
 
 /**
  * Removes the last value of list
- *
- * @param {String} domain
  */
-export function lpop(domain) {
+export function lpop(domain: string) {
   return {
     type: ActionTypes.LPOP,
     payload: {
@@ -62,12 +52,8 @@ export function lpop(domain) {
 
 /**
  * Sets a value in a specific index of the list
- *
- * @param {String} domain
- * @param {Number} index
- * @param {any} value
  */
-export function lset(domain, index, value) {
+export function lset(domain: string, index: number, value: any) {
   return {
     type: ActionTypes.LSET,
     payload: {
@@ -80,11 +66,8 @@ export function lset(domain, index, value) {
 
 /**
  * Replaces all the list elements with new ones
- *
- * @param {String} domain
- * @param {Array} elements
  */
-export function lreplace(domain, elements) {
+export function lreplace(domain: string, elements: any[]) {
   return {
     type: ActionTypes.LREPLACE,
     payload: {
@@ -96,12 +79,8 @@ export function lreplace(domain, elements) {
 
 /**
  * Removes n occurrences of the value in the list
- *
- * @param {String} domain
- * @param {Number} count
- * @param {any} value
  */
-export function lrem(domain, count, value) {
+export function lrem(domain: string, count: number, value: any) {
   return {
     type: ActionTypes.LREM,
     payload: {
@@ -115,12 +94,8 @@ export function lrem(domain, count, value) {
 /**
  * Removes all the elements in the list except of the ones
  * included in the specified range
- *
- * @param {String} domain
- * @param {Number} start
- * @param {Number} stop
  */
-export function ltrim(domain, start, stop = -1) {
+export function ltrim(domain: string, start: number, stop: number = -1) {
   return {
     type: ActionTypes.LTRIM,
     payload: {
