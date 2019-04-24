@@ -6,6 +6,7 @@ Redis style structure as redux reducers
 - [Hash](src/hash/README.md)
 - [List](src/list/README.md)
 - [Pagination](src/pagination/README.md)
+- [Requests](src/requests/README.md)
 - [Set](src/set/README.md)
 
 Also two utilities available
