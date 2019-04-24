@@ -1,8 +1,14 @@
-import { updatePagination, resetPagination, goNextPage, goPrevPage } from '../'
-import { goToPage, appendPage } from '../actions'
+import {
+  goToPage,
+  appendPage,
+  updatePagination,
+  resetPagination,
+  goNextPage,
+  goPrevPage
+} from '../actions'
 import reducer from '../reducer'
 
-describe('Pagination module', () => {
+describe('Pagination - Reducer', () => {
   const initialState = {
     users: {
       records: [1, 2],

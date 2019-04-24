@@ -5,7 +5,7 @@ import {
   removeMany,
   removeAll,
   reset
-} from '../'
+} from '../actions'
 import reducer from '../reducer'
 
 describe('Entities module', () => {
