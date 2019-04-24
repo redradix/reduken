@@ -2,6 +2,12 @@
 
 Redis style structure as redux reducers
 
+![Downloads](https://badgen.net/npm/dt/reduken)
+![Version](https://badgen.net/npm/v/reduken)
+![License](https://badgen.net/npm/license/reduken)
+![Dependencies](https://badgen.net/david/dep/redradix/reduken)
+![Size](https://badgen.net/bundlephobia/min/reduken)
+
 - [Entities](src/entities/README.md)
 - [Hash](src/hash/README.md)
 - [List](src/list/README.md)
