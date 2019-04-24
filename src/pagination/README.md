@@ -43,5 +43,5 @@ declare const hasNextPage: (domain: string, state: object) => boolean;
 
 declare const hasPrevPage: (domain: string, state: object) => boolean;
 
-declare const getResults: (domain: string, state: object) => any[];
+declare const getResults: (domain: string, state: object) => string[];
 ```
