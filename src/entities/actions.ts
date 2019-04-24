@@ -1,6 +1,6 @@
 import * as ActionTypes from './actionTypes'
 
-/*
+/**
  * Merges many entities at once
  */
 export function mergeEntities(entityMap: any[]) {
@@ -23,14 +23,14 @@ export function removeMany(domain: string, keys: string[]) {
   }
 }
 
-/*
+/**
  * Removes one entity by id
  */
 export function removeOne(domain: string, key: string) {
   return removeMany(domain, [key])
 }
 
-/*
+/**
  * Removes all entities by domain
  */
 export function removeAll(domain: string) {
@@ -42,7 +42,7 @@ export function removeAll(domain: string) {
   }
 }
 
-/*
+/**
  * Clears the whole entity cache
  */
 export function reset() {
