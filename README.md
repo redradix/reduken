@@ -8,6 +8,7 @@ Redis style structure as redux reducers
 ![Dependencies](https://badgen.net/david/dep/redradix/reduken)
 ![Size](https://badgen.net/bundlephobia/min/reduken)
 
+- [Batch](src/batch/README.md)
 - [Entities](src/entities/README.md)
 - [Hash](src/hash/README.md)
 - [List](src/list/README.md)
@@ -18,7 +19,6 @@ Redis style structure as redux reducers
 Also two utilities available
 
 - [buildReducer](src/lib/buildReducer.js)
-- batchReducer
 
 ## Set-up
 
@@ -29,9 +29,9 @@ Also two utilities available
 2. Set up redux reducers
    ```js
    import { combineReducers } from 'redux'
-   import { entities, hash, list, pagination, set, batchReducer } from 'reduken'
+   import { entities, hash, list, pagination, set, batch } from 'reduken'
 
-    export default batchReducer(combineReducers({
+    export default batch(combineReducers({
       entities,
       hash,
       list,
@@ -39,6 +39,10 @@ Also two utilities available
       set
     }))
     ```
+
+## Batch Reducers
+
+See: [Batch](src/batch/README.md)
 
 ## Full Example
 
@@ -49,11 +53,11 @@ import ReactDOM from 'react-dom'
 import { createStore, combineReducers } from 'redux'
 import { connect, Provider } from 'react-redux'
 
-import { entities, hash, list, pagination, set, batchReducer } from 'reduken'
+import { entities, hash, list, pagination, set, batch } from 'reduken'
 import { hset, hget } from 'reduken/hash'
 
 // 1. Create store with the reduken reducers
-const reducers = batchReducer(combineReducers({
+const reducers = batch(combineReducers({
   entities,
   hash,
   list,
