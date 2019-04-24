@@ -1,33 +1,85 @@
 # Generic Reducers
 
 Redis style structure as redux reducers
-- [List](src/list/README.md)
-- [Hash](src/hash/README.md)
-- [Set](src/set/README.md)
+
 - [Entities](src/entities/README.md)
+- [Hash](src/hash/README.md)
+- [List](src/list/README.md)
+- [Pagination](src/pagination/README.md)
+- [Set](src/set/README.md)
 
-Also one utility available
+Also two utilities available
 
-- buildReducer
+- [buildReducer](src/lib/buildReducer.js)
+- batchReducer
 
-## How-to
+## Set-up
+
+1. Install reduken
+   ```bash
+   npm install reduken
+   ```
+2. Set up redux reducers
+   ```js
+   import { combineReducers } from 'redux'
+   import { entities, hash, list, pagination, set, batchReducer } from 'reduken'
+
+    export default batchReducer(combineReducers({
+      entities,
+      hash,
+      list,
+      pagination,
+      set
+    }))
+    ```
+
+## Full Example
+
 ```js
-import hash, {hset, hget} from 'reduken/hash'
+import React from 'react'
+import ReactDOM from 'react-dom'
 
-hset('test', 'prop', 25)
-...
-hget('test', 'prop', state) // 25
-```
+import { createStore, combineReducers } from 'redux'
+import { connect, Provider } from 'react-redux'
 
-You can also import as
-```js
-import {hash, list, set, entities} from 'reduken'
+import { entities, hash, list, pagination, set, batchReducer } from 'reduken'
+import { hset, hget } from 'reduken/hash'
 
-
-export default combineReducers({
+// 1. Create store with the reduken reducers
+const reducers = batchReducer(combineReducers({
+  entities,
   hash,
   list,
-  set,
-  entities
-})
+  pagination,
+  set
+}))
+const store = createStore(reducers, window.__INITIAL_STATE__)
+
+// 2. Presentational Component
+const HelloComponent = ({ name, handleChange }) => {
+  return (
+    <div>
+      <h1>Hello {name}</h1>
+      <input type="text" onChange={handleChange} value={name} />
+    </div>
+  )
+}
+
+// 3. Decorate component with connect
+const HelloDecorated = connect(
+  state => ({
+    name: hget('session', 'name', state) || 'World'
+  }),
+  {
+    handleChange: event => hset('session', 'name', event.target.value)
+  }
+)(HelloComponent)
+
+// 4. Render the app
+ReactDOM.render(
+  <Provider store={store}>
+    <HelloDecorated />
+  </Provider>,
+  document.getElementById('root')
+)
 ```

@@ -5,17 +5,37 @@
 ## Action creators
 
 ```ts
-sadd(domain: string, value: primitives | primitives[])
+/**
+ * Adds one or multiple elements to the set avoiding duplications
+ */
+declare function sadd(domain: string, value: any): object;
 
-srem(domain: string, value: primitives | primitives[])
+/**
+ * Removes one or multiple elements from a set
+ */
+declare function srem(domain: string, value: any): object;
 
-sunion(domain: string, sources: string[])
+/**
+ * Calculates the union of multiple sets and stores it in a new set
+ */
+declare function sunion(domain: string, sources: string[]): object;
 
-sdiff(domain: string, sources: string[])
+/**
+ * Calculates the set difference between multiple sets and stores
+ * it in a new set
+ */
+declare function sdiff(domain: string, sources: string[]): object;
 
-sinter(domain: string, sources: string[])
+/**
+ * Calculates the intersection of multiple sets and stores it in a
+ * new set
+ */
+declare function sinter(domain: string, sources: string[]): object;
 
-smove(domain: string, source, value: primitives | primitives[])
+/**
+ * Moves an element from a source set to a domain set
+ */
+declare function smove(domain: string, source: string, value: any): object;
 ```
 
 ## Selectors
@@ -23,11 +43,20 @@ smove(domain: string, source, value: primitives | primitives[])
 > **Note** that all selectors are currified
 
 ```ts
-scard(domain: string, state: object)
-
-sisMember(domain: string, value: primitives, state: object)
-
-smembers(domain: string, state: object)
-
-srand(domain: string, state: object)
+/**
+ * Returns how many items the set contains
+ */
+declare const scard: (domain: string, state: object) => number;
+/**
+ * Returns if the value is inside the domain set
+ */
+declare const sisMember: (domain: string, value: any, state: object) => boolean;
+/**
+ * Gets all the items inside a domain set
+ */
+declare const smembers: (domain: string, state: object) => any[];
+/**
+ * Get a random item inside the domain set
+ */
+declare const srand: (domain: string, state: object) => any;
 ```

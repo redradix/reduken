@@ -3,15 +3,34 @@
 ## Action creators
 
 ```ts
-hset(domain: string, keys: string[], value: any): object
+/**
+ * Sets a single value in a hash, specified by
+ * domain and keys
+ */
+declare function hset(domain: string, keys: string[], value: any): object;
 
-hdel(domain: string, keys: string[]): object
+/**
+ * Deletes the value containing in a specified domain
+ * and keys
+ */
+declare function hdel(domain: string, keys: string[]): object;
 
-hmset(domain: string, map: object): object
+/**
+ * Merges a Javascript object in an existing hash
+ */
+declare function hmset(domain: string, map: object): object;
 
-hincrby(domain: string, keys: string[], delta: number | 1): object
+/**
+ * Increments the value inside a domain and keys
+ * by delta
+ */
+declare function hincrby(domain: string, keys: string[], delta: number): object;
 
-htoggle(domain: string, keys: string[]): object
+/**
+ * Toggles a Boolean key in a hash. If key is not present, it will assumed to
+ * be false, so htoggle() will cause it to be true.
+ */
+declare function htoggle(domain: string, keys: string[]): object;
 ```
 
 
@@ -20,14 +39,30 @@ htoggle(domain: string, keys: string[]): object
 > **Note** that all selectors are currified
 
 ```ts
-hget(hash: string, keys: string[], state: object): any
+/**
+ * Get a single property from a hash
+ */
+declare const hget: (domain: string, keys: string[], state: object) => any;
 
-hgetall(hash: string, state: object): object
+/**
+ * Get all the domain content
+ */
+declare const hgetall: (domain: string, state: object) => any[];
 
-hkeys(hash: string, state: object): string[]
+/**
+ * Get the keys of the domain
+ */
+declare const hkeys: (domain: string, state: object) => string[];
 
-hlen(hash: string, state: object): number
+/**
+ * Get the domain length
+ */
+declare const hlen: (domain: string, state: object) => number;
 
-hexists(hash: string, keys: string[], state: object): boolean
+/**
+ * Returns if there's a value inside a domain
+ * and keys
+ */
+declare const hexists: (domain: string, keys: string[], state: object) => boolean;
 ```
 

@@ -3,21 +3,46 @@
 ## Action creators
 
 ```ts
-lprepend(domain: string, value: any)
+/**
+ * Prepends an item to the list
+ */
+declare function lprepend(domain: string, value: any): object;
 
-lappend(domain: string, value: any)
+/**
+ * Appends an item in the right of the list
+ */
+declare function lappend(domain: string, value: any): object;
 
-lshift(domain: string)
+/**
+ * Removes the first value of list
+ */
+declare function lshift(domain: string): object;
 
-lpop(domain: string)
+/**
+ * Removes the last value of list
+ */
+declare function lpop(domain: string): object;
 
-lset(domain: string, index: number, value: any)
+/**
+ * Sets a value in a specific index of the list
+ */
+declare function lset(domain: string, index: number, value: any): object;
 
-lreplace(domain: string, elements: any[])
+/**
+ * Replaces all the list elements with new ones
+ */
+declare function lreplace(domain: string, elements: any[]): object;
 
-lrem(domain: string, count: number, value: any)
+/**
+ * Removes n occurrences of the value in the list
+ */
+declare function lrem(domain: string, count: number, value: any): object;
 
-ltrim(domain: string, start: number, stop: number)
+/**
+ * Removes all the elements in the list except of the ones
+ * included in the specified range
+ */
+declare function ltrim(domain: string, start: number, stop?: number): object;
 ```
 
 ## Selectors
@@ -25,11 +50,23 @@ ltrim(domain: string, start: number, stop: number)
 > **Note** that all selectors are currified
 
 ```ts
-getList(domain: string, state: object)
+/**
+ * Get all the elements in a list
+ */
+declare const getList: (domain: string, state: object) => object[];
 
-llen(domain: string, state: object)
+/**
+ * Get length of a list
+ */
+declare const llen: (domain: string, state: object) => number;
 
-lget(domain: string, index: number, state: object)
+/**
+ * Get the element in a specified position inside the list
+ */
+declare const lget: (domain: string, index: number, state: object) => any;
 
-lrange(domain: string, start: number, stop: number, state: object)
+/**
+ * Get the elements inside a specified range
+ */
+declare const lrange: (domain: string, start: number, stop: string, state: object) => any[];
 ```
