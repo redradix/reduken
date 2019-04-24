@@ -1,0 +1,4 @@
+const MOD = 'request'
+
+export const SET_REQUEST_STATUS = `${MOD}/SET_REQUEST_STATUS`
+export const REMOVE_REQUEST_STATUS = `${MOD}/REMOVE_REQUEST_STATUS`

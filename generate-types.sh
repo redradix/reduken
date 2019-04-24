@@ -1,5 +1,5 @@
 #!/bin/bash
-modules=(entities hash list pagination set)
+modules=(entities hash list pagination set requests)
 
 for module in "${modules[@]}"
 do
