@@ -1,6 +1,6 @@
 import {
   mergeEntities,
-  update,
+  updateEntity,
   removeOne,
   removeMany,
   removeAll,
@@ -67,22 +67,22 @@ describe('Entities module', () => {
     expect(state.users['2'].name).toBe('second')
   })
 
-  it('update() merges one single entity with data', () => {
+  it('updateEntity() merges one single entity with data', () => {
     const data = {
       lastName: 'foobar'
     }
-    const state = reducer(initialState, update('users', '1', data))
+    const state = reducer(initialState, updateEntity('users', '1', data))
     const user = state.users['1']
     expect(user).toBeDefined()
     expect(user.lastName).toBe(data.lastName)
     expect(user.id).toBe(1)
   })
 
-  it('update() works if there is not an existing entity', () => {
+  it('updateEntity() works if there is not an existing entity', () => {
     const data = {
       lastName: 'foobar'
     }
-    const state = reducer(initialState, update('users', 'foobar', data))
+    const state = reducer(initialState, updateEntity('users', 'foobar', data))
     const user = state.users['foobar']
     expect(user).toBeDefined()
     expect(user.lastName).toBe('foobar')
