@@ -31,7 +31,7 @@ declare function reset(): object;
 /**
  * Updates a field inside an entity
  */
-declare function update(domain: string, id: string, data: any): object;
+declare function updateEntity(domain: string, id: string, data: any): object;
 ```
 
 # Selectors

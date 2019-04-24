@@ -54,7 +54,7 @@ export function reset() {
 /**
  * Updates a field inside an entity
  */
-export function update(domain: string, id: string, data: any) {
+export function updateEntity(domain: string, id: string, data: any) {
   return {
     type: ActionTypes.UPDATE,
     payload: {
