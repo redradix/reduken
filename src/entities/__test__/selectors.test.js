@@ -1,4 +1,4 @@
-import * as Selectors from '../index'
+import * as Selectors from '../selectors'
 
 describe('Entities - Selectors', () => {
   const mockState = {
