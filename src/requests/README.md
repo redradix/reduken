@@ -21,5 +21,5 @@ declare const isRequestPending: (domain: string, state: object) => boolean;
 
 declare const isRequestCompleted: (domain: string, state: object) => boolean;
 
-declare const getRequestError: (domain: string, state: object) => any;
+declare const getRequestError: (domain: string, state: object) => Error | null;
 ```
