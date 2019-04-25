@@ -2,7 +2,7 @@ import reducer from '../reducer'
 import * as Actions from '../actions'
 import * as Selectors from '../selectors'
 
-describe('Pagination - Reducer', () => {
+describe('Pagination Module', () => {
   const initialState = {
     users: {
       records: [1, 2],
