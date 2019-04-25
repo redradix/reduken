@@ -48,3 +48,13 @@ export const srand: (domain: string, state: object) => any = curry(
     return set[idx]
   }
 )
+
+/**
+ * Get the length of a domain set
+ */
+export const slen: (domain: string, state: object) => number = curry(
+  (domain, state) => {
+    const set = getSet(domain, state)
+    return set.length
+  }
+)

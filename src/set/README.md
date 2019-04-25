@@ -59,4 +59,9 @@ declare const smembers: (domain: string, state: object) => any[];
  * Get a random item inside the domain set
  */
 declare const srand: (domain: string, state: object) => any;
+
+/**
+ * Get the length of a domain set
+ */
+declare const slen: (domain: string, state: object) => number;
 ```
