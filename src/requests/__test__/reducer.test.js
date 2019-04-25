@@ -1,7 +1,8 @@
-import * as Actions from '../actions'
 import reducer from '../reducer'
+import * as Actions from '../actions'
+import * as Selectors from '../selectors'
 
-describe('Requests module', () => {
+describe('Requests Module', () => {
   const initialState = {
     list: { status: 'pending', error: null }
   }
@@ -12,33 +13,32 @@ describe('Requests module', () => {
 
   it('startRequest(domain) puts a pending request in store', () => {
     const action = Actions.startRequest('users')
-    const state = reducer(initialState, action)
+    const requests = reducer(initialState, action)
 
-    expect(state.users).toBeDefined()
-    expect(state.users.status).toBe('pending')
-    expect(state.users.error).toBe(null)
+    expect(Selectors.isRequestPending('users', { requests })).toBe(true)
+    expect(Selectors.getRequestError('users', { requests })).toBe(null)
   })
 
   it('requestOk(domain) puts ok status in a request', () => {
     const action = Actions.requestOk('list')
-    const state = reducer(initialState, action)
+    const requests = reducer(initialState, action)
 
-    expect(state.list.status).toBe('ok')
-    expect(state.list.error).toBe(null)
+    expect(Selectors.isRequestCompleted('list', { requests })).toBe(true)
+    expect(Selectors.getRequestError('list', { requests })).toBe(null)
   })
 
   it('requestError(domain) put the error in the request status', () => {
     const action = Actions.requestError('list', new Error('test error'))
-    const state = reducer(initialState, action)
+    const requests = reducer(initialState, action)
 
-    expect(state.list.status).toBe('error')
-    expect(state.list.error).toBeDefined()
+    expect(Selectors.getRequestStatus('list', { requests })).toBe('error')
+    expect(Selectors.getRequestError('list', { requests })).toBeDefined()
   })
 
   it('removeRequest(domain) removes a request', () => {
     const action = Actions.removeRequest('list')
-    const state = reducer(initialState, action)
+    const requests = reducer(initialState, action)
 
-    expect(state.list).toBe(undefined)
+    expect(Selectors.getRequestStatus('list', { requests })).toBe(undefined)
   })
 })

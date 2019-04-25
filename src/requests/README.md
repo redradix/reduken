@@ -17,6 +17,8 @@ declare const removeRequest: (domain: string) => object;
 > **Note** that all selectors are currified
 
 ```ts
+declare const getRequestStatus: (domain: string, state: object) => string;
+
 declare const isRequestPending: (domain: string, state: object) => boolean;
 
 declare const isRequestCompleted: (domain: string, state: object) => boolean;
