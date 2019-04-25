@@ -53,7 +53,7 @@ declare function ltrim(domain: string, start: number, stop?: number): object;
 /**
  * Get all the elements in a list
  */
-declare const getList: (domain: string, state: object) => object[];
+declare const getList: (domain: string, state: object) => any[];
 
 /**
  * Get length of a list
@@ -69,4 +69,14 @@ declare const lget: (domain: string, index: number, state: object) => any;
  * Get the elements inside a specified range
  */
 declare const lrange: (domain: string, start: number, stop: string, state: object) => any[];
+
+/**
+ * Returns if the list contains the specified value
+ */
+declare const lcontains: (domain: string, value: any, state: object) => boolean;
+
+/**
+ * Returns the number of times the value is inside the list
+ */
+declare const loccurrences: (domain: string, value: any, state: object) => boolean;
 ```

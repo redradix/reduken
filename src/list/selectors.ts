@@ -1,4 +1,4 @@
-import { curry, propOr, nth } from 'ramda'
+import { curry, propOr, nth, pipe, equals, filter, length } from 'ramda'
 
 const root = state => state.list
 
@@ -7,7 +7,7 @@ const EMPTY_ARRAY = []
 /**
  * Get all the elements in a list
  */
-export const getList: (domain: string, state: object) => object[] = curry(
+export const getList: (domain: string, state: object) => any[] = curry(
   (domain, state) => propOr(EMPTY_ARRAY, domain, root(state))
 )
 
@@ -41,4 +41,44 @@ export const lrange: (
 ) => any[] = curry((domain, start, stop, state) => {
   const data = getList(domain, state)
   return data.slice(start, stop)
+})
+
+/**
+ * Returns if the list contains the specified value
+ */
+export const lcontains: (
+  domain: string,
+  value: any,
+  state: object
+) => boolean = curry((domain, value, state) => {
+  const data = getList(domain, state)
+  return data.includes(value)
+})
+
+/**
+ * Returns the index of the first occurrence
+ */
+export const lpos: (
+  domain: string,
+  value: any,
+  state: object
+) => boolean = curry((domain, value, state) => {
+  const data = getList(domain, state)
+  return data.indexOf(value)
+})
+
+/**
+ * Returns the number of times the value is inside the list
+ */
+export const loccurrences: (
+  domain: string,
+  value: any,
+  state: object
+) => boolean = curry((domain, value, state) => {
+  const data = getList(domain, state)
+
+  return pipe(
+    filter(equals(value)),
+    length
+  )(data)
 })
