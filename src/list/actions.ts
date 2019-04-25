@@ -5,7 +5,7 @@ import * as ActionTypes from './actionTypes'
  */
 export function lprepend(domain: string, value: any) {
   return {
-    type: ActionTypes.PREPEND,
+    type: ActionTypes.LPREPEND,
     payload: {
       domain,
       value
