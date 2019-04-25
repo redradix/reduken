@@ -1,6 +1,6 @@
 # Reduken
 
-Redis style structure as generic redux reducers
+Redis style structures as redux reducers, actions and selectors.
 
 ![Downloads](https://badgen.net/npm/dt/reduken)
 ![Version](https://badgen.net/npm/v/reduken)
@@ -8,19 +8,7 @@ Redis style structure as generic redux reducers
 ![Dependencies](https://badgen.net/david/dep/redradix/reduken)
 ![Size](https://badgen.net/bundlephobia/min/reduken)
 
-- [Batch](src/batch/README.md)
-- [Entities](src/entities/README.md)
-- [Hash](src/hash/README.md)
-- [List](src/list/README.md)
-- [Pagination](src/pagination/README.md)
-- [Requests](src/requests/README.md)
-- [Set](src/set/README.md)
-
-Also two utilities available
-
-- [buildReducer](src/lib/buildReducer.js)
-
-## Set-up
+## Set-up with React & Redux
 
 1. Install reduken
    ```bash
@@ -40,9 +28,19 @@ Also two utilities available
     }))
     ```
 
-## Batch Reducers
+## Modules
 
-See: [Batch](src/batch/README.md)
+- [Batch](src/batch/README.md)
+- [Entities](src/entities/README.md)
+- [Hash](src/hash/README.md)
+- [List](src/list/README.md)
+- [Pagination](src/pagination/README.md)
+- [Requests](src/requests/README.md)
+- [Set](src/set/README.md)
+
+Also one utility available
+
+- [buildReducer](src/lib/buildReducer.js)
 
 ## Full Example
 
