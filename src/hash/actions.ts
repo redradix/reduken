@@ -1,4 +1,5 @@
 import { HSET, HDEL, HMSET, HINCRBY, HTOGGLE } from './actionTypes'
+import { path } from 'ramda'
 
 /**
  * Sets a single value in a hash, specified by
@@ -30,11 +31,11 @@ export function hdel(domain: string, keys: string[]) {
 /**
  * Merges a Javascript object in an existing hash
  */
-export function hmset(domain: string, map: object) {
+export function hmset(path: string, map: object) {
   return {
     type: HMSET,
     payload: {
-      path: domain,
+      path,
       value: map
     }
   }
