@@ -3,10 +3,24 @@ import * as ActionTypes from './actionTypes'
 /**
  * Merges many entities at once
  */
-export function mergeEntities(entityMap: any[]) {
+export function mergeEntities(entityMap: object) {
   return {
-    type: ActionTypes.MERGE,
+    type: ActionTypes.MERGE_ENTITIES,
     payload: entityMap
+  }
+}
+
+/**
+ * Merges a field inside an entity
+ */
+export function mergeEntity(domain: string, id: string, data: any) {
+  return {
+    type: ActionTypes.MERGE_ENTITY,
+    payload: {
+      domain,
+      id,
+      data
+    }
   }
 }
 
@@ -52,11 +66,21 @@ export function reset() {
 }
 
 /**
- * Updates a field inside an entity
+ * Update all entities with the new ones
+ */
+export function updateEntities(entityMap: object) {
+  return {
+    type: ActionTypes.UPDATE_ENTITIES,
+    payload: entityMap
+  }
+}
+
+/**
+ * Update one entities with a new data
  */
 export function updateEntity(domain: string, id: string, data: any) {
   return {
-    type: ActionTypes.UPDATE,
+    type: ActionTypes.UPDATE_ENTITY,
     payload: {
       domain,
       id,

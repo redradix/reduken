@@ -1,4 +1,4 @@
-import { curry, includes, toString, values } from 'ramda'
+import { curry, includes, toString } from 'ramda'
 
 const EMPTY_OBJECT: object = {}
 
@@ -24,16 +24,6 @@ export const getById: (
   id: string,
   state: object
 ) => object = curry((domain, id, state) => getDomain(domain, state)[id])
-
-/**
- * Get all entities for domain as an Array
- */
-export const getAll: (domain: string, state: object) => object[] = curry(
-  (domain, state) => {
-    const entities = getDomain(domain, state)
-    return values(entities)
-  }
-)
 
 /**
  * Get the entities with specific ids in a domain

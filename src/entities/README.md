@@ -6,7 +6,12 @@
 /**
  * Merges many entities at once
  */
-declare function mergeEntities(entityMap: any[]): object;
+declare function mergeEntities(entityMap: object): object;
+
+/**
+ * Merge a field inside an entity
+ */
+declare function mergeEntity(domain: string, id: string, data: any): object;
 
 /**
  * Removes multiple entities at once (of a single type/domain)
@@ -29,7 +34,11 @@ declare function removeAll(domain: string): object;
 declare function reset(): object;
 
 /**
- * Updates a field inside an entity
+ * Update all entities with the new ones
+ */
+declare function updateEntities(entityMap: object): object;
+/**
+ * Update one entities with a new data
  */
 declare function updateEntity(domain: string, id: string, data: any): object;
 ```
@@ -53,11 +62,6 @@ declare const getDomain: (domain: string, state: object) => object;
  * Get single entity from domain, by it's id
  */
 declare const getById: (domain: string, id: string, state: object) => object;
-
-/**
- * Get all entities for domain as an Array
- */
-declare const getAll: (domain: string, state: object) => object[];
 
 /**
  * Get the entities with specific ids in a domain

@@ -1,12 +1,33 @@
 import buildReducer from '../lib/buildReducer'
-import { mergeDeepRight, over, lensPath, omit, compose, defaultTo } from 'ramda'
+import {
+  mergeDeepRight,
+  over,
+  lensPath,
+  omit,
+  compose,
+  defaultTo,
+  assocPath,
+  mergeRight
+} from 'ramda'
 import * as ActionTypes from './actionTypes'
 
 const initialState = {}
 
 const actionHandlers = {
-  [ActionTypes.MERGE]: (state, { payload }) => {
+  [ActionTypes.MERGE_ENTITIES]: (state, { payload }) => {
     return mergeDeepRight(state, payload)
+  },
+  [ActionTypes.MERGE_ENTITY]: (state, { payload }) => {
+    const { domain, id, data } = payload
+
+    return over(
+      lensPath([domain, id]),
+      compose(
+        mergeDeepRight(data),
+        defaultTo({})
+      ),
+      state
+    )
   },
   [ActionTypes.REMOVE]: (state, { payload }) => {
     const { domain, keys } = payload
@@ -18,16 +39,12 @@ const actionHandlers = {
   [ActionTypes.RESET]: () => {
     return initialState
   },
-  [ActionTypes.UPDATE]: (state, { payload }) => {
+  [ActionTypes.UPDATE_ENTITIES]: (state, { payload }) => {
+    return mergeRight(state, payload) // only merges first level
+  },
+  [ActionTypes.UPDATE_ENTITY]: (state, { payload }) => {
     const { domain, id, data } = payload
-    return over(
-      lensPath([domain, id]),
-      compose(
-        mergeDeepRight(data),
-        defaultTo({})
-      ),
-      state
-    )
+    return assocPath([domain, id], data, state)
   }
 }
 
