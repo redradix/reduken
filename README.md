@@ -1,6 +1,6 @@
-# Generic Reducers
+# Reduken
 
-Redis style structure as redux reducers
+Redis style structure as generic redux reducers
 
 ![Downloads](https://badgen.net/npm/dt/reduken)
 ![Version](https://badgen.net/npm/v/reduken)
