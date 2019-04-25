@@ -10,7 +10,7 @@ import {
 import reducer from '../reducer'
 import * as Selectors from '../selectors'
 
-describe('Entities module', () => {
+describe('Entities Module', () => {
   const initialEntities = {
     users: {
       1: { id: 1, name: 'the first one' },
