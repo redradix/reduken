@@ -59,7 +59,7 @@ export function removeAll(domain: string) {
 /**
  * Clears the whole entity cache
  */
-export function reset() {
+export function clear() {
   return {
     type: ActionTypes.RESET
   }

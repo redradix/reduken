@@ -4,7 +4,7 @@ import {
   removeOne,
   removeMany,
   removeAll,
-  reset,
+  clear,
   updateEntities
 } from '../actions'
 import reducer from '../reducer'
@@ -13,7 +13,7 @@ import * as Selectors from '../selectors'
 describe('Entities Module', () => {
   const initialEntities = {
     users: {
-      1: { id: 1, name: 'the first one' },
+      1: { id: 1, name: 'the first one', surname: 'the first surname' },
       25: { id: 25, name: 'the second one' }
     },
     test: { 20: { id: 20, name: 'testing' } }
@@ -32,20 +32,20 @@ describe('Entities Module', () => {
     const action = mergeEntities(mockPayload)
     const entities = reducer(initialEntities, action)
 
-    expect(Selectors.getById('users', 2, { entities }).id).toBe(2)
-    expect(Selectors.getById('users', 1, { entities }).id).toBe(1)
+    expect(Selectors.getOne('users', 1, { entities })).toBeDefined()
   })
 
   it('mergeEntities() merges existing entities', () => {
     const mockPayload = {
-      users: { 1: { id: 1, name: 'overwritten' } }
+      users: { 1: { id: 1, name: 'overwritten', profession: 'developer' } }
     }
     const action = mergeEntities(mockPayload)
     const entities = reducer(initialEntities, action)
 
-    const userOne = Selectors.getById('users', 1, { entities })
+    const userOne = Selectors.getOne('users', 1, { entities })
     expect(userOne.name).toBe('overwritten')
-    expect(userOne.id).toBe(1)
+    expect(userOne.surname).toBe('the first surname')
+    expect(userOne.profession).toBe('developer')
   })
 
   it('mergeEntities() keeps non affected entities equal as previous', () => {
@@ -55,9 +55,9 @@ describe('Entities Module', () => {
     const action = mergeEntities(mockPayload)
     const entities = reducer(initialEntities, action)
 
-    const userNotRemoved = Selectors.getById('users', 25, { entities })
+    const userNotRemoved = Selectors.getOne('users', 25, { entities })
     expect(userNotRemoved).toBe(
-      Selectors.getById('users', 25, { entities: initialEntities })
+      Selectors.getOne('users', 25, { entities: initialEntities })
     )
   })
 
@@ -68,24 +68,24 @@ describe('Entities Module', () => {
     }
     const entities = reducer(initialEntities, mergeEntities(mockPayload))
 
-    const existingUser = Selectors.getById('users', 25, { entities })
+    const existingUser = Selectors.getOne('users', 25, { entities })
     expect(existingUser).toBe(
-      Selectors.getById('users', 25, { entities: initialEntities })
+      Selectors.getOne('users', 25, { entities: initialEntities })
     )
-    expect(Selectors.getById('domains', 1, { entities }).name).toBe('AB4FB')
-    expect(Selectors.getById('users', 2, { entities }).name).toBe('second')
+    expect(Selectors.getOne('domains', 1, { entities }).name).toBe('AB4FB')
+    expect(Selectors.getOne('users', 2, { entities }).name).toBe('second')
   })
 
   it('removeOne() removes a single entity by domain and id', () => {
     const entities = reducer(initialEntities, removeOne('users', 1))
-    expect(Selectors.getById('users', 1, { entities })).not.toBeDefined()
+    expect(Selectors.getOne('users', 1, { entities })).not.toBeDefined()
   })
 
   it('removeMany() clears entities of a given type/domain by an Array of ids', () => {
     const entities = reducer(initialEntities, removeMany('users', [1]))
 
-    const userNotRemoved = Selectors.getById('users', 25, { entities })
-    expect(Selectors.getById('users', 1, { entities })).not.toBeDefined()
+    const userNotRemoved = Selectors.getOne('users', 25, { entities })
+    expect(Selectors.getOne('users', 1, { entities })).not.toBeDefined()
     expect(userNotRemoved).toBeDefined()
   })
 
@@ -94,8 +94,8 @@ describe('Entities Module', () => {
     expect(Selectors.getDomain('users', { entities })).toEqual({})
   })
 
-  it('reset() clears the full entity cache', () => {
-    const entities = reducer(initialEntities, reset())
+  it('clear() clears the full entity cache', () => {
+    const entities = reducer(initialEntities, clear())
     expect(Selectors.getEntities({ entities })).toEqual({})
   })
 
@@ -121,7 +121,7 @@ describe('Entities Module', () => {
       updateEntity('users', 1, mockPayload)
     )
 
-    const user = Selectors.getById('users', 1, { entities })
+    const user = Selectors.getOne('users', 1, { entities })
     const userDomain = Selectors.getDomain('users', { entities })
     expect(user.name).toEqual(mockPayload.name)
     expect(Object.values(userDomain).length).toBe(2)

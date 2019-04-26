@@ -19,7 +19,7 @@ export const getDomain: (domain: string, state: object) => object = curry(
 /**
  * Get single entity from domain, by it's id
  */
-export const getById: (
+export const getOne: (
   domain: string,
   id: string,
   state: object
