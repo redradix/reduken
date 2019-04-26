@@ -10,11 +10,11 @@ The batch reducer receives the root reducer and returns a new root reducer.
 
 import { enableBatching } from 'reduken'
 
-const rootReducer = enableBatching(combineReducers({
+const rootReducer = combineReducers({
   ...reducers
-}))
+})
 
-const store = createStore(rootReducer, initialState, middlewares)
+const store = createStore(enableBatching(rootReducer), initialState, middlewares)
 
 ```
 

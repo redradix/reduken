@@ -55,14 +55,14 @@ import { entities, hash, list, pagination, set, enableBatching } from 'reduken'
 import { hset, hget } from 'reduken/hash'
 
 // 1. Create store with the reduken reducers
-const reducers = enableBatching(combineReducers({
+const rootReducer = combineReducers({
   entities,
   hash,
   list,
   pagination,
   set
-}))
-const store = createStore(reducers, window.__INITIAL_STATE__)
+})
+const store = createStore(enableBatching(rootReducer), window.__INITIAL_STATE__)
 
 // 2. Presentational Component
 const HelloComponent = ({ name, handleChange }) => {
