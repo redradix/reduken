@@ -20,10 +20,12 @@ const store = createStore(rootReducer, initialState, middlewares)
 
 ## Action Creators
 ```ts
+
 interface Action {
   type: string
   payload: object
 }
 
-export declare function batch(type: string, actions: Action[]): object
+declare function batch(type: string, actions: Action[]): object
+
 ```
