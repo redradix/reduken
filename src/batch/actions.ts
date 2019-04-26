@@ -7,6 +7,6 @@ export function batchActions(type: string, actions: Action[]) {
   return {
     type,
     payload: actions,
-    isBatch: true
+    meta: { isBatch: true }
   }
 }
