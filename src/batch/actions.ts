@@ -3,7 +3,7 @@ interface Action {
   payload: object
 }
 
-export function batch(type: string, actions: Action[]) {
+export function batchActions(type: string, actions: Action[]) {
   return {
     type,
     payload: actions,

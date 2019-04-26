@@ -1,5 +1,5 @@
-import batchReducer from '../reducer'
-import { batch } from '../actions'
+import enableBatching from '../reducer'
+import { batchActions } from '../actions'
 
 // use with hash reducer and hash actions
 import { hash } from '../../index'
@@ -7,10 +7,10 @@ import * as Actions from '../../hash/actions'
 import * as Selectors from '../../hash/selectors'
 
 describe('Batch Module', () => {
-  const reducer = batchReducer(hash)
+  const reducer = enableBatching(hash)
 
   it('Batches single action under specified name', () => {
-    const action = batch('single action', [
+    const action = batchActions('single action', [
       Actions.hset('test', ['foo'], 'bar')
     ])
     const result = reducer(undefined, action)
@@ -20,7 +20,7 @@ describe('Batch Module', () => {
   })
 
   it('Batches multiple action under specified name', () => {
-    const action = batch('multiple actions', [
+    const action = batchActions('multiple actions', [
       Actions.hset('test', ['foo'], 'bar'),
       Actions.hset('test', ['foo2'], 'bar2'),
       Actions.hset('test', ['foo3'], 'bar3')

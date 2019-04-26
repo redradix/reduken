@@ -8,9 +8,9 @@ The batch reducer receives the root reducer and returns a new root reducer.
 
 ```js
 
-import { batch } from 'reduken'
+import { enableBatching } from 'reduken'
 
-const rootReducer = batch(combineReducers({
+const rootReducer = enableBatching(combineReducers({
   ...reducers
 }))
 
@@ -26,6 +26,6 @@ interface Action {
   payload: object
 }
 
-declare function batch(type: string, actions: Action[]): object
+declare function batchActions(type: string, actions: Action[]): object
 
 ```
