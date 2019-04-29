@@ -17,12 +17,13 @@ Redis style structures as redux reducers, actions and selectors.
 2. Set up redux reducers
    ```js
    import { combineReducers } from 'redux'
-   import { entities, hash, list, enableBatching } from 'reduken'
+   import { entities, hash, list, requests, enableBatching } from 'reduken'
 
     export default enableBatching(combineReducers({
       entities,
       hash,
-      list
+      list,
+      requests
     }))
     ```
 
@@ -47,14 +48,15 @@ import ReactDOM from 'react-dom'
 import { createStore, combineReducers } from 'redux'
 import { connect, Provider } from 'react-redux'
 
-import { entities, hash, list, enableBatching } from 'reduken'
-import { hset, hget } from 'reduken/hash'
+import { entities, hash, list, requests, enableBatching } from 'reduken'
+import { set, getFromPath } from 'reduken/hash'
 
 // 1. Create store with the reduken reducers
 const rootReducer = combineReducers({
   entities,
   hash,
-  list
+  list,
+  requests
 })
 const store = createStore(enableBatching(rootReducer), window.__INITIAL_STATE__)
 
@@ -71,10 +73,10 @@ const HelloComponent = ({ name, handleChange }) => {
 // 3. Decorate component with connect
 const HelloDecorated = connect(
   state => ({
-    name: hget('session', 'name', state) || 'World'
+    name: getFromPath('session', 'name', state) || 'World'
   }),
   {
-    handleChange: event => hset('session', 'name', event.target.value)
+    handleChange: event => set('session', 'name', event.target.value)
   }
 )(HelloComponent)
 
