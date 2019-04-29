@@ -17,14 +17,13 @@ Redis style structures as redux reducers, actions and selectors.
 2. Set up redux reducers
    ```js
    import { combineReducers } from 'redux'
-   import { entities, hash, list, pagination, set, enableBatching } from 'reduken'
+   import { entities, hash, list, pagination, enableBatching } from 'reduken'
 
     export default enableBatching(combineReducers({
       entities,
       hash,
       list,
-      pagination,
-      set
+      pagination
     }))
     ```
 
@@ -36,7 +35,6 @@ Redis style structures as redux reducers, actions and selectors.
 - [List](src/list/README.md)
 - [Pagination](src/pagination/README.md)
 - [Requests](src/requests/README.md)
-- [Set](src/set/README.md)
 
 Also one utility available
 
@@ -51,7 +49,7 @@ import ReactDOM from 'react-dom'
 import { createStore, combineReducers } from 'redux'
 import { connect, Provider } from 'react-redux'
 
-import { entities, hash, list, pagination, set, enableBatching } from 'reduken'
+import { entities, hash, list, pagination, enableBatching } from 'reduken'
 import { hset, hget } from 'reduken/hash'
 
 // 1. Create store with the reduken reducers
@@ -59,8 +57,7 @@ const rootReducer = combineReducers({
   entities,
   hash,
   list,
-  pagination,
-  set
+  pagination
 })
 const store = createStore(enableBatching(rootReducer), window.__INITIAL_STATE__)
 
