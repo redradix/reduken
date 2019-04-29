@@ -22,7 +22,7 @@ const actionHandlers = {
     const { value, path } = action.payload
     return assocPath(path, value, state)
   },
-  [ActionTypes.DELETE]: (state, action) => {
+  [ActionTypes.REMOVE]: (state, action) => {
     const { path } = action.payload
     return dissocPath(path, state)
   },

@@ -1,4 +1,4 @@
-import { path, curry, pathOr, keys, length, hasPath } from 'ramda'
+import { path as getPath, curry, pathOr, keys, length, hasPath } from 'ramda'
 import { safetyArray } from './utils'
 
 const EMPTY_OBJECT = {}
@@ -11,7 +11,7 @@ export const getFromPath: (
   path: string[],
   state: object
 ) => any = curry((domain, path, state) => {
-  return path(['hash', domain, ...safetyArray(path)], state)
+  return getPath(['hash', domain, ...safetyArray(path)], state)
 })
 
 /**
@@ -19,7 +19,7 @@ export const getFromPath: (
  */
 export const getDomain: (domain: string, state: object) => any[] = curry(
   (domain, state) => {
-    return path(['hash', domain], state)
+    return getPath(['hash', domain], state)
   }
 )
 
