@@ -6,13 +6,13 @@ export const startRequest = (domain: string) => ({
   payload: { status: 'pending', error: null }
 })
 
-export const requestOk = (domain: string) => ({
+export const endRequestSuccess = (domain: string) => ({
   type: SET_REQUEST_STATUS,
   domain,
   payload: { status: 'ok', error: null }
 })
 
-export const requestError = (domain: string, error: Error) => ({
+export const endRequestError = (domain: string, error: Error) => ({
   type: SET_REQUEST_STATUS,
   domain,
   payload: { status: 'error', error }

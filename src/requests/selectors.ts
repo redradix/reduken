@@ -7,7 +7,7 @@ export const isRequestPending = (domain: string, state: object) => {
   return getRequestStatus(domain, state) === 'pending'
 }
 
-export const isRequestCompleted = (domain: string, state: object) => {
+export const isRequestSucceeded = (domain: string, state: object) => {
   return getRequestStatus(domain, state) === 'ok'
 }
 

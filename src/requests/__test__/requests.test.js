@@ -19,16 +19,16 @@ describe('Requests Module', () => {
     expect(Selectors.getRequestError('users', { requests })).toBe(null)
   })
 
-  it('requestOk(domain) puts ok status in a request', () => {
-    const action = Actions.requestOk('list')
+  it('endRequestSuccess(domain) puts ok status in a request', () => {
+    const action = Actions.endRequestSuccess('list')
     const requests = reducer(initialState, action)
 
-    expect(Selectors.isRequestCompleted('list', { requests })).toBe(true)
+    expect(Selectors.isRequestSucceeded('list', { requests })).toBe(true)
     expect(Selectors.getRequestError('list', { requests })).toBe(null)
   })
 
-  it('requestError(domain) put the error in the request status', () => {
-    const action = Actions.requestError('list', new Error('test error'))
+  it('endRequestError(domain) put the error in the request status', () => {
+    const action = Actions.endRequestError('list', new Error('test error'))
     const requests = reducer(initialState, action)
 
     expect(Selectors.getRequestStatus('list', { requests })).toBe('error')
