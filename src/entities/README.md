@@ -52,12 +52,12 @@ declare function updateEntity(domain: string, id: string, data: any): object;
 /**
  * Get all the entities as Object
  */
-declare const getEntities: (state: string) => object;
+declare const getEntities: (state: object) => object[];
 
 /**
  * Get all entities for domain as an object
  */
-declare const getDomain: (domain: string, state: object) => object;
+declare const getDomain: (domain: string, state: object) => object[];
 
 /**
  * Get single entity from domain, by it's id
@@ -67,5 +67,11 @@ declare const getOne: (domain: string, id: string, state: object) => object;
 /**
  * Get the entities with specific ids in a domain
  */
-declare const getSome: (domain: string, ids: string[], state: string) => object[]; 
+declare const getSome: (domain: string, ids: string[], state: object) => object[];
+
+/**
+ * Get ids of the entities inside a domain
+ */
+declare const getIds: (domain: string, state: object) => string[];
+
 ```

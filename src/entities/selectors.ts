@@ -5,14 +5,14 @@ const EMPTY_OBJECT: object = {}
 /**
  * Get all the entities as Object
  */
-export const getEntities: (state: string) => object = curry(
+export const getEntities: (state: object) => object[] = curry(
   state => state.entities
 )
 
 /**
  * Get all entities for domain as an object
  */
-export const getDomain: (domain: string, state: object) => object = curry(
+export const getDomain: (domain: string, state: object) => object[] = curry(
   (domain, state) => getEntities(state)[domain] || EMPTY_OBJECT
 )
 
@@ -31,7 +31,7 @@ export const getOne: (
 export const getSome: (
   domain: string,
   ids: string[],
-  state: string
+  state: object
 ) => object[] = curry((domain, ids, state) => {
   const stringIds = ids.map(toString)
   const entities = getDomain(domain, state)
@@ -41,3 +41,13 @@ export const getSome: (
     })
     .map(key => entities[key])
 })
+
+/**
+ * Get ids of the entities inside a domain
+ */
+export const getIds: (domain: string, state: object) => string[] = curry(
+  (domain, state) => {
+    const entities = getDomain(domain, state)
+    return Object.keys(entities) || []
+  }
+)
