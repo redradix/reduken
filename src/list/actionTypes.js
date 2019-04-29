@@ -1,10 +1,10 @@
 const MOD = 'CORE/LIST'
 
-export const LPREPEND = `${MOD}/LPREPEND`
-export const LAPPEND = `${MOD}/LAPPEND`
-export const LSHIFT = `${MOD}/LSHIFT`
-export const LPOP = `${MOD}/LPOP`
-export const LSET = `${MOD}/LSET`
-export const LREM = `${MOD}/LREM`
-export const LREPLACE = `${MOD}/LREPLACE`
-export const LTRIM = `${MOD}/LTRIM`
+export const PREPEND = `${MOD}/PREPEND`
+export const APPEND = `${MOD}/APPEND`
+export const SHIFT = `${MOD}/SHIFT`
+export const POP = `${MOD}/POP`
+export const REPLACE_ONE = `${MOD}/REPLACE_ONE`
+export const REPLACE_DOMAIN = `${MOD}/REPLACE_DOMAIN`
+export const REMOVE_OCCURRENCES = `${MOD}/REMOVE_OCCURRENCES`
+export const TRIM = `${MOD}/TRIM`

@@ -53,7 +53,7 @@ declare function ltrim(domain: string, start: number, stop?: number): object;
 /**
  * Get all the elements in a list
  */
-declare const getList: (domain: string, state: object) => any[];
+declare const getList: (domain: string, state: object) => any[]; // rename lgetall
 
 /**
  * Get length of a list

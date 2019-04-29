@@ -1,5 +1,4 @@
 import reducer from '../reducer'
-import * as ActionTypes from '../actionTypes'
 
 import * as Actions from '../actions'
 import * as Selectors from '../selectors'
@@ -15,10 +14,10 @@ describe('List Module', () => {
       test: ['bar']
     }
 
-    const action = Actions.lprepend('test', 'foo')
+    const action = Actions.prepend('test', 'foo')
     const list = reducer(mockState, action)
 
-    expect(Selectors.llen('test', { list })).toBe(2)
+    expect(Selectors.getLength('test', { list })).toBe(2)
     expect(Selectors.getList('test', { list })).toEqual(['foo', 'bar'])
   })
 
@@ -27,10 +26,10 @@ describe('List Module', () => {
       test: ['foo']
     }
 
-    const action = Actions.lappend('test', 'bar')
+    const action = Actions.append('test', 'bar')
     const list = reducer(mockState, action)
 
-    expect(Selectors.llen('test', { list })).toBe(2)
+    expect(Selectors.getLength('test', { list })).toBe(2)
     expect(Selectors.getList('test', { list })).toEqual(['foo', 'bar'])
   })
 
@@ -39,7 +38,7 @@ describe('List Module', () => {
       test: ['foo', 'bar']
     }
 
-    const action = Actions.lshift('test')
+    const action = Actions.shift('test')
     const list = reducer(mockState, action)
 
     expect(Selectors.getList('test', { list })).toHaveLength(1)
@@ -51,7 +50,7 @@ describe('List Module', () => {
       test: ['foo', 'bar']
     }
 
-    const action = Actions.lpop('test')
+    const action = Actions.pop('test')
     const list = reducer(mockState, action)
 
     expect(Selectors.getList('test', { list })).toHaveLength(1)
@@ -63,26 +62,26 @@ describe('List Module', () => {
       test: [1, 2, 3, 5]
     }
 
-    const action = Actions.lset('test', 3, 4)
+    const action = Actions.replaceOne('test', 3, 4)
     const list = reducer(mockState, action)
 
-    expect(Selectors.llen('test', { list })).toBe(mockState.test.length)
-    expect(Selectors.lget('test', 3, { list })).toBe(4)
+    expect(Selectors.getLength('test', { list })).toBe(mockState.test.length)
+    expect(Selectors.getByIndex('test', 3, { list })).toBe(4)
   })
 
   it('LSET is a noop when index is out of bounds', () => {
-    const action = Actions.lset('test', 2, 5)
+    const action = Actions.replaceOne('test', 2, 5)
     const list = reducer(undefined, action)
 
     expect(Selectors.getList('test', { list })).toEqual([])
   })
 
   it('LREPLACE replaces a list with new elements (or creates an empty one)', () => {
-    const replace = Actions.lreplace('test', ['foo'])
+    const replace = Actions.replaceDomain('test', ['foo'])
     let list = reducer(undefined, replace)
     expect(Selectors.getList('test', { list })).toEqual(['foo'])
 
-    const empty = Actions.lreplace('test', [])
+    const empty = Actions.replaceDomain('test', [])
     list = reducer(list, empty)
     expect(Selectors.getList('test', { list })).toEqual([])
   })
@@ -91,51 +90,48 @@ describe('List Module', () => {
     const mockState = {
       test: ['foo', 'foo', 'bar', 'baz', 'test', 'foo', 'cachopo']
     }
-    const action = Actions.lrem('test', 0, 'foo')
+    const action = Actions.removeOccurrences('test', 0, 'foo')
     const list = reducer(mockState, action)
 
-    expect(Selectors.lcontains('test', 'foo', { list })).toBe(false)
+    expect(Selectors.contains('test', 'foo', { list })).toBe(false)
   })
 
   it('LREM(domain, count=N, value) removes first N occurrences of a value in a list', () => {
     const mockState = {
       test: ['foo', 'foo', 'bar', 'baz', 'test', 'foo', 'cachopo']
     }
-    const action = Actions.lrem('test', 2, 'foo')
+    const action = Actions.removeOccurrences('test', 2, 'foo')
     const list = reducer(mockState, action)
 
-    expect(Selectors.loccurrences('test', 'foo', { list })).toBe(1)
-    expect(Selectors.llen('test', { list })).toBe(mockState.test.length - 2)
-    expect(Selectors.lpos('test', 'foo', { list })).toBe(3)
+    expect(Selectors.getOccurrencesOf('test', 'foo', { list })).toBe(1)
+    expect(Selectors.getLength('test', { list })).toBe(
+      mockState.test.length - 2
+    )
+    expect(Selectors.getIndexOf('test', 'foo', { list })).toBe(3)
   })
 
   it('LREM(domain, count=-N, value) removes last N occurrences of a value in a list', () => {
-    const action = {
-      type: ActionTypes.LREM,
-      payload: {
-        domain: 'test',
-        count: -2,
-        value: 'foo'
-      }
-    }
+    const action = Actions.removeOccurrences('test', -2, 'foo')
     const mockState = {
       test: ['foo', 'foo', 'bar', 'baz', 'test', 'foo', 'cachopo']
     }
     const list = reducer(mockState, action)
 
-    expect(Selectors.loccurrences('test', 'foo', { list })).toBe(1)
-    expect(Selectors.llen('test', { list })).toBe(mockState.test.length - 2)
-    expect(Selectors.lpos('test', 'foo', { list })).toBe(0)
+    expect(Selectors.getOccurrencesOf('test', 'foo', { list })).toBe(1)
+    expect(Selectors.getLength('test', { list })).toBe(
+      mockState.test.length - 2
+    )
+    expect(Selectors.getIndexOf('test', 'foo', { list })).toBe(0)
   })
 
   it('LTRIM(domain, start, stop) trims an existing list using a range', () => {
     const mockState = {
       test: 'abcdefghijklmnopqrstuvwuxyz'.split('')
     }
-    const action = Actions.ltrim('test', 0, 3)
+    const action = Actions.trim('test', 0, 3)
     const list = reducer(mockState, action)
 
-    expect(Selectors.llen('test', { list })).toBe(4)
+    expect(Selectors.getLength('test', { list })).toBe(4)
     expect(Selectors.getList('test', { list })).toEqual(
       mockState.test.slice(0, 4)
     )

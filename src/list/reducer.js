@@ -20,7 +20,7 @@ const removeFirstOccurrence = value => list =>
 const removeLastOccurrence = value => list =>
   remove(list.lastIndexOf(value), 1, list)
 
-function lrem(list = [], count = 0, value) {
+function removeNOccurrences(list = [], count = 0, value) {
   if (count === 0) {
     return list.filter(item => item !== value)
   } else {
@@ -31,41 +31,41 @@ function lrem(list = [], count = 0, value) {
 }
 
 const actionHandlers = {
-  [ActionTypes.LPREPEND]: (state, action) => {
+  [ActionTypes.PREPEND]: (state, action) => {
     const { domain, value } = action.payload
     const prevItems = propOr([], domain, state)
     return assoc(domain, [value, ...prevItems], state)
   },
-  [ActionTypes.LAPPEND]: (state, action) => {
+  [ActionTypes.APPEND]: (state, action) => {
     const { domain, value } = action.payload
     const prevItems = propOr([], domain, state)
     return assoc(domain, [...prevItems, value], state)
   },
-  [ActionTypes.LSHIFT]: (state, action) => {
+  [ActionTypes.SHIFT]: (state, action) => {
     const { domain } = action.payload
     const newList = propOr([], domain, state)
     return assoc(domain, tail(newList), state)
   },
-  [ActionTypes.LPOP]: (state, action) => {
+  [ActionTypes.POP]: (state, action) => {
     const { domain } = action.payload
     const list = propOr([], domain, state)
     return assoc(domain, init(list), state)
   },
-  [ActionTypes.LSET]: (state, action) => {
+  [ActionTypes.REPLACE_ONE]: (state, action) => {
     const { domain, value, index } = action.payload
     const prevItems = propOr([], domain, state)
     return assoc(domain, update(index, value, prevItems), state)
   },
-  [ActionTypes.LREPLACE]: (state, action) => {
+  [ActionTypes.REPLACE_DOMAIN]: (state, action) => {
     const { domain, elements } = action.payload
     return assoc(domain, [...elements], state)
   },
-  [ActionTypes.LREM]: (state, action) => {
+  [ActionTypes.REMOVE_OCCURRENCES]: (state, action) => {
     const { domain, count, value } = action.payload
     const prevItems = propOr([], domain, state)
-    return assoc(domain, lrem(prevItems, count, value), state)
+    return assoc(domain, removeNOccurrences(prevItems, count, value), state)
   },
-  [ActionTypes.LTRIM]: (state, action) => {
+  [ActionTypes.TRIM]: (state, action) => {
     const { domain, start, stop } = action.payload
     const prevItems = propOr([], domain, state)
     return assoc(domain, slice(start, stop + 1, prevItems), state)

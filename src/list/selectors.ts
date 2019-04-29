@@ -14,14 +14,14 @@ export const getList: (domain: string, state: object) => any[] = curry(
 /**
  * Get length of a list
  */
-export const llen: (domain: string, state: object) => number = curry(
+export const getLength: (domain: string, state: object) => number = curry(
   (domain, state) => getList(domain, state).length || 0
 )
 
 /**
  * Get the element in a specified position inside the list
  */
-export const lget: (
+export const getByIndex: (
   domain: string,
   index: number,
   state: object
@@ -33,7 +33,7 @@ export const lget: (
 /**
  * Get the elements inside a specified range
  */
-export const lrange: (
+export const getRange: (
   domain: string,
   start: number,
   stop: string,
@@ -46,7 +46,7 @@ export const lrange: (
 /**
  * Returns if the list contains the specified value
  */
-export const lcontains: (
+export const contains: (
   domain: string,
   value: any,
   state: object
@@ -58,7 +58,7 @@ export const lcontains: (
 /**
  * Returns the index of the first occurrence
  */
-export const lpos: (
+export const getIndexOf: (
   domain: string,
   value: any,
   state: object
@@ -70,7 +70,7 @@ export const lpos: (
 /**
  * Returns the number of times the value is inside the list
  */
-export const loccurrences: (
+export const getOccurrencesOf: (
   domain: string,
   value: any,
   state: object
