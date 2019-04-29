@@ -56,11 +56,6 @@ declare function trim(domain: string, start: number, stop?: number): object;
 declare const getList: (domain: string, state: object) => any[];
 
 /**
- * Get length of a list
- */
-declare const getLength: (domain: string, state: object) => number;
-
-/**
  * Get the element in a specified position inside the list
  */
 declare const getByIndex: (domain: string, index: number, state: object) => any;
@@ -74,11 +69,6 @@ declare const getRange: (domain: string, start: number, stop: string, state: obj
  * Returns if the list contains the specified value
  */
 declare const contains: (domain: string, value: any, state: object) => boolean;
-
-/**
- * Returns the index of the first occurrence
- */
-declare const getIndexOf: (domain: string, value: any, state: object) => boolean;
 
 /**
  * Returns the number of times the value is inside the list

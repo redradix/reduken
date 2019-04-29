@@ -17,7 +17,7 @@ describe('List Module', () => {
     const action = Actions.prepend('test', 'foo')
     const list = reducer(mockState, action)
 
-    expect(Selectors.getLength('test', { list })).toBe(2)
+    expect(Selectors.getList('test', { list }).length).toBe(2)
     expect(Selectors.getList('test', { list })).toEqual(['foo', 'bar'])
   })
 
@@ -29,7 +29,7 @@ describe('List Module', () => {
     const action = Actions.append('test', 'bar')
     const list = reducer(mockState, action)
 
-    expect(Selectors.getLength('test', { list })).toBe(2)
+    expect(Selectors.getList('test', { list }).length).toBe(2)
     expect(Selectors.getList('test', { list })).toEqual(['foo', 'bar'])
   })
 
@@ -65,7 +65,9 @@ describe('List Module', () => {
     const action = Actions.replaceOne('test', 3, 4)
     const list = reducer(mockState, action)
 
-    expect(Selectors.getLength('test', { list })).toBe(mockState.test.length)
+    expect(Selectors.getList('test', { list }).length).toBe(
+      mockState.test.length
+    )
     expect(Selectors.getByIndex('test', 3, { list })).toBe(4)
   })
 
@@ -104,7 +106,7 @@ describe('List Module', () => {
     const list = reducer(mockState, action)
 
     expect(Selectors.getOccurrencesOf('test', 'foo', { list })).toBe(1)
-    expect(Selectors.getLength('test', { list })).toBe(
+    expect(Selectors.getList('test', { list }).length).toBe(
       mockState.test.length - 2
     )
     expect(Selectors.getIndexOf('test', 'foo', { list })).toBe(3)
@@ -118,7 +120,7 @@ describe('List Module', () => {
     const list = reducer(mockState, action)
 
     expect(Selectors.getOccurrencesOf('test', 'foo', { list })).toBe(1)
-    expect(Selectors.getLength('test', { list })).toBe(
+    expect(Selectors.getList('test', { list }).length).toBe(
       mockState.test.length - 2
     )
     expect(Selectors.getIndexOf('test', 'foo', { list })).toBe(0)
@@ -131,7 +133,7 @@ describe('List Module', () => {
     const action = Actions.trim('test', 0, 3)
     const list = reducer(mockState, action)
 
-    expect(Selectors.getLength('test', { list })).toBe(4)
+    expect(Selectors.getList('test', { list }).length).toBe(4)
     expect(Selectors.getList('test', { list })).toEqual(
       mockState.test.slice(0, 4)
     )

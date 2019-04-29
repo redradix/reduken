@@ -12,13 +12,6 @@ export const getList: (domain: string, state: object) => any[] = curry(
 )
 
 /**
- * Get length of a list
- */
-export const getLength: (domain: string, state: object) => number = curry(
-  (domain, state) => getList(domain, state).length || 0
-)
-
-/**
  * Get the element in a specified position inside the list
  */
 export const getByIndex: (
@@ -62,7 +55,7 @@ export const getIndexOf: (
   domain: string,
   value: any,
   state: object
-) => boolean = curry((domain, value, state) => {
+) => number = curry((domain, value, state) => {
   const data = getList(domain, state)
   return data.indexOf(value)
 })
