@@ -1,7 +1,7 @@
-const MOD = 'CORE/HASH'
+const MOD = 'HASH'
 
-export const HSET = `${MOD}/HSET`
-export const HDEL = `${MOD}/HDEL`
-export const HMSET = `${MOD}/HMSET`
-export const HINCRBY = `${MOD}/HINCRBY`
-export const HTOGGLE = `${MOD}/HTOGGLE`
+export const SET = `${MOD}/SET`
+export const REMOVE = `${MOD}/REMOVE`
+export const MERGE = `${MOD}/MERGE`
+export const INCREMENT_BY = `${MOD}/INCREMENT_BY`
+export const TOGGLE = `${MOD}/TOGGLE`

@@ -1,22 +1,23 @@
 import { path, curry, pathOr, keys, length, hasPath } from 'ramda'
+import { safetyArray } from './utils'
 
 const EMPTY_OBJECT = {}
 
 /**
  * Get a single property from a hash
  */
-export const hget: (
+export const getFromPath: (
   domain: string,
-  keys: string[],
+  path: string[],
   state: object
-) => any = curry((domain, keys, state) => {
-  return path(['hash', domain, ...keys], state)
+) => any = curry((domain, path, state) => {
+  return path(['hash', domain, ...safetyArray(path)], state)
 })
 
 /**
  * Get all the domain content
  */
-export const hgetall: (domain: string, state: object) => any[] = curry(
+export const getDomain: (domain: string, state: object) => any[] = curry(
   (domain, state) => {
     return path(['hash', domain], state)
   }
@@ -25,7 +26,7 @@ export const hgetall: (domain: string, state: object) => any[] = curry(
 /**
  * Get the keys of the domain
  */
-export const hkeys: (domain: string, state: object) => string[] = curry(
+export const getKeys: (domain: string, state: object) => string[] = curry(
   (domain, state) => {
     return keys(pathOr(EMPTY_OBJECT, ['hash', domain], state))
   }
@@ -34,9 +35,9 @@ export const hkeys: (domain: string, state: object) => string[] = curry(
 /**
  * Get the domain length
  */
-export const hlen: (domain: string, state: object) => number = curry(
+export const getDomainLength: (domain: string, state: object) => number = curry(
   (domain, state) => {
-    return length(hkeys(domain, state))
+    return length(getKeys(domain, state))
   }
 )
 
@@ -44,10 +45,10 @@ export const hlen: (domain: string, state: object) => number = curry(
  * Returns if there's a value inside a domain
  * and keys
  */
-export const hexists: (
+export const existInPath: (
   domain: string,
-  keys: string[],
+  path: string[],
   state: object
-) => boolean = curry((domain, keys, state) => {
-  return hasPath(['hash', domain, ...keys], state)
+) => boolean = curry((domain, path, state) => {
+  return hasPath(['hash', domain, ...safetyArray(path)], state)
 })

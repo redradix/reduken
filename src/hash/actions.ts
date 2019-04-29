@@ -1,15 +1,15 @@
-import { HSET, HDEL, HMSET, HINCRBY, HTOGGLE } from './actionTypes'
-import { path } from 'ramda'
+import { SET, REMOVE, MERGE, INCREMENT_BY, TOGGLE } from './actionTypes'
+import { safetyArray } from './utils'
 
 /**
  * Sets a single value in a hash, specified by
  * domain and keys
  */
-export function hset(domain: string, keys: string[], value: any) {
+export function set(domain: string, keys: string | string[], value: any) {
   return {
-    type: HSET,
+    type: SET,
     payload: {
-      path: [domain, ...keys],
+      path: [domain, ...safetyArray(keys)],
       value
     }
   }
@@ -19,11 +19,11 @@ export function hset(domain: string, keys: string[], value: any) {
  * Deletes the value containing in a specified domain
  * and keys
  */
-export function hdel(domain: string, keys: string[]) {
+export function remove(domain: string, keys: string | string[]) {
   return {
-    type: HDEL,
+    type: REMOVE,
     payload: {
-      path: [domain, ...keys]
+      path: [domain, ...safetyArray(keys)]
     }
   }
 }
@@ -31,9 +31,9 @@ export function hdel(domain: string, keys: string[]) {
 /**
  * Merges a Javascript object in an existing hash
  */
-export function hmset(path: string, map: object) {
+export function merge(path: string, map: object) {
   return {
-    type: HMSET,
+    type: MERGE,
     payload: {
       path,
       value: map
@@ -42,14 +42,17 @@ export function hmset(path: string, map: object) {
 }
 
 /**
- * Increments the value inside a domain and keys
- * by delta
+ * Increments the value inside a domain and keys by delta
  */
-export function hincrby(domain: string, keys: string[], delta: number) {
+export function incrementBy(
+  domain: string,
+  keys: string | string[],
+  delta: number
+) {
   return {
-    type: HINCRBY,
+    type: INCREMENT_BY,
     payload: {
-      path: [domain, ...keys],
+      path: [domain, ...safetyArray(keys)],
       value: delta
     }
   }
@@ -59,11 +62,11 @@ export function hincrby(domain: string, keys: string[], delta: number) {
  * Toggles a Boolean key in a hash. If key is not present, it will assumed to
  * be false, so htoggle() will cause it to be true.
  */
-export function htoggle(domain: string, keys: string[]) {
+export function toggle(domain: string, keys: string | string[]) {
   return {
-    type: HTOGGLE,
+    type: TOGGLE,
     payload: {
-      path: [domain, ...keys]
+      path: [domain, ...safetyArray(keys)]
     }
   }
 }

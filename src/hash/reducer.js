@@ -18,19 +18,19 @@ import * as ActionTypes from './actionTypes'
 const initialState = {}
 
 const actionHandlers = {
-  [ActionTypes.HSET]: (state, action) => {
+  [ActionTypes.SET]: (state, action) => {
     const { value, path } = action.payload
     return assocPath(path, value, state)
   },
-  [ActionTypes.HDEL]: (state, action) => {
+  [ActionTypes.DELETE]: (state, action) => {
     const { path } = action.payload
     return dissocPath(path, state)
   },
-  [ActionTypes.HMSET]: (state, action) => {
+  [ActionTypes.MERGE]: (state, action) => {
     const { value, path } = action.payload
     return over(lensPath(path), mergeDeepRight(value), state)
   },
-  [ActionTypes.HINCRBY]: (state, action) => {
+  [ActionTypes.INCREMENT_BY]: (state, action) => {
     const { value, path } = action.payload
     return over(
       lensPath(path),
@@ -41,7 +41,7 @@ const actionHandlers = {
       state
     )
   },
-  [ActionTypes.HTOGGLE]: (state, action) => {
+  [ActionTypes.TOGGLE]: (state, action) => {
     const { path } = action.payload
     return over(lensPath(path), not, state)
   }
