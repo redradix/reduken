@@ -61,7 +61,7 @@ export function removeAll(domain: string) {
  */
 export function clear() {
   return {
-    type: ActionTypes.RESET
+    type: ActionTypes.CLEAR
   }
 }
 

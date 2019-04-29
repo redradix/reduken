@@ -36,7 +36,7 @@ const actionHandlers = {
   [ActionTypes.REMOVE_ALL]: (state, { payload }) => {
     return omit([payload.domain], state)
   },
-  [ActionTypes.RESET]: () => {
+  [ActionTypes.CLEAR]: () => {
     return initialState
   },
   [ActionTypes.UPDATE_ENTITIES]: (state, { payload }) => {
