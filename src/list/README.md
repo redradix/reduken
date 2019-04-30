@@ -73,5 +73,5 @@ declare const contains: (domain: string, value: any, state: object) => boolean;
 /**
  * Returns the number of times the value is inside the list
  */
-declare const getOccurrencesOf: (domain: string, value: any, state: object) => boolean;
+declare const getOccurrencesOf: (domain: string, value: any, state: object) => number;
 ```

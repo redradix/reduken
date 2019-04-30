@@ -67,7 +67,7 @@ export const getOccurrencesOf: (
   domain: string,
   value: any,
   state: object
-) => boolean = curry((domain, value, state) => {
+) => number = curry((domain, value, state) => {
   const data = getList(domain, state)
 
   return pipe(
