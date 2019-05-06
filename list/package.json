@@ -1,0 +1,5 @@
+{
+  "name": "reduken/list",
+  "private": true,
+  "main": "../lib/list/index.js"
+}

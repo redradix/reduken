@@ -1,0 +1,5 @@
+{
+  "name": "reduken/requests",
+  "private": true,
+  "main": "../lib/requests/index.js"
+}

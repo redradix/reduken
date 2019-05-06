@@ -2,7 +2,7 @@
   "name": "reduken",
   "version": "1.0.25",
   "description": "Redis style structures as redux reducers, actions and selectors",
-  "main": "lib/index.js",
+  "main": "lib/",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/redradix/reduken.git"
