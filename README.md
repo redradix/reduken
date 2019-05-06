@@ -1,6 +1,6 @@
 # Reduken
 
-Redis style structures as redux reducers, actions and selectors.
+Generic redux reducers, actions and selectors.
 
 ![Downloads](https://badgen.net/npm/dt/reduken)
 ![Version](https://badgen.net/npm/v/reduken)
