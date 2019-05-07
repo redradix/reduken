@@ -1,8 +1,8 @@
 {
   "name": "reduken",
-  "version": "1.0.25",
+  "version": "2.0.0",
   "description": "Redis style structures as redux reducers, actions and selectors",
-  "main": "lib/",
+  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/redradix/reduken.git"
@@ -13,10 +13,11 @@
     "test:coverage": "jest --coverage",
     "type-check": "tsc --noEmit",
     "type-check:watch": "npm run type-check -- --watch",
-    "prebuild": "rm -rf lib",
+    "clear": "rm -rf batch entities hash lib list requests index.js",
+    "prebuild": "npm run clear",
     "build": "npm test && npm run build:js && npm run build:types",
     "build:types": "./generate-types.sh",
-    "build:js": "babel src -d lib --extensions \".ts,.js\" --minified --ignore src/**/*.test.js",
+    "build:js": "babel src -d . --extensions \".ts,.js\" --minified --ignore src/**/*.test.js",
     "prepublishOnly": "npm run build"
   },
   "keywords": [

@@ -1,5 +1,0 @@
-{
-  "name": "reduken/hash",
-  "private": true,
-  "main": "../lib/hash/index.js"
-}

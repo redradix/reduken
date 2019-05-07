@@ -1,4 +1,12 @@
 node_modules
 yarn-error.log
 coverage/
+
+# Modules for publish npm package
+/batch
+/entities
+/hash
+/list
+/requests
+/index.js
 /lib

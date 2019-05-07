@@ -1,5 +1,0 @@
-{
-  "name": "reduken/entities",
-  "private": true,
-  "main": "../lib/entities/index.js"
-}

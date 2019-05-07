@@ -1,5 +1,0 @@
-{
-  "name": "reduken/batch",
-  "private": true,
-  "main": "../lib/batch/index.js"
-}
