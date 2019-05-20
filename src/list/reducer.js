@@ -31,12 +31,12 @@ function removeNOccurrences(list = [], count = 0, value) {
 }
 
 const actionHandlers = {
-  [ActionTypes.PREPEND]: (state, action) => {
+  [ActionTypes.UNSHIFT]: (state, action) => {
     const { domain, value } = action.payload
     const prevItems = propOr([], domain, state)
     return assoc(domain, [value, ...prevItems], state)
   },
-  [ActionTypes.APPEND]: (state, action) => {
+  [ActionTypes.PUSH]: (state, action) => {
     const { domain, value } = action.payload
     const prevItems = propOr([], domain, state)
     return assoc(domain, [...prevItems, value], state)

@@ -3,9 +3,9 @@ import * as ActionTypes from './actionTypes'
 /**
  * Prepends an item to the list
  */
-export function prepend(domain: string, value: any) {
+export function unshift(domain: string, value: any) {
   return {
-    type: ActionTypes.PREPEND,
+    type: ActionTypes.UNSHIFT,
     payload: {
       domain,
       value
@@ -16,9 +16,9 @@ export function prepend(domain: string, value: any) {
 /**
  * Appends an item in the right of the list
  */
-export function append(domain: string, value: any) {
+export function push(domain: string, value: any) {
   return {
-    type: ActionTypes.APPEND,
+    type: ActionTypes.PUSH,
     payload: {
       domain,
       value

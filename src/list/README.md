@@ -6,12 +6,12 @@
 /**
  * Prepends an item to the list
  */
-declare function prepend(domain: string, value: any): object;
+declare function unshift(domain: string, value: any): object;
 
 /**
  * Appends an item in the right of the list
  */
-declare function append(domain: string, value: any): object;
+declare function push(domain: string, value: any): object;
 
 /**
  * Removes the first value of list

@@ -9,24 +9,24 @@ describe('List Module', () => {
     expect(list).toEqual({})
   })
 
-  it('PREPEND inserts a value at the head (left) of a list', () => {
+  it('UNSHIFT inserts a value at the head (left) of a list', () => {
     const mockState = {
       test: ['bar']
     }
 
-    const action = Actions.prepend('test', 'foo')
+    const action = Actions.unshift('test', 'foo')
     const list = reducer(mockState, action)
 
     expect(Selectors.getList('test', { list }).length).toBe(2)
     expect(Selectors.getList('test', { list })).toEqual(['foo', 'bar'])
   })
 
-  it('APPEND inserts a value at the tail (right) of a list', () => {
+  it('PUSH inserts a value at the tail (right) of a list', () => {
     const mockState = {
       test: ['foo']
     }
 
-    const action = Actions.append('test', 'bar')
+    const action = Actions.push('test', 'bar')
     const list = reducer(mockState, action)
 
     expect(Selectors.getList('test', { list }).length).toBe(2)

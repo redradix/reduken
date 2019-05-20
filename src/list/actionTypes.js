@@ -1,7 +1,7 @@
 const MOD = 'CORE/LIST'
 
-export const PREPEND = `${MOD}/PREPEND`
-export const APPEND = `${MOD}/APPEND`
+export const UNSHIFT = `${MOD}/UNSHIFT`
+export const PUSH = `${MOD}/PUSH`
 export const SHIFT = `${MOD}/SHIFT`
 export const POP = `${MOD}/POP`
 export const REPLACE_ONE = `${MOD}/REPLACE_ONE`
