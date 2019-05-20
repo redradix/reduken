@@ -48,7 +48,7 @@ describe('Hash Module', () => {
       }
     }
     const value = { name: 'Test', number: 100 }
-    const action = Actions.merge(['test', 'foo'], value)
+    const action = Actions.merge('test', 'foo', value)
     const hash = reducer(initialState, action)
 
     expect(Selectors.getFromPath('test', ['foo', 'name'], { hash })).toBe(

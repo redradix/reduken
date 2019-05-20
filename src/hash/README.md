@@ -18,7 +18,7 @@ declare function remove(domain: string, keys: string | string[]): object;
 /**
  * Merges a Javascript object in an existing hash
  */
-declare function merge(path: string, map: object): object;
+declare function merge(domain: string, keys: string | string[], map: object): object;
 
 /**
  * Increments the value inside a domain and keys by delta
@@ -27,7 +27,7 @@ declare function incrementBy(domain: string, keys: string | string[], delta: num
 
 /**
  * Toggles a Boolean key in a hash. If key is not present, it will assumed to
- * be false, so htoggle() will cause it to be true.
+ * be false, so toggle() will cause it to be true.
  */
 declare function toggle(domain: string, keys: string | string[]): object;
 ```

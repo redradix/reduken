@@ -31,11 +31,11 @@ export function remove(domain: string, keys: string | string[]) {
 /**
  * Merges a Javascript object in an existing hash
  */
-export function merge(path: string, map: object) {
+export function merge(domain: string, keys: string, map: object) {
   return {
     type: MERGE,
     payload: {
-      path,
+      path: [domain, ...safetyArray(keys)],
       value: map
     }
   }
