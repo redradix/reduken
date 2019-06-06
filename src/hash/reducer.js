@@ -1,6 +1,6 @@
 import {
   not,
-  mergeDeepRight,
+  mergeDeepLeft,
   dissocPath,
   assocPath,
   over,
@@ -28,7 +28,7 @@ const actionHandlers = {
   },
   [ActionTypes.MERGE]: (state, action) => {
     const { value, path } = action.payload
-    return over(lensPath(path), mergeDeepRight(value), state)
+    return over(lensPath(path), mergeDeepLeft(value), state)
   },
   [ActionTypes.INCREMENT_BY]: (state, action) => {
     const { value, path } = action.payload

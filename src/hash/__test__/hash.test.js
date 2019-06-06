@@ -47,7 +47,7 @@ describe('Hash Module', () => {
         }
       }
     }
-    const value = { name: 'Test', number: 100 }
+    const value = { name: 'Test', number: 100, existing: 'overwrite' }
     const action = Actions.merge('test', 'foo', value)
     const hash = reducer(initialState, action)
 
@@ -58,7 +58,7 @@ describe('Hash Module', () => {
       value.number
     )
     expect(Selectors.getFromPath('test', ['foo', 'existing'], { hash })).toBe(
-      initialState.test.foo.existing
+      value.existing
     )
   })
 
