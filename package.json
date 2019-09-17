@@ -1,6 +1,6 @@
 {
   "name": "reduken",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Generic redux reducers, actions and selectors.",
   "main": "index.js",
   "repository": {
