@@ -99,7 +99,7 @@ describe('Entities Module', () => {
     expect(Selectors.getEntities({ entities })).toEqual({})
   })
 
-  it('updateEntities() overwrites one domain entity with new data', () => {
+  it('updateEntities() updates one domain and preserves previous data', () => {
     const mockPayload = {
       users: { 2: { name: 'hello' } }
     }
@@ -108,8 +108,11 @@ describe('Entities Module', () => {
     const entities = reducer(initialEntities, action)
 
     const users = Selectors.getDomain('users', { entities })
+    const previousUser = Selectors.getOne('users', 25, { entities })
     const test = Selectors.getDomain('test', { entities })
-    expect(users).toEqual(mockPayload.users)
+
+    expect(Object.values(users)).toHaveLength(3)
+    expect(previousUser).toEqual(initialEntities.users['25'])
     expect(test).toEqual(initialEntities.test)
   })
 
@@ -124,6 +127,6 @@ describe('Entities Module', () => {
     const user = Selectors.getOne('users', 1, { entities })
     const userDomain = Selectors.getDomain('users', { entities })
     expect(user.name).toEqual(mockPayload.name)
-    expect(Object.values(userDomain).length).toBe(2)
+    expect(Object.values(userDomain)).toHaveLength(2)
   })
 })

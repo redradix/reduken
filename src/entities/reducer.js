@@ -7,6 +7,7 @@ import {
   compose,
   defaultTo,
   assocPath,
+  mergeWith,
   mergeRight
 } from 'ramda'
 import * as ActionTypes from './actionTypes'
@@ -40,7 +41,7 @@ const actionHandlers = {
     return initialState
   },
   [ActionTypes.UPDATE_ENTITIES]: (state, { payload }) => {
-    return mergeRight(state, payload) // only merges first level
+    return mergeWith(mergeRight, state, payload)
   },
   [ActionTypes.UPDATE_ENTITY]: (state, { payload }) => {
     const { domain, id, data } = payload
