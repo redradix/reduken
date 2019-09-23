@@ -11,7 +11,9 @@ import {
   mergeRight,
   ifElse,
   hasPath,
-  assoc
+  assoc,
+  pipe,
+  identity
 } from 'ramda'
 import * as ActionTypes from './actionTypes'
 
