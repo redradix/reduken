@@ -8,7 +8,10 @@ import {
   defaultTo,
   assocPath,
   mergeWith,
-  mergeRight
+  mergeRight,
+  ifElse,
+  hasPath,
+  assoc
 } from 'ramda'
 import * as ActionTypes from './actionTypes'
 
@@ -46,9 +49,9 @@ const actionHandlers = {
   [ActionTypes.UPDATE_ENTITY]: (state, { payload }) => {
     const { domain, id, data } = payload
 
-    return R.pipe(
-      R.ifElse(R.hasPath([domain]), R.identity, R.pipe(R.assoc(domain, {}))),
-      R.assocPath([domain, id], data)
+    return pipe(
+      ifElse(hasPath([domain]), identity, assoc(domain, {})),
+      assocPath([domain, id], data)
     )(state)
   }
 }
