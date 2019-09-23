@@ -51,10 +51,7 @@ const actionHandlers = {
   [ActionTypes.UPDATE_ENTITY]: (state, { payload }) => {
     const { domain, id, data } = payload
 
-    return pipe(
-      ifElse(hasPath([domain]), identity, assoc(domain, {})),
-      assocPath([domain, id], data)
-    )(state)
+    return assocPath([domain, String(id)], data, state)
   }
 }
 
