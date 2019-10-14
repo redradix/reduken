@@ -9,11 +9,7 @@ import {
   assocPath,
   mergeWith,
   mergeRight,
-  ifElse,
-  hasPath,
-  assoc,
-  pipe,
-  identity
+  mergeDeepLeft
 } from 'ramda'
 import * as ActionTypes from './actionTypes'
 
@@ -29,7 +25,7 @@ const actionHandlers = {
     return over(
       lensPath([domain, id]),
       compose(
-        mergeDeepRight(data),
+        mergeDeepLeft(data),
         defaultTo({})
       ),
       state

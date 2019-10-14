@@ -5,7 +5,8 @@ import {
   removeMany,
   removeAll,
   clear,
-  updateEntities
+  updateEntities,
+  mergeEntity
 } from '../actions'
 import reducer from '../reducer'
 import * as Selectors from '../selectors'
@@ -74,6 +75,18 @@ describe('Entities Module', () => {
     )
     expect(Selectors.getOne('domains', 1, { entities }).name).toBe('AB4FB')
     expect(Selectors.getOne('users', 2, { entities }).name).toBe('second')
+  })
+
+  it('mergeEntity() merges one entity and preserves old properties', () => {
+    const action = mergeEntity('users', 1, { name: 'overwritten' })
+    const entities = reducer(initialEntities, action)
+
+    const existingUser = Selectors.getOne('users', 1, { entities })
+
+    expect(existingUser.name).toBe('overwritten')
+    expect(existingUser.surname).toBe(
+      Selectors.getOne('users', 1, { entities: initialEntities }).surname
+    )
   })
 
   it('removeOne() removes a single entity by domain and id', () => {
