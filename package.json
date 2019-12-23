@@ -35,15 +35,15 @@
     "ramda": "^0.26.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.4.3",
-    "@babel/core": "^7.4.3",
-    "@babel/plugin-proposal-class-properties": "^7.4.0",
-    "@babel/plugin-proposal-object-rest-spread": "^7.4.3",
-    "@babel/preset-env": "^7.4.3",
-    "@babel/preset-typescript": "^7.3.3",
+    "@babel/cli": "^7.7.7",
+    "@babel/core": "^7.7.7",
+    "@babel/plugin-proposal-class-properties": "^7.7.4",
+    "@babel/plugin-proposal-object-rest-spread": "^7.7.7",
+    "@babel/preset-env": "^7.7.7",
+    "@babel/preset-typescript": "^7.7.7",
     "babel-jest": "^24.7.1",
     "jest": "^24.7.1",
-    "typescript": "^3.4.5"
+    "typescript": "^3.7.4"
   },
   "bugs": {
     "url": "https://github.com/redradix/reduken/issues"
