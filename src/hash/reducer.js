@@ -10,7 +10,7 @@ import {
   always,
   ifElse,
   identity,
-  compose
+  compose,
 } from 'ramda'
 import buildReducer from '../lib/buildReducer'
 import * as ActionTypes from './actionTypes'
@@ -34,17 +34,14 @@ const actionHandlers = {
     const { value, path } = action.payload
     return over(
       lensPath(path),
-      compose(
-        add(value),
-        ifElse(is(Number), identity, always(0))
-      ),
-      state
+      compose(add(value), ifElse(is(Number), identity, always(0))),
+      state,
     )
   },
   [ActionTypes.TOGGLE]: (state, action) => {
     const { path } = action.payload
     return over(lensPath(path), not, state)
-  }
+  },
 }
 
 export default buildReducer(initialState, actionHandlers)

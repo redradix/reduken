@@ -8,8 +8,8 @@ export function unshift(domain: string, value: any) {
     type: ActionTypes.UNSHIFT,
     payload: {
       domain,
-      value
-    }
+      value,
+    },
   }
 }
 
@@ -21,8 +21,8 @@ export function push(domain: string, value: any) {
     type: ActionTypes.PUSH,
     payload: {
       domain,
-      value
-    }
+      value,
+    },
   }
 }
 
@@ -33,8 +33,8 @@ export function shift(domain: string) {
   return {
     type: ActionTypes.SHIFT,
     payload: {
-      domain
-    }
+      domain,
+    },
   }
 }
 
@@ -45,8 +45,8 @@ export function pop(domain: string) {
   return {
     type: ActionTypes.POP,
     payload: {
-      domain
-    }
+      domain,
+    },
   }
 }
 
@@ -59,8 +59,8 @@ export function replaceOne(domain: string, index: number, value: any) {
     payload: {
       domain,
       index,
-      value
-    }
+      value,
+    },
   }
 }
 
@@ -72,8 +72,8 @@ export function replaceDomain(domain: string, elements: any[]) {
     type: ActionTypes.REPLACE_DOMAIN,
     payload: {
       domain,
-      elements
-    }
+      elements,
+    },
   }
 }
 
@@ -86,8 +86,8 @@ export function removeOccurrences(domain: string, count: number, value: any) {
     payload: {
       domain,
       count,
-      value
-    }
+      value,
+    },
   }
 }
 
@@ -101,7 +101,7 @@ export function trim(domain: string, start: number, stop: number = -1) {
     payload: {
       domain,
       start,
-      stop
-    }
+      stop,
+    },
   }
 }

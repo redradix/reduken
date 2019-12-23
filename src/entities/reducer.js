@@ -9,7 +9,7 @@ import {
   assocPath,
   mergeWith,
   mergeRight,
-  mergeDeepLeft
+  mergeDeepLeft,
 } from 'ramda'
 import * as ActionTypes from './actionTypes'
 
@@ -24,11 +24,8 @@ const actionHandlers = {
 
     return over(
       lensPath([domain, id]),
-      compose(
-        mergeDeepLeft(data),
-        defaultTo({})
-      ),
-      state
+      compose(mergeDeepLeft(data), defaultTo({})),
+      state,
     )
   },
   [ActionTypes.REMOVE]: (state, { payload }) => {
@@ -48,7 +45,7 @@ const actionHandlers = {
     const { domain, id, data } = payload
 
     return assocPath([domain, String(id)], data, state)
-  }
+  },
 }
 
 export default buildReducer(initialState, actionHandlers)

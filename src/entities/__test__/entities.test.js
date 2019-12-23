@@ -6,7 +6,7 @@ import {
   removeAll,
   clear,
   updateEntities,
-  mergeEntity
+  mergeEntity,
 } from '../actions'
 import reducer from '../reducer'
 import * as Selectors from '../selectors'
@@ -15,9 +15,9 @@ describe('Entities Module', () => {
   const initialEntities = {
     users: {
       1: { id: 1, name: 'the first one', surname: 'the first surname' },
-      25: { id: 25, name: 'the second one' }
+      25: { id: 25, name: 'the second one' },
     },
-    test: { 20: { id: 20, name: 'testing' } }
+    test: { 20: { id: 20, name: 'testing' } },
   }
 
   it('Exports by default a reducer', () => {
@@ -27,8 +27,8 @@ describe('Entities Module', () => {
   it('mergeEntities() merges entities keeping the existing ones', () => {
     const mockPayload = {
       users: {
-        2: { id: 2, name: 'second' }
-      }
+        2: { id: 2, name: 'second' },
+      },
     }
     const action = mergeEntities(mockPayload)
     const entities = reducer(initialEntities, action)
@@ -38,7 +38,7 @@ describe('Entities Module', () => {
 
   it('mergeEntities() merges existing entities', () => {
     const mockPayload = {
-      users: { 1: { id: 1, name: 'overwritten', profession: 'developer' } }
+      users: { 1: { id: 1, name: 'overwritten', profession: 'developer' } },
     }
     const action = mergeEntities(mockPayload)
     const entities = reducer(initialEntities, action)
@@ -51,27 +51,27 @@ describe('Entities Module', () => {
 
   it('mergeEntities() keeps non affected entities equal as previous', () => {
     const mockPayload = {
-      domains: { 1: { id: 1, name: 'overwritten' } }
+      domains: { 1: { id: 1, name: 'overwritten' } },
     }
     const action = mergeEntities(mockPayload)
     const entities = reducer(initialEntities, action)
 
     const userNotRemoved = Selectors.getOne('users', 25, { entities })
     expect(userNotRemoved).toBe(
-      Selectors.getOne('users', 25, { entities: initialEntities })
+      Selectors.getOne('users', 25, { entities: initialEntities }),
     )
   })
 
   it('mergeEntities() accepts multiple entity maps', () => {
     const mockPayload = {
       users: { 2: { id: 2, name: 'second' } },
-      domains: { 1: { id: 1, name: 'AB4FB' } }
+      domains: { 1: { id: 1, name: 'AB4FB' } },
     }
     const entities = reducer(initialEntities, mergeEntities(mockPayload))
 
     const existingUser = Selectors.getOne('users', 25, { entities })
     expect(existingUser).toBe(
-      Selectors.getOne('users', 25, { entities: initialEntities })
+      Selectors.getOne('users', 25, { entities: initialEntities }),
     )
     expect(Selectors.getOne('domains', 1, { entities }).name).toBe('AB4FB')
     expect(Selectors.getOne('users', 2, { entities }).name).toBe('second')
@@ -85,7 +85,7 @@ describe('Entities Module', () => {
 
     expect(existingUser.name).toBe('overwritten')
     expect(existingUser.surname).toBe(
-      Selectors.getOne('users', 1, { entities: initialEntities }).surname
+      Selectors.getOne('users', 1, { entities: initialEntities }).surname,
     )
   })
 
@@ -114,7 +114,7 @@ describe('Entities Module', () => {
 
   it('updateEntities() updates one domain and preserves previous data', () => {
     const mockPayload = {
-      users: { 2: { name: 'hello' } }
+      users: { 2: { name: 'hello' } },
     }
 
     const action = updateEntities(mockPayload)
@@ -134,7 +134,7 @@ describe('Entities Module', () => {
 
     const entities = reducer(
       initialEntities,
-      updateEntity('users', 1, mockPayload)
+      updateEntity('users', 1, mockPayload),
     )
 
     const user = Selectors.getOne('users', 1, { entities })

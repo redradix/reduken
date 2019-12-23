@@ -11,7 +11,7 @@ describe('List Module', () => {
 
   it('UNSHIFT inserts a value at the head (left) of a list', () => {
     const mockState = {
-      test: ['bar']
+      test: ['bar'],
     }
 
     const action = Actions.unshift('test', 'foo')
@@ -23,7 +23,7 @@ describe('List Module', () => {
 
   it('PUSH inserts a value at the tail (right) of a list', () => {
     const mockState = {
-      test: ['foo']
+      test: ['foo'],
     }
 
     const action = Actions.push('test', 'bar')
@@ -35,7 +35,7 @@ describe('List Module', () => {
 
   it('SHIFT removes the leftmost element in a list', () => {
     const mockState = {
-      test: ['foo', 'bar']
+      test: ['foo', 'bar'],
     }
 
     const action = Actions.shift('test')
@@ -47,7 +47,7 @@ describe('List Module', () => {
 
   it('POP removes the leftmost element in a list', () => {
     const mockState = {
-      test: ['foo', 'bar']
+      test: ['foo', 'bar'],
     }
 
     const action = Actions.pop('test')
@@ -59,14 +59,14 @@ describe('List Module', () => {
 
   it('REPLACE_ONE inserts a value at the specified index', () => {
     const mockState = {
-      test: [1, 2, 3, 5]
+      test: [1, 2, 3, 5],
     }
 
     const action = Actions.replaceOne('test', 3, 4)
     const list = reducer(mockState, action)
 
     expect(Selectors.getList('test', { list }).length).toBe(
-      mockState.test.length
+      mockState.test.length,
     )
     expect(Selectors.getByIndex('test', 3, { list })).toBe(4)
   })
@@ -90,7 +90,7 @@ describe('List Module', () => {
 
   it('REMOVE_OCCURRENCES(domain, count=0, value) removes all occurrences of a value in a list', () => {
     const mockState = {
-      test: ['foo', 'foo', 'bar', 'baz', 'test', 'foo', 'cachopo']
+      test: ['foo', 'foo', 'bar', 'baz', 'test', 'foo', 'cachopo'],
     }
     const action = Actions.removeOccurrences('test', 0, 'foo')
     const list = reducer(mockState, action)
@@ -100,14 +100,14 @@ describe('List Module', () => {
 
   it('REMOVE_OCCURRENCES(domain, count=N, value) removes first N occurrences of a value in a list', () => {
     const mockState = {
-      test: ['foo', 'foo', 'bar', 'baz', 'test', 'foo', 'cachopo']
+      test: ['foo', 'foo', 'bar', 'baz', 'test', 'foo', 'cachopo'],
     }
     const action = Actions.removeOccurrences('test', 2, 'foo')
     const list = reducer(mockState, action)
 
     expect(Selectors.getOccurrencesOf('test', 'foo', { list })).toBe(1)
     expect(Selectors.getList('test', { list }).length).toBe(
-      mockState.test.length - 2
+      mockState.test.length - 2,
     )
     expect(Selectors.getIndexOf('test', 'foo', { list })).toBe(3)
   })
@@ -115,27 +115,27 @@ describe('List Module', () => {
   it('REMOVE_OCCURRENCES(domain, count=-N, value) removes last N occurrences of a value in a list', () => {
     const action = Actions.removeOccurrences('test', -2, 'foo')
     const mockState = {
-      test: ['foo', 'foo', 'bar', 'baz', 'test', 'foo', 'cachopo']
+      test: ['foo', 'foo', 'bar', 'baz', 'test', 'foo', 'cachopo'],
     }
     const list = reducer(mockState, action)
 
     expect(Selectors.getOccurrencesOf('test', 'foo', { list })).toBe(1)
     expect(Selectors.getList('test', { list }).length).toBe(
-      mockState.test.length - 2
+      mockState.test.length - 2,
     )
     expect(Selectors.getIndexOf('test', 'foo', { list })).toBe(0)
   })
 
   it('TRIM(domain, start, stop) trims an existing list using a range', () => {
     const mockState = {
-      test: 'abcdefghijklmnopqrstuvwuxyz'.split('')
+      test: 'abcdefghijklmnopqrstuvwuxyz'.split(''),
     }
     const action = Actions.trim('test', 0, 3)
     const list = reducer(mockState, action)
 
     expect(Selectors.getList('test', { list }).length).toBe(4)
     expect(Selectors.getList('test', { list })).toEqual(
-      mockState.test.slice(0, 4)
+      mockState.test.slice(0, 4),
     )
   })
 })

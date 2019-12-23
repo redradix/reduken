@@ -10,8 +10,8 @@ export function set(domain: string, keys: string | string[], value: any) {
     type: SET,
     payload: {
       path: [domain, ...safetyArray(keys)],
-      value
-    }
+      value,
+    },
   }
 }
 
@@ -23,8 +23,8 @@ export function remove(domain: string, keys: string | string[]) {
   return {
     type: REMOVE,
     payload: {
-      path: [domain, ...safetyArray(keys)]
-    }
+      path: [domain, ...safetyArray(keys)],
+    },
   }
 }
 
@@ -36,8 +36,8 @@ export function merge(domain: string, keys: string, map: object) {
     type: MERGE,
     payload: {
       path: [domain, ...safetyArray(keys)],
-      value: map
-    }
+      value: map,
+    },
   }
 }
 
@@ -47,14 +47,14 @@ export function merge(domain: string, keys: string, map: object) {
 export function incrementBy(
   domain: string,
   keys: string | string[],
-  delta: number
+  delta: number,
 ) {
   return {
     type: INCREMENT_BY,
     payload: {
       path: [domain, ...safetyArray(keys)],
-      value: delta
-    }
+      value: delta,
+    },
   }
 }
 
@@ -66,7 +66,7 @@ export function toggle(domain: string, keys: string | string[]) {
   return {
     type: TOGGLE,
     payload: {
-      path: [domain, ...safetyArray(keys)]
-    }
+      path: [domain, ...safetyArray(keys)],
+    },
   }
 }

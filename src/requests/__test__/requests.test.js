@@ -4,7 +4,7 @@ import * as Selectors from '../selectors'
 
 describe('Requests Module', () => {
   const initialState = {
-    list: { status: 'pending', error: null }
+    list: { status: 'pending', error: null },
   }
 
   it('Exports by default a reducer', () => {

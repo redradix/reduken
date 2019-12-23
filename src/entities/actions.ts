@@ -6,7 +6,7 @@ import * as ActionTypes from './actionTypes'
 export function mergeEntities(entityMap: object) {
   return {
     type: ActionTypes.MERGE_ENTITIES,
-    payload: entityMap
+    payload: entityMap,
   }
 }
 
@@ -19,8 +19,8 @@ export function mergeEntity(domain: string, id: string, data: any) {
     payload: {
       domain,
       id,
-      data
-    }
+      data,
+    },
   }
 }
 
@@ -32,8 +32,8 @@ export function removeMany(domain: string, keys: string[]) {
     type: ActionTypes.REMOVE,
     payload: {
       domain,
-      keys
-    }
+      keys,
+    },
   }
 }
 
@@ -51,8 +51,8 @@ export function removeAll(domain: string) {
   return {
     type: ActionTypes.REMOVE_ALL,
     payload: {
-      domain
-    }
+      domain,
+    },
   }
 }
 
@@ -61,7 +61,7 @@ export function removeAll(domain: string) {
  */
 export function clear() {
   return {
-    type: ActionTypes.CLEAR
+    type: ActionTypes.CLEAR,
   }
 }
 
@@ -71,7 +71,7 @@ export function clear() {
 export function updateEntities(entityMap: object) {
   return {
     type: ActionTypes.UPDATE_ENTITIES,
-    payload: entityMap
+    payload: entityMap,
   }
 }
 
@@ -84,7 +84,7 @@ export function updateEntity(domain: string, id: string, data: any) {
     payload: {
       domain,
       id,
-      data
-    }
+      data,
+    },
   }
 }

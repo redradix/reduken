@@ -13,7 +13,7 @@ describe('Hash Module', () => {
     const hash = reducer(undefined, action)
 
     expect(Selectors.getFromPath('test', ['foo'], { hash })).toBe(
-      action.payload.value
+      action.payload.value,
     )
   })
 
@@ -22,7 +22,7 @@ describe('Hash Module', () => {
     const hash = reducer(undefined, action)
 
     expect(Selectors.getFromPath('test', ['foo', 'bar', 'baz'], { hash })).toBe(
-      action.payload.value
+      action.payload.value,
     )
   })
 
@@ -30,8 +30,8 @@ describe('Hash Module', () => {
     const state = {
       test: {
         foo: 'bar',
-        bar: 'foo'
-      }
+        bar: 'foo',
+      },
     }
     const action = Actions.remove('test', ['foo'])
     const hash = reducer(state, action)
@@ -43,22 +43,22 @@ describe('Hash Module', () => {
     const initialState = {
       test: {
         foo: {
-          existing: 'test'
-        }
-      }
+          existing: 'test',
+        },
+      },
     }
     const value = { name: 'Test', number: 100, existing: 'overwrite' }
     const action = Actions.merge('test', 'foo', value)
     const hash = reducer(initialState, action)
 
     expect(Selectors.getFromPath('test', ['foo', 'name'], { hash })).toBe(
-      value.name
+      value.name,
     )
     expect(Selectors.getFromPath('test', ['foo', 'number'], { hash })).toBe(
-      value.number
+      value.number,
     )
     expect(Selectors.getFromPath('test', ['foo', 'existing'], { hash })).toBe(
-      value.existing
+      value.existing,
     )
   })
 
@@ -79,8 +79,8 @@ describe('Hash Module', () => {
   it('INCREMENT_BY increments a non numeric key by setting it to the value', () => {
     const initialState = {
       test: {
-        foo: 'string'
-      }
+        foo: 'string',
+      },
     }
 
     const action = Actions.incrementBy('test', ['foo'], 1)

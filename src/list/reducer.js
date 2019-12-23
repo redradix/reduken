@@ -8,7 +8,7 @@ import {
   slice,
   remove,
   repeat,
-  pipe
+  pipe,
 } from 'ramda'
 import * as ActionTypes from './actionTypes'
 
@@ -69,7 +69,7 @@ const actionHandlers = {
     const { domain, start, stop } = action.payload
     const prevItems = propOr([], domain, state)
     return assoc(domain, slice(start, stop + 1, prevItems), state)
-  }
+  },
 }
 
 export default buildReducer(initialState, actionHandlers)

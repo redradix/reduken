@@ -11,7 +11,7 @@ const actionHandlers = {
   },
   [REMOVE_REQUEST_STATUS]: (state, { domain }) => {
     return dissoc(domain, state)
-  }
+  },
 }
 
 export default buildReducer(initialState, actionHandlers)

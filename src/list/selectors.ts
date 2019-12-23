@@ -7,9 +7,10 @@ const EMPTY_ARRAY = []
 /**
  * Get all the elements in a list
  */
-export const getList: (domain: string, state: object) => any[] = curry(
-  (domain, state) => propOr(EMPTY_ARRAY, domain, root(state))
-)
+export const getList: (
+  domain: string,
+  state: object,
+) => any[] = curry((domain, state) => propOr(EMPTY_ARRAY, domain, root(state)))
 
 /**
  * Get the element in a specified position inside the list
@@ -17,7 +18,7 @@ export const getList: (domain: string, state: object) => any[] = curry(
 export const getByIndex: (
   domain: string,
   index: number,
-  state: object
+  state: object,
 ) => any = curry((domain, index, state) => {
   const data = getList(domain, state)
   return nth(index, data)
@@ -30,7 +31,7 @@ export const getRange: (
   domain: string,
   start: number,
   stop: string,
-  state: object
+  state: object,
 ) => any[] = curry((domain, start, stop, state) => {
   const data = getList(domain, state)
   return data.slice(start, stop)
@@ -42,7 +43,7 @@ export const getRange: (
 export const contains: (
   domain: string,
   value: any,
-  state: object
+  state: object,
 ) => boolean = curry((domain, value, state) => {
   const data = getList(domain, state)
   return data.includes(value)
@@ -54,7 +55,7 @@ export const contains: (
 export const getIndexOf: (
   domain: string,
   value: any,
-  state: object
+  state: object,
 ) => number = curry((domain, value, state) => {
   const data = getList(domain, state)
   return data.indexOf(value)
@@ -66,12 +67,9 @@ export const getIndexOf: (
 export const getOccurrencesOf: (
   domain: string,
   value: any,
-  state: object
+  state: object,
 ) => number = curry((domain, value, state) => {
   const data = getList(domain, state)
 
-  return pipe(
-    filter(equals(value)),
-    length
-  )(data)
+  return pipe(filter(equals(value)), length)(data)
 })

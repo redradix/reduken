@@ -9,7 +9,7 @@ const EMPTY_OBJECT = {}
 export const getFromPath: (
   domain: string,
   path: string[],
-  state: object
+  state: object,
 ) => any = curry((domain, path, state) => {
   return getPath(['hash', domain, ...safetyArray(path)], state)
 })
@@ -20,7 +20,7 @@ export const getFromPath: (
 export const getDomain: (domain: string, state: object) => any[] = curry(
   (domain, state) => {
     return getPath(['hash', domain], state)
-  }
+  },
 )
 
 /**
@@ -29,7 +29,7 @@ export const getDomain: (domain: string, state: object) => any[] = curry(
 export const getKeys: (domain: string, state: object) => string[] = curry(
   (domain, state) => {
     return keys(pathOr(EMPTY_OBJECT, ['hash', domain], state))
-  }
+  },
 )
 
 /**
@@ -38,7 +38,7 @@ export const getKeys: (domain: string, state: object) => string[] = curry(
 export const getDomainLength: (domain: string, state: object) => number = curry(
   (domain, state) => {
     return length(getKeys(domain, state))
-  }
+  },
 )
 
 /**
@@ -48,7 +48,7 @@ export const getDomainLength: (domain: string, state: object) => number = curry(
 export const existInPath: (
   domain: string,
   path: string[],
-  state: object
+  state: object,
 ) => boolean = curry((domain, path, state) => {
   return hasPath(['hash', domain, ...safetyArray(path)], state)
 })
