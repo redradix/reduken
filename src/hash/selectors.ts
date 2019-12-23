@@ -1,5 +1,5 @@
 import { path as getPath, curry, pathOr, keys, length, hasPath } from 'ramda'
-import { safetyArray } from './utils'
+import { alwaysArray } from './utils'
 
 const EMPTY_OBJECT = {}
 
@@ -11,7 +11,7 @@ export const getFromPath: (
   path: string[],
   state: object,
 ) => any = curry((domain, path, state) => {
-  return getPath(['hash', domain, ...safetyArray(path)], state)
+  return getPath(['hash', domain, ...alwaysArray(path)], state)
 })
 
 /**
@@ -50,5 +50,5 @@ export const existInPath: (
   path: string[],
   state: object,
 ) => boolean = curry((domain, path, state) => {
-  return hasPath(['hash', domain, ...safetyArray(path)], state)
+  return hasPath(['hash', domain, ...alwaysArray(path)], state)
 })

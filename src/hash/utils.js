@@ -1,1 +1,2 @@
-export const safetyArray = data => (Array.isArray(data) ? data : [data])
+export const alwaysArray = data => (Array.isArray(data) ? data : [data])
+
