@@ -1,44 +1,46 @@
-import * as R from 'ramda'
+import {
+  not,
+  mergeDeepLeft,
+  dissocPath,
+  assocPath,
+  over,
+  lensPath,
+  is,
+  add,
+  always,
+  ifElse,
+  identity,
+  compose,
+} from 'ramda'
 import buildReducer from '../lib/buildReducer'
 import * as ActionTypes from './actionTypes'
-import { alwaysStringPath } from './utils'
 
 const initialState = {}
 
 const actionHandlers = {
   [ActionTypes.SET]: (state, action) => {
     const { value, path } = action.payload
-    const stringPath = alwaysStringPath(path)
-
-    return R.assocPath(stringPath, value, state)
+    return assocPath(path, value, state)
   },
   [ActionTypes.REMOVE]: (state, action) => {
     const { path } = action.payload
-    const stringPath = alwaysStringPath(path)
-
-    return R.dissocPath(stringPath, state)
+    return dissocPath(path, state)
   },
   [ActionTypes.MERGE]: (state, action) => {
     const { value, path } = action.payload
-    const stringPath = alwaysStringPath(path)
-
-    return R.over(R.lensPath(stringPath), R.mergeDeepLeft(value), state)
+    return over(lensPath(path), mergeDeepLeft(value), state)
   },
   [ActionTypes.INCREMENT_BY]: (state, action) => {
     const { value, path } = action.payload
-    const stringPath = alwaysStringPath(path)
-
-    return R.over(
-      R.lensPath(stringPath),
-      R.pipe(R.ifElse(R.is(Number), R.identity, R.always(0)), R.add(value)),
+    return over(
+      lensPath(path),
+      compose(add(value), ifElse(is(Number), identity, always(0))),
       state,
     )
   },
   [ActionTypes.TOGGLE]: (state, action) => {
     const { path } = action.payload
-    const stringPath = alwaysStringPath(path)
-
-    return R.over(R.lensPath(stringPath), R.not, state)
+    return over(lensPath(path), not, state)
   },
 }
 

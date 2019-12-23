@@ -26,13 +26,6 @@ describe('Hash Module', () => {
     )
   })
 
-  it('SET works well with numbers in path', () => {
-    const action = Actions.set('test', 10, 25)
-    const hash = reducer(undefined, action)
-
-    expect(Selectors.getDomain('test', { hash })).toEqual({ '10': 25 })
-  })
-
   it('DELETE removes a key from a hash', () => {
     const state = {
       test: {
