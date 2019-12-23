@@ -13,7 +13,7 @@
     "test:coverage": "npm test -- --coverage",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "tslint -p tsconfig.json",
-    "build": "tsc --build --clean",
+    "build": "tsc",
     "prepare": "npm run build",
     "prepublishOnly": "npm test && npm run lint",
     "preversion": "npm run lint",
