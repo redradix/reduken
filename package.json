@@ -2,23 +2,23 @@
   "name": "reduken",
   "version": "2.0.6",
   "description": "Generic redux reducers, actions and selectors.",
-  "main": "index.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/redradix/reduken.git"
-  },
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib/**/*"
+  ],
   "scripts": {
-    "test": "jest",
-    "test:dev": "jest --watch",
-    "test:coverage": "jest --coverage",
-    "type-check": "tsc --noEmit",
-    "type-check:watch": "npm run type-check -- --watch",
-    "clear": "rm -r batch entities hash lib list requests index.js",
-    "prebuild": "npm run clear",
-    "build": "npm test && npm run build:js && npm run build:types",
-    "build:types": "./generate-types.sh",
-    "build:js": "babel src -d . --extensions \".ts,.js\" --minified --ignore src/**/*.test.js",
-    "prepublishOnly": "npm run build"
+    "test": "jest --config jestconfig.json",
+    "test:dev": "npm test -- --watch",
+    "test:coverage": "npm test -- --coverage",
+    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+    "lint": "tslint -p tsconfig.json",
+    "build": "tsc --build --clean",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test && npm run lint",
+    "preversion": "npm run lint",
+    "version": "npm run format && git add -A src",
+    "postversion": "git push && git push --tags"
   },
   "keywords": [
     "reducer",
@@ -26,24 +26,23 @@
     "redis",
     "hash"
   ],
-  "jest": {
-    "testURL": "https://www.redradix.com"
-  },
   "author": "redradix",
   "license": "ISC",
   "dependencies": {
     "ramda": "^0.26.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.4.3",
-    "@babel/core": "^7.4.3",
-    "@babel/plugin-proposal-class-properties": "^7.4.0",
-    "@babel/plugin-proposal-object-rest-spread": "^7.4.3",
-    "@babel/preset-env": "^7.4.3",
-    "@babel/preset-typescript": "^7.3.3",
-    "babel-jest": "^24.7.1",
-    "jest": "^24.7.1",
-    "typescript": "^3.4.5"
+    "@types/jest": "^24.0.24",
+    "jest": "^24.9.0",
+    "prettier": "^1.19.1",
+    "ts-jest": "^24.2.0",
+    "tslint": "^5.20.1",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.7.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/redradix/reduken.git"
   },
   "bugs": {
     "url": "https://github.com/redradix/reduken/issues"
