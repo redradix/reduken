@@ -13,7 +13,7 @@
     "test:coverage": "jest --coverage",
     "type-check": "tsc --noEmit",
     "type-check:watch": "npm run type-check -- --watch",
-    "clear": "rm -rf batch entities hash lib list requests index.js",
+    "clear": "rm -r batch entities hash lib list requests index.js",
     "prebuild": "npm run clear",
     "build": "npm test && npm run build:js && npm run build:types",
     "build:types": "./generate-types.sh",
