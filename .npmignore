@@ -1,5 +1,4 @@
-.babelrc
-coverage/
-src/
-generate-types.sh
+src
 tsconfig.json
+tslint.json
+.prettierrc
