@@ -142,4 +142,17 @@ describe('Entities Module', () => {
     expect(user.name).toEqual(mockPayload.name)
     expect(Object.values(userDomain)).toHaveLength(2)
   })
+
+  it('getSome() works with string and numbers arrays', () => {
+    const requestedKeys = [1, '25']
+
+    const users = Selectors.getSome('users', requestedKeys, {
+      entities: initialEntities,
+    })
+
+    const receivedKeys = users.map(user => String(user.id))
+
+    expect(receivedKeys).toEqual(requestedKeys.map(String))
+    expect(users).toHaveLength(2)
+  })
 })

@@ -33,8 +33,9 @@ export const getSome: (
   ids: string[],
   state: object,
 ) => object[] = curry((domain, ids, state) => {
-  const stringIds = ids.map(toString)
+  const stringIds = ids.map(String)
   const entities = getDomain(domain, state)
+
   return Object.keys(entities)
     .filter(key => {
       return includes(key, stringIds)
