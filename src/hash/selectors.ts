@@ -7,19 +7,18 @@ const EMPTY_OBJECT = {}
  * Get a single property from a hash
  */
 export const getFromPath: (
-  domain: string,
   path: string[],
   state: object,
-) => any = curry((domain, path, state) => {
-  return getPath(['hash', domain, ...alwaysArray(path)], state)
+) => any = curry((path, state) => {
+  return getPath(['hash',...alwaysArray(path)], state)
 })
 
 /**
  * Get all the domain content
  */
 export const getDomain: (domain: string, state: object) => any[] = curry(
-  (domain, state) => {
-    return getPath(['hash', domain], state)
+  (state) => {
+    return getPath(['hash'], state)
   },
 )
 
