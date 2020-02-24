@@ -8,7 +8,7 @@
     "dist/**/*"
   ],
   "scripts": {
-    "build": "babel src --extensions .js,.ts --out-dir dist && tsc",
+    "build": "babel src --extensions .js,.ts --out-dir dist --source-maps && tsc",
     "test": "jest --config jestconfig.json",
     "test:dev": "npm test -- --watch",
     "test:coverage": "npm test -- --coverage",

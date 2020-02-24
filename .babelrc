@@ -11,5 +11,6 @@
     ],
     "@babel/preset-typescript"
   ],
-  "ignore": ["node_modules", "**/__test__/**"]
+  "ignore": ["node_modules", "**/__test__/**"],
+  "sourceMaps": true
 }
