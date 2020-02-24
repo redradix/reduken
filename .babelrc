@@ -1,0 +1,15 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "esmodules": true
+        },
+        "modules": "commonjs"
+      }
+    ],
+    "@babel/preset-typescript"
+  ],
+  "ignore": ["node_modules", "**/__test__/**"]
+}

@@ -2,20 +2,23 @@
   "name": "reduken",
   "version": "2.0.6",
   "description": "Generic redux reducers, actions and selectors.",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "files": [
-    "lib/**/*"
+    "dist/**/*"
   ],
   "scripts": {
+    "build": "babel src --extensions .js,.ts --out-dir dist && tsc",
     "test": "jest --config jestconfig.json",
     "test:dev": "npm test -- --watch",
     "test:coverage": "npm test -- --coverage",
     "format": "prettier --ignore-path .gitignore --write \"src/**/*.ts\" \"src/**/*.(js|json)\"",
     "lint": "eslint --ignore-path .gitignore .",
     "check-types": "tsc",
+    "check-format": "npm run prettier -- --list-different",
+    "validate": "npm-run-all --parallel check-types check-format lint build",
     "prepare": "npm run build",
-    "prepublishOnly": "npm test && npm run lint",
+    "prepublishOnly": "npm-run-all test lint",
     "preversion": "npm run lint",
     "version": "npm run format && git add -A src",
     "postversion": "git push && git push --tags"
@@ -32,6 +35,10 @@
     "ramda": "^0.26.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
+    "@babel/preset-typescript": "^7.8.3",
     "@types/jest": "^24.0.24",
     "@typescript-eslint/eslint-plugin": "^2.20.0",
     "@typescript-eslint/parser": "^2.20.0",

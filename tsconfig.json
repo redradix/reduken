@@ -2,7 +2,6 @@
   "compilerOptions": {
     /* Basic Options */
     "target": "es5" /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', 'ES2018', 'ES2019' or 'ESNEXT'. */,
-    "module": "commonjs" /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'. */,
     "lib": [
       "es6",
       "es2017"
@@ -11,11 +10,14 @@
     "checkJs": true /* Report errors in .js files. */,
     "declaration": true /* Generates corresponding '.d.ts' file. */,
     "declarationMap": true /* Generates a sourcemap for each corresponding '.d.ts' file. */,
-    "sourceMap": true /* Generates corresponding '.map' file. */,
-    "outDir": "lib" /* Redirect output structure to the directory. */,
+    "emitDeclarationOnly": true,
+    "outDir": "dist" /* Redirect output structure to the directory. */,
     "strict": true /* Enable all strict type-checking options. */,
-    "noImplicitAny": false /* Raise error on expressions and declarations with an implied 'any' type. */
+    "noImplicitAny": false /* Raise error on expressions and declarations with an implied 'any' type. */,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "isolatedModules": true
   },
   "include": ["src"],
-  "exclude": ["node_modules", "**/__test__/*"]
+  "exclude": ["node_modules", "**/__test__/*", "dist"]
 }
