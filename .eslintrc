@@ -3,12 +3,18 @@
     "ecmaVersion": 2019,
     "sourceType": "module"
   },
-  "extends": ["eslint:recommended", "eslint-config-prettier"],
+  "plugins": ["jest"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:jest/recommended",
+    "eslint-config-prettier"
+  ],
   "rules": {
     "strict": ["error", "never"]
   },
   "env": {
-    "browser": true
+    "browser": true,
+    "jest/globals": true
   },
   "overrides": [
     {
