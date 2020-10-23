@@ -2,17 +2,11 @@
   "name": "reduken",
   "version": "2.0.6",
   "description": "Generic redux reducers, actions and selectors.",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "files": [
-    "dist/**/!(*test*).js?(.map)",
-    "lib/**/!(*test*).js"
+    "lib/**/*"
   ],
-  "directories": {
-    "lib": "./lib",
-    "example": "./examples"
-  },
-  "main": "./dist/",
-  "types": "./dist/index.d.ts",
-  "module": "./lib/",
   "scripts": {
     "test": "jest --config jestconfig.json",
     "test:dev": "npm test -- --watch",
