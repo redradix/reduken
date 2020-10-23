@@ -45,7 +45,7 @@ describe('Hash Module', () => {
         foo: {
           existing: 'test',
         },
-      }
+      },
     }
     const value = { name: 'Test', number: 100, existing: 'overwrite' }
     const action = Actions.merge(['test', 'foo'], value)

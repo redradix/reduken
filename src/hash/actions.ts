@@ -44,10 +44,7 @@ export function merge(keys: string | string[], map: object) {
 /**
  * Increments the value inside a domain and keys by delta
  */
-export function incrementBy(
-  keys: string | string[],
-  delta: number,
-) {
+export function incrementBy(keys: string | string[], delta: number) {
   return {
     type: INCREMENT_BY,
     payload: {
