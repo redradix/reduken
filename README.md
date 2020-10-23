@@ -1,3 +1,10 @@
+## Discontinued in flavor of [Redukers](https://github.com/redradix/redukers)
+
+We have decided to evolve this package but with a completely new concept of only reusable reducers and selectors. You can read more about this idea in the [Redukers](https://github.com/redradix/redukers) repo. 
+You can still use this package but it won't be maintained any longer.
+
+***
+
 # Reduken
 
 Generic redux reducers, actions and selectors.
