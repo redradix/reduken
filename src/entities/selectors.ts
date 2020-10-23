@@ -21,7 +21,7 @@ export const getDomain: (domain: string, state: object) => object[] = curry(
  */
 export const getOne: (
   domain: string,
-  id: string,
+  id: string | number,
   state: object,
 ) => object = curry((domain, id, state) => getDomain(domain, state)[id])
 
@@ -30,7 +30,7 @@ export const getOne: (
  */
 export const getSome: (
   domain: string,
-  ids: string[],
+  ids: string[] | number[],
   state: object,
 ) => object[] = curry((domain, ids, state) => {
   const stringIds = ids.map(String)

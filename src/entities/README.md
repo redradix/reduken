@@ -62,12 +62,12 @@ declare const getDomain: (domain: string, state: object) => object[];
 /**
  * Get single entity from domain, by it's id
  */
-declare const getOne: (domain: string, id: string, state: object) => object;
+declare const getOne: (domain: string, id: string | number, state: object) => object;
 
 /**
  * Get the entities with specific ids in a domain
  */
-declare const getSome: (domain: string, ids: string[], state: object) => object[];
+declare const getSome: (domain: string, ids: string[] | number[], state: object) => object[];
 
 /**
  * Get ids of the entities inside a domain
