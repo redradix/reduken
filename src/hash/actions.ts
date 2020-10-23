@@ -5,11 +5,11 @@ import { alwaysArray } from './utils'
  * Sets a single value in a hash, specified by
  * domain and keys
  */
-export function set(domain: string, keys: string | string[], value: any) {
+export function set(keys: string | string[], value: any) {
   return {
     type: SET,
     payload: {
-      path: [domain, ...alwaysArray(keys)],
+      path: [...alwaysArray(keys)],
       value,
     },
   }
@@ -19,11 +19,11 @@ export function set(domain: string, keys: string | string[], value: any) {
  * Deletes the value containing in a specified domain
  * and keys
  */
-export function remove(domain: string, keys: string | string[]) {
+export function remove(keys: string | string[]) {
   return {
     type: REMOVE,
     payload: {
-      path: [domain, ...alwaysArray(keys)],
+      path: [...alwaysArray(keys)],
     },
   }
 }
@@ -31,11 +31,11 @@ export function remove(domain: string, keys: string | string[]) {
 /**
  * Merges a Javascript object in an existing hash
  */
-export function merge(domain: string, keys: string, map: object) {
+export function merge(keys: string | string[], map: object) {
   return {
     type: MERGE,
     payload: {
-      path: [domain, ...alwaysArray(keys)],
+      path: [...alwaysArray(keys)],
       value: map,
     },
   }
@@ -45,14 +45,13 @@ export function merge(domain: string, keys: string, map: object) {
  * Increments the value inside a domain and keys by delta
  */
 export function incrementBy(
-  domain: string,
   keys: string | string[],
   delta: number,
 ) {
   return {
     type: INCREMENT_BY,
     payload: {
-      path: [domain, ...alwaysArray(keys)],
+      path: [...alwaysArray(keys)],
       value: delta,
     },
   }
@@ -62,11 +61,11 @@ export function incrementBy(
  * Toggles a Boolean key in a hash. If key is not present, it will assumed to
  * be false, so htoggle() will cause it to be true.
  */
-export function toggle(domain: string, keys: string | string[]) {
+export function toggle(keys: string | string[]) {
   return {
     type: TOGGLE,
     payload: {
-      path: [domain, ...alwaysArray(keys)],
+      path: [...alwaysArray(keys)],
     },
   }
 }
